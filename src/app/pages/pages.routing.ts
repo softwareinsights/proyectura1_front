@@ -1,0 +1,101 @@
+import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { Pages } from './pages.component';
+import { ModuleWithProviders } from '@angular/core';
+import { AuthGuard } from '../shared/auth-guard.service';
+export const routes: Routes = [
+{
+    path: 'login',
+    loadChildren: 'app/pages/login/login.module#LoginModule'
+},
+{
+    path: 'register',
+    loadChildren: 'app/pages/register/register.module#RegisterModule'
+},
+{
+    path: 'forgot',
+    loadChildren: 'app/pages/forgot/forgot.module#ForgotModule'
+},
+{
+    path: 'change-password',
+    loadChildren: 'app/pages/change-password/change-password.module#ChangePasswordModule', 
+    canActivate: [AuthGuard]
+},
+{
+    path: 'pages',
+    component: Pages,
+    children: [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+    { path: 'unauthorized', loadChildren: './unauthorized/unauthorized.module#UnauthorizedModule'},
+    { path: 'archivos', loadChildren: './archivos/archivos.module#ArchivosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'categorias', loadChildren: './categorias/categorias.module#CategoriasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'costos', loadChildren: './costos/costos.module#CostosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'cotizacions', loadChildren: './cotizacions/cotizacions.module#CotizacionsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'detallecotizacions', loadChildren: './detallecotizacions/detallecotizacions.module#DetallecotizacionsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'detallefacturas', loadChildren: './detallefacturas/detallefacturas.module#DetallefacturasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'detallenotagastos', loadChildren: './detallenotagastos/detallenotagastos.module#DetallenotagastosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'empresas', loadChildren: './empresas/empresas.module#EmpresasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'estatuscotizacions', loadChildren: './estatuscotizacions/estatuscotizacions.module#EstatuscotizacionsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'estatusobras', loadChildren: './estatusobras/estatusobras.module#EstatusobrasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'facturas', loadChildren: './facturas/facturas.module#FacturasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'materials', loadChildren: './materials/materials.module#MaterialsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'notagastos', loadChildren: './notagastos/notagastos.module#NotagastosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'obras', loadChildren: './obras/obras.module#ObrasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'obracategorias', loadChildren: './obracategorias/obracategorias.module#ObracategoriasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'permisos', loadChildren: './permisos/permisos.module#PermisosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'permisobases', loadChildren: './permisobases/permisobases.module#PermisobasesModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'presupuestos', loadChildren: './presupuestos/presupuestos.module#PresupuestosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'razonsocials', loadChildren: './razonsocials/razonsocials.module#RazonsocialsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'referencias', loadChildren: './referencias/referencias.module#ReferenciasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'rols', loadChildren: './rols/rols.module#RolsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'statusrazonsocials', loadChildren: './statusrazonsocials/statusrazonsocials.module#StatusrazonsocialsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'statususuarios', loadChildren: './statususuarios/statususuarios.module#StatususuariosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'subcategorias', loadChildren: './subcategorias/subcategorias.module#SubcategoriasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'tipomaterials', loadChildren: './tipomaterials/tipomaterials.module#TipomaterialsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'tipoobras', loadChildren: './tipoobras/tipoobras.module#TipoobrasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'tiporazonsocials', loadChildren: './tiporazonsocials/tiporazonsocials.module#TiporazonsocialsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'unidadmedidas', loadChildren: './unidadmedidas/unidadmedidas.module#UnidadmedidasModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'usuarios', loadChildren: './usuarios/usuarios.module#UsuariosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'si_modulos', loadChildren: './si_modulos/si_modulos.module#Si_modulosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'si_permisos', loadChildren: './si_permisos/si_permisos.module#Si_permisosModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'si_rols', loadChildren: './si_rols/si_rols.module#Si_rolsModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'si_users', loadChildren: './si_users/si_users.module#Si_usersModule',
+        canActivateChild: [AuthGuard] },
+    { path: 'si_reportes', loadChildren: './si_reportes/si_reportes.module#Si_reportesModule',
+        canActivateChild: [AuthGuard] },
+    ]
+}
+];
+export const routing: ModuleWithProviders = RouterModule.forChild(routes);

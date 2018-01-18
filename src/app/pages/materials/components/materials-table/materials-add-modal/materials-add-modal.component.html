@@ -1,0 +1,69 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Materiales</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Materiales">
+            <div class="form-group row" [ngClass]="{'has-error': (!codigoAC.valid && codigoAC.touched), 'has-success': (codigoAC.valid && codigoAC.touched)}">
+              <label for="inputcodigoAC" class="col-sm-3 form-control-label">Código</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="codigo" [formControl]="codigoAC" type="text" maxlength='45' class="form-control" id="inputcodigoAC" placeholder="Código" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!descripcioncortaAC.valid && descripcioncortaAC.touched), 'has-success': (descripcioncortaAC.valid && descripcioncortaAC.touched)}">
+              <label for="inputdescripcioncortaAC" class="col-sm-3 form-control-label">Descripción Corta</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="descripcioncorta" [formControl]="descripcioncortaAC" type="text" maxlength='60' class="form-control" id="inputdescripcioncortaAC" placeholder="Descripción Corta" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!descripcionlargaAC.valid && descripcionlargaAC.touched), 'has-success': (descripcionlargaAC.valid && descripcionlargaAC.touched)}">
+              <label for="inputdescripcionlargaAC" class="col-sm-3 form-control-label">Descripción Larga</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="descripcionlarga" [formControl]="descripcionlargaAC" type="text" maxlength='100' class="form-control" id="inputdescripcionlargaAC" placeholder="Descripción Larga" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!precioAC.valid && precioAC.touched), 'has-success': (precioAC.valid && precioAC.touched)}">
+              <label for="inputprecioAC" class="col-sm-3 form-control-label">Precio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="precio" [formControl]="precioAC" type="number"  class="form-control" id="inputprecioAC" placeholder="Precio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idtipomaterialAC.valid && idtipomaterialAC.touched), 'has-success': (idtipomaterialAC.valid && idtipomaterialAC.touched)}">
+              <label for="inputidtipomaterialAC" class="col-sm-3 form-control-label">Tipo Material</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idtipomaterial" [formControl]="idtipomaterialAC" class="form-control" id="inputidtipomaterialAC" required>
+                 <option value="{{item.idtipomaterial}}" *ngFor="let item of _tipomaterial">{{item.idtipomaterial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='tipomaterialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idunidadmedidaAC.valid && idunidadmedidaAC.touched), 'has-success': (idunidadmedidaAC.valid && idunidadmedidaAC.touched)}">
+              <label for="inputidunidadmedidaAC" class="col-sm-3 form-control-label">Unidad Medida</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idunidadmedida" [formControl]="idunidadmedidaAC" class="form-control" id="inputidunidadmedidaAC" required>
+                 <option value="{{item.idunidadmedida}}" *ngFor="let item of _unidadmedida">{{item.idunidadmedida}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='unidadmedidaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

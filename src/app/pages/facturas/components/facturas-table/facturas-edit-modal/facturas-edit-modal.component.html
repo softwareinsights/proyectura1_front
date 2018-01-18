@@ -1,0 +1,166 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Facturas</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Facturas">
+            <div class="form-group row" [ngClass]="{'has-error': (!folioAC.valid && folioAC.touched), 'has-success': (folioAC.valid && folioAC.touched)}">
+              <label for="inputfolioAC" class="col-sm-3 form-control-label">Folio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="folio" [formControl]="folioAC" type="text" maxlength='45' class="form-control" id="inputfolioAC" placeholder="Folio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!serieAC.valid && serieAC.touched), 'has-success': (serieAC.valid && serieAC.touched)}">
+              <label for="inputserieAC" class="col-sm-3 form-control-label">Serie</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="serie" [formControl]="serieAC" type="text" maxlength='45' class="form-control" id="inputserieAC" placeholder="Serie" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!versionAC.valid && versionAC.touched), 'has-success': (versionAC.valid && versionAC.touched)}">
+              <label for="inputversionAC" class="col-sm-3 form-control-label">Versión</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="version" [formControl]="versionAC" type="text" maxlength='45' class="form-control" id="inputversionAC" placeholder="Versión" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechaexpedicionAC.valid && fechaexpedicionAC.touched), 'has-success': (fechaexpedicionAC.valid && fechaexpedicionAC.touched)}">
+              <label for="inputfechaexpedicionAC" class="col-sm-3 form-control-label">Fecha Expedición</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fechaexpedicion" [formControl]="fechaexpedicionAC" type="date"  class="form-control" id="inputfechaexpedicionAC" placeholder="Fecha Expedición" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!uuidAC.valid && uuidAC.touched), 'has-success': (uuidAC.valid && uuidAC.touched)}">
+              <label for="inputuuidAC" class="col-sm-3 form-control-label">uuid</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="uuid" [formControl]="uuidAC" type="text" maxlength='45' class="form-control" id="inputuuidAC" placeholder="uuid" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechatimbradoAC.valid && fechatimbradoAC.touched), 'has-success': (fechatimbradoAC.valid && fechatimbradoAC.touched)}">
+              <label for="inputfechatimbradoAC" class="col-sm-3 form-control-label">Fecha Timbrado</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fechatimbrado" [formControl]="fechatimbradoAC" type="date"  class="form-control" id="inputfechatimbradoAC" placeholder="Fecha Timbrado" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialemisorAC.valid && idrazonsocialemisorAC.touched), 'has-success': (idrazonsocialemisorAC.valid && idrazonsocialemisorAC.touched)}">
+              <label for="inputidrazonsocialemisorAC" class="col-sm-3 form-control-label">ID Razón Social Emisor</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idrazonsocialemisor" [formControl]="idrazonsocialemisorAC" class="form-control" id="inputidrazonsocialemisorAC" required>
+                 <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.idrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!razonsocialemisorAC.valid && razonsocialemisorAC.touched), 'has-success': (razonsocialemisorAC.valid && razonsocialemisorAC.touched)}">
+              <label for="inputrazonsocialemisorAC" class="col-sm-3 form-control-label">Razón Social Emisor</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="razonsocialemisor" [formControl]="razonsocialemisorAC" type="text" maxlength='45' class="form-control" id="inputrazonsocialemisorAC" placeholder="Razón Social Emisor" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!rfcemisorAC.valid && rfcemisorAC.touched), 'has-success': (rfcemisorAC.valid && rfcemisorAC.touched)}">
+              <label for="inputrfcemisorAC" class="col-sm-3 form-control-label">RFC Emisor</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="rfcemisor" [formControl]="rfcemisorAC" type="text" maxlength='45' class="form-control" id="inputrfcemisorAC" placeholder="RFC Emisor" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!claveregimenfiscalAC.valid && claveregimenfiscalAC.touched), 'has-success': (claveregimenfiscalAC.valid && claveregimenfiscalAC.touched)}">
+              <label for="inputclaveregimenfiscalAC" class="col-sm-3 form-control-label">Clave Regimen Fiscal</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="claveregimenfiscal" [formControl]="claveregimenfiscalAC" type="text" maxlength='45' class="form-control" id="inputclaveregimenfiscalAC" placeholder="Clave Regimen Fiscal" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!claveformapagoAC.valid && claveformapagoAC.touched), 'has-success': (claveformapagoAC.valid && claveformapagoAC.touched)}">
+              <label for="inputclaveformapagoAC" class="col-sm-3 form-control-label">Clave Forma Pago</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="claveformapago" [formControl]="claveformapagoAC" type="text" maxlength='45' class="form-control" id="inputclaveformapagoAC" placeholder="Clave Forma Pago" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!clavemetodopagoAC.valid && clavemetodopagoAC.touched), 'has-success': (clavemetodopagoAC.valid && clavemetodopagoAC.touched)}">
+              <label for="inputclavemetodopagoAC" class="col-sm-3 form-control-label">Clave Método de Pago</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="clavemetodopago" [formControl]="clavemetodopagoAC" type="text" maxlength='45' class="form-control" id="inputclavemetodopagoAC" placeholder="Clave Método de Pago" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!clavetipocomprobanteAC.valid && clavetipocomprobanteAC.touched), 'has-success': (clavetipocomprobanteAC.valid && clavetipocomprobanteAC.touched)}">
+              <label for="inputclavetipocomprobanteAC" class="col-sm-3 form-control-label">Clave Tipo Comprobante</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="clavetipocomprobante" [formControl]="clavetipocomprobanteAC" type="text" maxlength='45' class="form-control" id="inputclavetipocomprobanteAC" placeholder="Clave Tipo Comprobante" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!lugarexpedicionAC.valid && lugarexpedicionAC.touched), 'has-success': (lugarexpedicionAC.valid && lugarexpedicionAC.touched)}">
+              <label for="inputlugarexpedicionAC" class="col-sm-3 form-control-label">Lugar de Expedición</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="lugarexpedicion" [formControl]="lugarexpedicionAC" type="text" maxlength='45' class="form-control" id="inputlugarexpedicionAC" placeholder="Lugar de Expedición" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!claveusocfdiAC.valid && claveusocfdiAC.touched), 'has-success': (claveusocfdiAC.valid && claveusocfdiAC.touched)}">
+              <label for="inputclaveusocfdiAC" class="col-sm-3 form-control-label">Clave Uso cfdi</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="claveusocfdi" [formControl]="claveusocfdiAC" type="text" maxlength='45' class="form-control" id="inputclaveusocfdiAC" placeholder="Clave Uso cfdi" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!rfcreceptorAC.valid && rfcreceptorAC.touched), 'has-success': (rfcreceptorAC.valid && rfcreceptorAC.touched)}">
+              <label for="inputrfcreceptorAC" class="col-sm-3 form-control-label">RFC receptor</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="rfcreceptor" [formControl]="rfcreceptorAC" type="text" maxlength='45' class="form-control" id="inputrfcreceptorAC" placeholder="RFC receptor" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!subtotalAC.valid && subtotalAC.touched), 'has-success': (subtotalAC.valid && subtotalAC.touched)}">
+              <label for="inputsubtotalAC" class="col-sm-3 form-control-label">Sub Total</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="subtotal" [formControl]="subtotalAC" type="number"  class="form-control" id="inputsubtotalAC" placeholder="Sub Total" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importetotalAC.valid && importetotalAC.touched), 'has-success': (importetotalAC.valid && importetotalAC.touched)}">
+              <label for="inputimportetotalAC" class="col-sm-3 form-control-label">Importe Total</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importetotal" [formControl]="importetotalAC" type="number"  class="form-control" id="inputimportetotalAC" placeholder="Importe Total" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!totalimpuestostrasladadosAC.valid && totalimpuestostrasladadosAC.touched), 'has-success': (totalimpuestostrasladadosAC.valid && totalimpuestostrasladadosAC.touched)}">
+              <label for="inputtotalimpuestostrasladadosAC" class="col-sm-3 form-control-label">Total Impuestos Trasladados</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="totalimpuestostrasladados" [formControl]="totalimpuestostrasladadosAC" type="number"  class="form-control" id="inputtotalimpuestostrasladadosAC" placeholder="Total Impuestos Trasladados" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!totalimpuestosretenidosAC.valid && totalimpuestosretenidosAC.touched), 'has-success': (totalimpuestosretenidosAC.valid && totalimpuestosretenidosAC.touched)}">
+              <label for="inputtotalimpuestosretenidosAC" class="col-sm-3 form-control-label">Total Impuestos Retenidos</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="totalimpuestosretenidos" [formControl]="totalimpuestosretenidosAC" type="number"  class="form-control" id="inputtotalimpuestosretenidosAC" placeholder="Total Impuestos Retenidos" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!totaldescuentosAC.valid && totaldescuentosAC.touched), 'has-success': (totaldescuentosAC.valid && totaldescuentosAC.touched)}">
+              <label for="inputtotaldescuentosAC" class="col-sm-3 form-control-label">Total Descuentos</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="totaldescuentos" [formControl]="totaldescuentosAC" type="number"  class="form-control" id="inputtotaldescuentosAC" placeholder="Total Descuentos" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!clavemonedaAC.valid && clavemonedaAC.touched), 'has-success': (clavemonedaAC.valid && clavemonedaAC.touched)}">
+              <label for="inputclavemonedaAC" class="col-sm-3 form-control-label">Clave Moneda</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="clavemoneda" [formControl]="clavemonedaAC" type="number"  class="form-control" id="inputclavemonedaAC" placeholder="Clave Moneda" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!valortipocambioAC.valid && valortipocambioAC.touched), 'has-success': (valortipocambioAC.valid && valortipocambioAC.touched)}">
+              <label for="inputvalortipocambioAC" class="col-sm-3 form-control-label">Valor Tipo Cambio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="valortipocambio" [formControl]="valortipocambioAC" type="number"  class="form-control" id="inputvalortipocambioAC" placeholder="Valor Tipo Cambio" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

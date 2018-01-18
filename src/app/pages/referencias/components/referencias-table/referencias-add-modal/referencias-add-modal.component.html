@@ -1,0 +1,35 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar </h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información ">
+            <div class="form-group row" [ngClass]="{'has-error': (!idreferenciaAC.valid && idreferenciaAC.touched), 'has-success': (idreferenciaAC.valid && idreferenciaAC.touched)}">
+              <label for="inputidreferenciaAC" class="col-sm-3 form-control-label">Idreferencia</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="idreferencia" [formControl]="idreferenciaAC" type="number" maxlength='11' class="form-control" id="inputidreferenciaAC" placeholder="Idreferencia" required>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!referenciaAC.valid && referenciaAC.touched), 'has-success': (referenciaAC.valid && referenciaAC.touched)}">
+              <label for="inputreferenciaAC" class="col-sm-3 form-control-label">Referencia</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="referencia" [formControl]="referenciaAC" type="text" maxlength='45' class="form-control" id="inputreferenciaAC" placeholder="Referencia" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+export interface FacturasInterface {
+   idfactura?: number;
+   folio?: string;
+   serie?: string;
+   version?: string;
+   fechaexpedicion?: string;
+   uuid?: string;
+   fechatimbrado?: string;
+   idrazonsocialemisor?: number;
+   razonsocialemisor?: string;
+   rfcemisor?: string;
+   claveregimenfiscal?: string;
+   claveformapago?: string;
+   clavemetodopago?: string;
+   clavetipocomprobante?: string;
+   lugarexpedicion?: string;
+   claveusocfdi?: string;
+   rfcreceptor?: string;
+   subtotal?: string;
+   importetotal?: string;
+   totalimpuestostrasladados?: string;
+   totalimpuestosretenidos?: string;
+   totaldescuentos?: string;
+   clavemoneda?: string;
+   valortipocambio?: string;
+   baja?: boolean;
+   created_by?: number;
+   created_at?: string;
+   modified_at?: string;
+}

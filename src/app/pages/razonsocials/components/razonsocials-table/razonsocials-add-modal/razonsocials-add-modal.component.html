@@ -1,0 +1,111 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Razón Social</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Razón Social">
+            <div class="form-group row" [ngClass]="{'has-error': (!razonsocialAC.valid && razonsocialAC.touched), 'has-success': (razonsocialAC.valid && razonsocialAC.touched)}">
+              <label for="inputrazonsocialAC" class="col-sm-3 form-control-label">Razón Social</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="razonsocial" [formControl]="razonsocialAC" type="text" maxlength='45' class="form-control" id="inputrazonsocialAC" placeholder="Razón Social" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!nombreAC.valid && nombreAC.touched), 'has-success': (nombreAC.valid && nombreAC.touched)}">
+              <label for="inputnombreAC" class="col-sm-3 form-control-label">Nombre</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="nombre" [formControl]="nombreAC" type="text" maxlength='45' class="form-control" id="inputnombreAC" placeholder="Nombre" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!rfcAC.valid && rfcAC.touched), 'has-success': (rfcAC.valid && rfcAC.touched)}">
+              <label for="inputrfcAC" class="col-sm-3 form-control-label">RFC</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="rfc" [formControl]="rfcAC" type="text" maxlength='30' class="form-control" id="inputrfcAC" placeholder="RFC" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!calleAC.valid && calleAC.touched), 'has-success': (calleAC.valid && calleAC.touched)}">
+              <label for="inputcalleAC" class="col-sm-3 form-control-label">Calle</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="calle" [formControl]="calleAC" type="text" maxlength='80' class="form-control" id="inputcalleAC" placeholder="Calle" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!numeroexteriorAC.valid && numeroexteriorAC.touched), 'has-success': (numeroexteriorAC.valid && numeroexteriorAC.touched)}">
+              <label for="inputnumeroexteriorAC" class="col-sm-3 form-control-label">Número Exterior</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="numeroexterior" [formControl]="numeroexteriorAC" type="text" maxlength='10' class="form-control" id="inputnumeroexteriorAC" placeholder="Número Exterior" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!numerointeriorAC.valid && numerointeriorAC.touched), 'has-success': (numerointeriorAC.valid && numerointeriorAC.touched)}">
+              <label for="inputnumerointeriorAC" class="col-sm-3 form-control-label">Número Interior</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="numerointerior" [formControl]="numerointeriorAC" type="text" maxlength='10' class="form-control" id="inputnumerointeriorAC" placeholder="Número Interior" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!coloniaAC.valid && coloniaAC.touched), 'has-success': (coloniaAC.valid && coloniaAC.touched)}">
+              <label for="inputcoloniaAC" class="col-sm-3 form-control-label">Colonia</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="colonia" [formControl]="coloniaAC" type="text" maxlength='45' class="form-control" id="inputcoloniaAC" placeholder="Colonia" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!municipioAC.valid && municipioAC.touched), 'has-success': (municipioAC.valid && municipioAC.touched)}">
+              <label for="inputmunicipioAC" class="col-sm-3 form-control-label">Municipio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="municipio" [formControl]="municipioAC" type="text" maxlength='45' class="form-control" id="inputmunicipioAC" placeholder="Municipio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!ciudadAC.valid && ciudadAC.touched), 'has-success': (ciudadAC.valid && ciudadAC.touched)}">
+              <label for="inputciudadAC" class="col-sm-3 form-control-label">Ciudad</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="ciudad" [formControl]="ciudadAC" type="text" maxlength='45' class="form-control" id="inputciudadAC" placeholder="Ciudad" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!estadoAC.valid && estadoAC.touched), 'has-success': (estadoAC.valid && estadoAC.touched)}">
+              <label for="inputestadoAC" class="col-sm-3 form-control-label">Estado</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="estado" [formControl]="estadoAC" type="text" maxlength='45' class="form-control" id="inputestadoAC" placeholder="Estado" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!paisAC.valid && paisAC.touched), 'has-success': (paisAC.valid && paisAC.touched)}">
+              <label for="inputpaisAC" class="col-sm-3 form-control-label">Pais</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="pais" [formControl]="paisAC" type="text" maxlength='45' class="form-control" id="inputpaisAC" placeholder="Pais" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idtiporazonsocialAC.valid && idtiporazonsocialAC.touched), 'has-success': (idtiporazonsocialAC.valid && idtiporazonsocialAC.touched)}">
+              <label for="inputidtiporazonsocialAC" class="col-sm-3 form-control-label">Tipo Razon Social</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idtiporazonsocial" [formControl]="idtiporazonsocialAC" class="form-control" id="inputidtiporazonsocialAC" required>
+                 <option value="{{item.idtiporazonsocial}}" *ngFor="let item of _tiporazonsocial">{{item.idtiporazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='tiporazonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idstatusrazonsocialAC.valid && idstatusrazonsocialAC.touched), 'has-success': (idstatusrazonsocialAC.valid && idstatusrazonsocialAC.touched)}">
+              <label for="inputidstatusrazonsocialAC" class="col-sm-3 form-control-label">Status Razón Social</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idstatusrazonsocial" [formControl]="idstatusrazonsocialAC" class="form-control" id="inputidstatusrazonsocialAC" required>
+                 <option value="{{item.idstatusrazonsocial}}" *ngFor="let item of _statusrazonsocial">{{item.idstatusrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='statusrazonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

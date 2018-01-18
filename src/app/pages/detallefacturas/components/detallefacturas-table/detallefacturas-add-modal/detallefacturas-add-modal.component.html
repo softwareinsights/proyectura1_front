@@ -1,0 +1,129 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Detalle Facturas</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Detalle Facturas">
+            <div class="form-group row" [ngClass]="{'has-error': (!idfacturaAC.valid && idfacturaAC.touched), 'has-success': (idfacturaAC.valid && idfacturaAC.touched)}">
+              <label for="inputidfacturaAC" class="col-sm-3 form-control-label">Factura</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idfactura" [formControl]="idfacturaAC" class="form-control" id="inputidfacturaAC" required>
+                 <option value="{{item.idfactura}}" *ngFor="let item of _factura">{{item.idfactura}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='facturaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idmaterialAC.valid && idmaterialAC.touched), 'has-success': (idmaterialAC.valid && idmaterialAC.touched)}">
+              <label for="inputidmaterialAC" class="col-sm-3 form-control-label">Material</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idmaterial" [formControl]="idmaterialAC" class="form-control" id="inputidmaterialAC" required>
+                 <option value="{{item.idmaterial}}" *ngFor="let item of _material">{{item.idmaterial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='materialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!claveprodservAC.valid && claveprodservAC.touched), 'has-success': (claveprodservAC.valid && claveprodservAC.touched)}">
+              <label for="inputclaveprodservAC" class="col-sm-3 form-control-label">Clave Producto Servicio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="claveprodserv" [formControl]="claveprodservAC" type="text" maxlength='45' class="form-control" id="inputclaveprodservAC" placeholder="Clave Producto Servicio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!noidentificacionAC.valid && noidentificacionAC.touched), 'has-success': (noidentificacionAC.valid && noidentificacionAC.touched)}">
+              <label for="inputnoidentificacionAC" class="col-sm-3 form-control-label">No. identificación</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="noidentificacion" [formControl]="noidentificacionAC" type="text" maxlength='45' class="form-control" id="inputnoidentificacionAC" placeholder="No. identificación" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!descripcionAC.valid && descripcionAC.touched), 'has-success': (descripcionAC.valid && descripcionAC.touched)}">
+              <label for="inputdescripcionAC" class="col-sm-3 form-control-label">Descripción</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="descripcion" [formControl]="descripcionAC" type="text" maxlength='80' class="form-control" id="inputdescripcionAC" placeholder="Descripción" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!claveunidadAC.valid && claveunidadAC.touched), 'has-success': (claveunidadAC.valid && claveunidadAC.touched)}">
+              <label for="inputclaveunidadAC" class="col-sm-3 form-control-label">Clave Unidad</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="claveunidad" [formControl]="claveunidadAC" type="text" maxlength='45' class="form-control" id="inputclaveunidadAC" placeholder="Clave Unidad" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!cantidadAC.valid && cantidadAC.touched), 'has-success': (cantidadAC.valid && cantidadAC.touched)}">
+              <label for="inputcantidadAC" class="col-sm-3 form-control-label">Cantidad</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="cantidad" [formControl]="cantidadAC" type="number"  class="form-control" id="inputcantidadAC" placeholder="Cantidad" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!valorunitarioAC.valid && valorunitarioAC.touched), 'has-success': (valorunitarioAC.valid && valorunitarioAC.touched)}">
+              <label for="inputvalorunitarioAC" class="col-sm-3 form-control-label">Valor Unitario</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="valorunitario" [formControl]="valorunitarioAC" type="number"  class="form-control" id="inputvalorunitarioAC" placeholder="Valor Unitario" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importeAC.valid && importeAC.touched), 'has-success': (importeAC.valid && importeAC.touched)}">
+              <label for="inputimporteAC" class="col-sm-3 form-control-label">Importe</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importe" [formControl]="importeAC" type="number"  class="form-control" id="inputimporteAC" placeholder="Importe" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!descuentoAC.valid && descuentoAC.touched), 'has-success': (descuentoAC.valid && descuentoAC.touched)}">
+              <label for="inputdescuentoAC" class="col-sm-3 form-control-label">Descuento</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="descuento" [formControl]="descuentoAC" type="number"  class="form-control" id="inputdescuentoAC" placeholder="Descuento" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!asignadoAC.valid && asignadoAC.touched), 'has-success': (asignadoAC.valid && asignadoAC.touched)}">
+              <label for="inputasignadoAC" class="col-sm-3 form-check-label">Asignado</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="asignado" [formControl]="asignadoAC" type="checkbox" class="form-check-input" id="inputasignadoAC">
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!baseimpuestoAC.valid && baseimpuestoAC.touched), 'has-success': (baseimpuestoAC.valid && baseimpuestoAC.touched)}">
+              <label for="inputbaseimpuestoAC" class="col-sm-3 form-control-label">Impuesto Base</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="baseimpuesto" [formControl]="baseimpuestoAC" type="number"  class="form-control" id="inputbaseimpuestoAC" placeholder="Impuesto Base" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!impuestoAC.valid && impuestoAC.touched), 'has-success': (impuestoAC.valid && impuestoAC.touched)}">
+              <label for="inputimpuestoAC" class="col-sm-3 form-control-label">Impuesto</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="impuesto" [formControl]="impuestoAC" type="text" maxlength='45' class="form-control" id="inputimpuestoAC" placeholder="Impuesto" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!tipofactorimpuestoAC.valid && tipofactorimpuestoAC.touched), 'has-success': (tipofactorimpuestoAC.valid && tipofactorimpuestoAC.touched)}">
+              <label for="inputtipofactorimpuestoAC" class="col-sm-3 form-control-label">Tipo Factor Impuesto</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="tipofactorimpuesto" [formControl]="tipofactorimpuestoAC" type="text" maxlength='45' class="form-control" id="inputtipofactorimpuestoAC" placeholder="Tipo Factor Impuesto" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!tasaocuotaimpuestoAC.valid && tasaocuotaimpuestoAC.touched), 'has-success': (tasaocuotaimpuestoAC.valid && tasaocuotaimpuestoAC.touched)}">
+              <label for="inputtasaocuotaimpuestoAC" class="col-sm-3 form-control-label">Tasa o Cuota Impuesto</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="tasaocuotaimpuesto" [formControl]="tasaocuotaimpuestoAC" type="text" maxlength='45' class="form-control" id="inputtasaocuotaimpuestoAC" placeholder="Tasa o Cuota Impuesto" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importeimpuestoAC.valid && importeimpuestoAC.touched), 'has-success': (importeimpuestoAC.valid && importeimpuestoAC.touched)}">
+              <label for="inputimporteimpuestoAC" class="col-sm-3 form-control-label">Importe Impuesto</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importeimpuesto" [formControl]="importeimpuestoAC" type="number"  class="form-control" id="inputimporteimpuestoAC" placeholder="Importe Impuesto" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

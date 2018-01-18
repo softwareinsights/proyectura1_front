@@ -1,0 +1,143 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Obras</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Obras">
+            <div class="form-group row" [ngClass]="{'has-error': (!descripcionAC.valid && descripcionAC.touched), 'has-success': (descripcionAC.valid && descripcionAC.touched)}">
+              <label for="inputdescripcionAC" class="col-sm-3 form-control-label">Descripción</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="descripcion" [formControl]="descripcionAC" type="text" maxlength='100' class="form-control" id="inputdescripcionAC" placeholder="Descripción" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!direccionAC.valid && direccionAC.touched), 'has-success': (direccionAC.valid && direccionAC.touched)}">
+              <label for="inputdireccionAC" class="col-sm-3 form-control-label">Dirección</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="direccion" [formControl]="direccionAC" type="text" maxlength='100' class="form-control" id="inputdireccionAC" placeholder="Dirección" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!medidasterrenoAC.valid && medidasterrenoAC.touched), 'has-success': (medidasterrenoAC.valid && medidasterrenoAC.touched)}">
+              <label for="inputmedidasterrenoAC" class="col-sm-3 form-control-label">Medidas Terreno</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="medidasterreno" [formControl]="medidasterrenoAC" type="text" maxlength='45' class="form-control" id="inputmedidasterrenoAC" placeholder="Medidas Terreno" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!medidasconstruccionAC.valid && medidasconstruccionAC.touched), 'has-success': (medidasconstruccionAC.valid && medidasconstruccionAC.touched)}">
+              <label for="inputmedidasconstruccionAC" class="col-sm-3 form-control-label">Medidas Construcción</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="medidasconstruccion" [formControl]="medidasconstruccionAC" type="text" maxlength='45' class="form-control" id="inputmedidasconstruccionAC" placeholder="Medidas Construcción" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechainicioAC.valid && fechainicioAC.touched), 'has-success': (fechainicioAC.valid && fechainicioAC.touched)}">
+              <label for="inputfechainicioAC" class="col-sm-3 form-control-label">Fecha Inicio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fechainicio" [formControl]="fechainicioAC" type="date"  class="form-control" id="inputfechainicioAC" placeholder="Fecha Inicio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechafinAC.valid && fechafinAC.touched), 'has-success': (fechafinAC.valid && fechafinAC.touched)}">
+              <label for="inputfechafinAC" class="col-sm-3 form-control-label">Fecha Fin</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fechafin" [formControl]="fechafinAC" type="date"  class="form-control" id="inputfechafinAC" placeholder="Fecha Fin" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!presupuestoAC.valid && presupuestoAC.touched), 'has-success': (presupuestoAC.valid && presupuestoAC.touched)}">
+              <label for="inputpresupuestoAC" class="col-sm-3 form-control-label">Presupuesto</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="presupuesto" [formControl]="presupuestoAC" type="number"  class="form-control" id="inputpresupuestoAC" placeholder="Presupuesto" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!posiciongpsAC.valid && posiciongpsAC.touched), 'has-success': (posiciongpsAC.valid && posiciongpsAC.touched)}">
+              <label for="inputposiciongpsAC" class="col-sm-3 form-control-label">Posición GPS</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="posiciongps" [formControl]="posiciongpsAC" type="text" maxlength='60' class="form-control" id="inputposiciongpsAC" placeholder="Posición GPS" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!observacionesAC.valid && observacionesAC.touched), 'has-success': (observacionesAC.valid && observacionesAC.touched)}">
+              <label for="inputobservacionesAC" class="col-sm-3 form-control-label">Observaciones</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="observaciones" [formControl]="observacionesAC" type="text" maxlength='150' class="form-control" id="inputobservacionesAC" placeholder="Observaciones" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idtipoobraAC.valid && idtipoobraAC.touched), 'has-success': (idtipoobraAC.valid && idtipoobraAC.touched)}">
+              <label for="inputidtipoobraAC" class="col-sm-3 form-control-label">Tipo Obra</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idtipoobra" [formControl]="idtipoobraAC" class="form-control" id="inputidtipoobraAC" required>
+                 <option value="{{item.idtipoobra}}" *ngFor="let item of _tipoobra">{{item.idtipoobra}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='tipoobraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idestatusobraAC.valid && idestatusobraAC.touched), 'has-success': (idestatusobraAC.valid && idestatusobraAC.touched)}">
+              <label for="inputidestatusobraAC" class="col-sm-3 form-control-label">Estatus Obra</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idestatusobra" [formControl]="idestatusobraAC" class="form-control" id="inputidestatusobraAC" required>
+                 <option value="{{item.idestatusobra}}" *ngFor="let item of _estatusobra">{{item.idestatusobra}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='estatusobraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialconstructorAC.valid && idrazonsocialconstructorAC.touched), 'has-success': (idrazonsocialconstructorAC.valid && idrazonsocialconstructorAC.touched)}">
+              <label for="inputidrazonsocialconstructorAC" class="col-sm-3 form-control-label">Razón Social Constructor</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idrazonsocialconstructor" [formControl]="idrazonsocialconstructorAC" class="form-control" id="inputidrazonsocialconstructorAC" required>
+                 <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.idrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialclienteAC.valid && idrazonsocialclienteAC.touched), 'has-success': (idrazonsocialclienteAC.valid && idrazonsocialclienteAC.touched)}">
+              <label for="inputidrazonsocialclienteAC" class="col-sm-3 form-control-label">Razón Social Cliente</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idrazonsocialcliente" [formControl]="idrazonsocialclienteAC" class="form-control" id="inputidrazonsocialclienteAC" required>
+                 <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.idrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialcontratistaAC.valid && idrazonsocialcontratistaAC.touched), 'has-success': (idrazonsocialcontratistaAC.valid && idrazonsocialcontratistaAC.touched)}">
+              <label for="inputidrazonsocialcontratistaAC" class="col-sm-3 form-control-label">Razón Social Contratista</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idrazonsocialcontratista" [formControl]="idrazonsocialcontratistaAC" class="form-control" id="inputidrazonsocialcontratistaAC" required>
+                 <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.idrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialasociadoAC.valid && idrazonsocialasociadoAC.touched), 'has-success': (idrazonsocialasociadoAC.valid && idrazonsocialasociadoAC.touched)}">
+              <label for="inputidrazonsocialasociadoAC" class="col-sm-3 form-control-label">Razón Social Asociado</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idrazonsocialasociado" [formControl]="idrazonsocialasociadoAC" class="form-control" id="inputidrazonsocialasociadoAC" required>
+                 <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.idrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

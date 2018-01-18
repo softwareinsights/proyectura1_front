@@ -1,0 +1,45 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Obras Categorias</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Obras Categorias">
+            <div class="form-group row" [ngClass]="{'has-error': (!idobraAC.valid && idobraAC.touched), 'has-success': (idobraAC.valid && idobraAC.touched)}">
+              <label for="inputidobraAC" class="col-sm-3 form-control-label">Obra</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idobra" [formControl]="idobraAC" class="form-control" id="inputidobraAC" required>
+                 <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.idobra}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='obraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idcategoriaAC.valid && idcategoriaAC.touched), 'has-success': (idcategoriaAC.valid && idcategoriaAC.touched)}">
+              <label for="inputidcategoriaAC" class="col-sm-3 form-control-label">Categoria</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idcategoria" [formControl]="idcategoriaAC" class="form-control" id="inputidcategoriaAC" required>
+                 <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.idcategoria}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='categoriaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

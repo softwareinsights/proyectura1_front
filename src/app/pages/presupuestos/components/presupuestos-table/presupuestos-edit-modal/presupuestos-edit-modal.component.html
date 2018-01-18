@@ -1,0 +1,69 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Presupuestos</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Presupuestos">
+            <div class="form-group row" [ngClass]="{'has-error': (!idobraAC.valid && idobraAC.touched), 'has-success': (idobraAC.valid && idobraAC.touched)}">
+              <label for="inputidobraAC" class="col-sm-3 form-control-label">Obra</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idobra" [formControl]="idobraAC" class="form-control" id="inputidobraAC" required>
+                 <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.idobra}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='obraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idcategoriaAC.valid && idcategoriaAC.touched), 'has-success': (idcategoriaAC.valid && idcategoriaAC.touched)}">
+              <label for="inputidcategoriaAC" class="col-sm-3 form-control-label">Categoria</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idcategoria" [formControl]="idcategoriaAC" class="form-control" id="inputidcategoriaAC" required>
+                 <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.idcategoria}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='categoriaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!montopresupuestadoAC.valid && montopresupuestadoAC.touched), 'has-success': (montopresupuestadoAC.valid && montopresupuestadoAC.touched)}">
+              <label for="inputmontopresupuestadoAC" class="col-sm-3 form-control-label">Monto Presupuestado</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="montopresupuestado" [formControl]="montopresupuestadoAC" type="number"  class="form-control" id="inputmontopresupuestadoAC" placeholder="Monto Presupuestado" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!montoejercicioAC.valid && montoejercicioAC.touched), 'has-success': (montoejercicioAC.valid && montoejercicioAC.touched)}">
+              <label for="inputmontoejercicioAC" class="col-sm-3 form-control-label">Monto Ejercicio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="montoejercicio" [formControl]="montoejercicioAC" type="number"  class="form-control" id="inputmontoejercicioAC" placeholder="Monto Ejercicio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechainicialAC.valid && fechainicialAC.touched), 'has-success': (fechainicialAC.valid && fechainicialAC.touched)}">
+              <label for="inputfechainicialAC" class="col-sm-3 form-control-label">Fecha Inicial</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fechainicial" [formControl]="fechainicialAC" type="date"  class="form-control" id="inputfechainicialAC" placeholder="Fecha Inicial" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechafinalAC.valid && fechafinalAC.touched), 'has-success': (fechafinalAC.valid && fechafinalAC.touched)}">
+              <label for="inputfechafinalAC" class="col-sm-3 form-control-label">Fecha Final</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fechafinal" [formControl]="fechafinalAC" type="date"  class="form-control" id="inputfechafinalAC" placeholder="Fecha Final" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

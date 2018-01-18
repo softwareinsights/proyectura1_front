@@ -1,0 +1,120 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Costos</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Costos">
+            <div class="form-group row" [ngClass]="{'has-error': (!idmaterialAC.valid && idmaterialAC.touched), 'has-success': (idmaterialAC.valid && idmaterialAC.touched)}">
+              <label for="inputidmaterialAC" class="col-sm-3 form-control-label">Material</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idmaterial" [formControl]="idmaterialAC" class="form-control" id="inputidmaterialAC" required>
+                 <option value="{{item.idmaterial}}" *ngFor="let item of _material">{{item.idmaterial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='materialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idunidadmedidaAC.valid && idunidadmedidaAC.touched), 'has-success': (idunidadmedidaAC.valid && idunidadmedidaAC.touched)}">
+              <label for="inputidunidadmedidaAC" class="col-sm-3 form-control-label">Unidad de Medida</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idunidadmedida" [formControl]="idunidadmedidaAC" class="form-control" id="inputidunidadmedidaAC" required>
+                 <option value="{{item.idunidadmedida}}" *ngFor="let item of _unidadmedida">{{item.idunidadmedida}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='unidadmedidaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idcategoriaAC.valid && idcategoriaAC.touched), 'has-success': (idcategoriaAC.valid && idcategoriaAC.touched)}">
+              <label for="inputidcategoriaAC" class="col-sm-3 form-control-label">Categoria</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idcategoria" [formControl]="idcategoriaAC" class="form-control" id="inputidcategoriaAC" required>
+                 <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.idcategoria}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='categoriaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idsubcategoriaAC.valid && idsubcategoriaAC.touched), 'has-success': (idsubcategoriaAC.valid && idsubcategoriaAC.touched)}">
+              <label for="inputidsubcategoriaAC" class="col-sm-3 form-control-label">Sub Categoria</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idsubcategoria" [formControl]="idsubcategoriaAC" class="form-control" id="inputidsubcategoriaAC" required>
+                 <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.idsubcategoria}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='subcategoriaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idobraAC.valid && idobraAC.touched), 'has-success': (idobraAC.valid && idobraAC.touched)}">
+              <label for="inputidobraAC" class="col-sm-3 form-control-label">Obra</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idobra" [formControl]="idobraAC" class="form-control" id="inputidobraAC" required>
+                 <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.idobra}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='obraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!cantidadAC.valid && cantidadAC.touched), 'has-success': (cantidadAC.valid && cantidadAC.touched)}">
+              <label for="inputcantidadAC" class="col-sm-3 form-control-label">Cantidad</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="cantidad" [formControl]="cantidadAC" type="number"  class="form-control" id="inputcantidadAC" placeholder="Cantidad" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!preciounitarioAC.valid && preciounitarioAC.touched), 'has-success': (preciounitarioAC.valid && preciounitarioAC.touched)}">
+              <label for="inputpreciounitarioAC" class="col-sm-3 form-control-label">Precio Unitario</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="preciounitario" [formControl]="preciounitarioAC" type="number"  class="form-control" id="inputpreciounitarioAC" placeholder="Precio Unitario" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importeimpuestosAC.valid && importeimpuestosAC.touched), 'has-success': (importeimpuestosAC.valid && importeimpuestosAC.touched)}">
+              <label for="inputimporteimpuestosAC" class="col-sm-3 form-control-label">Importe Impuestos</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importeimpuestos" [formControl]="importeimpuestosAC" type="number"  class="form-control" id="inputimporteimpuestosAC" placeholder="Importe Impuestos" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importeimpuestosespAC.valid && importeimpuestosespAC.touched), 'has-success': (importeimpuestosespAC.valid && importeimpuestosespAC.touched)}">
+              <label for="inputimporteimpuestosespAC" class="col-sm-3 form-control-label">Importe Impuestos Esp</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importeimpuestosesp" [formControl]="importeimpuestosespAC" type="number"  class="form-control" id="inputimporteimpuestosespAC" placeholder="Importe Impuestos Esp" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!subtotalAC.valid && subtotalAC.touched), 'has-success': (subtotalAC.valid && subtotalAC.touched)}">
+              <label for="inputsubtotalAC" class="col-sm-3 form-control-label">Sub Total</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="subtotal" [formControl]="subtotalAC" type="number"  class="form-control" id="inputsubtotalAC" placeholder="Sub Total" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importetotalAC.valid && importetotalAC.touched), 'has-success': (importetotalAC.valid && importetotalAC.touched)}">
+              <label for="inputimportetotalAC" class="col-sm-3 form-control-label">Importe Total</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importetotal" [formControl]="importetotalAC" type="number"  class="form-control" id="inputimportetotalAC" placeholder="Importe Total" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!observacionesAC.valid && observacionesAC.touched), 'has-success': (observacionesAC.valid && observacionesAC.touched)}">
+              <label for="inputobservacionesAC" class="col-sm-3 form-control-label">Observaciones</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="observaciones" [formControl]="observacionesAC" type="text" maxlength='150' class="form-control" id="inputobservacionesAC" placeholder="Observaciones" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

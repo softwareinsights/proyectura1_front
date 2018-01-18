@@ -1,0 +1,76 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Notas Gasto</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Notas Gasto">
+            <div class="form-group row" [ngClass]="{'has-error': (!folioAC.valid && folioAC.touched), 'has-success': (folioAC.valid && folioAC.touched)}">
+              <label for="inputfolioAC" class="col-sm-3 form-control-label">Folio</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="folio" [formControl]="folioAC" type="text" maxlength='45' class="form-control" id="inputfolioAC" placeholder="Folio" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!serieAC.valid && serieAC.touched), 'has-success': (serieAC.valid && serieAC.touched)}">
+              <label for="inputserieAC" class="col-sm-3 form-control-label">Serie</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="serie" [formControl]="serieAC" type="text" maxlength='45' class="form-control" id="inputserieAC" placeholder="Serie" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!fechaAC.valid && fechaAC.touched), 'has-success': (fechaAC.valid && fechaAC.touched)}">
+              <label for="inputfechaAC" class="col-sm-3 form-control-label">Fecha</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="fecha" [formControl]="fechaAC" type="date"  class="form-control" id="inputfechaAC" placeholder="Fecha" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialemisorAC.valid && idrazonsocialemisorAC.touched), 'has-success': (idrazonsocialemisorAC.valid && idrazonsocialemisorAC.touched)}">
+              <label for="inputidrazonsocialemisorAC" class="col-sm-3 form-control-label">Razón Social Emisor</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idrazonsocialemisor" [formControl]="idrazonsocialemisorAC" class="form-control" id="inputidrazonsocialemisorAC" required>
+                 <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.idrazonsocial}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!observacionesAC.valid && observacionesAC.touched), 'has-success': (observacionesAC.valid && observacionesAC.touched)}">
+              <label for="inputobservacionesAC" class="col-sm-3 form-control-label">Observaciones</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="observaciones" [formControl]="observacionesAC" type="text" maxlength='150' class="form-control" id="inputobservacionesAC" placeholder="Observaciones" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!subtotalAC.valid && subtotalAC.touched), 'has-success': (subtotalAC.valid && subtotalAC.touched)}">
+              <label for="inputsubtotalAC" class="col-sm-3 form-control-label">Subtotal</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="subtotal" [formControl]="subtotalAC" type="number"  class="form-control" id="inputsubtotalAC" placeholder="Subtotal" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!importetotalAC.valid && importetotalAC.touched), 'has-success': (importetotalAC.valid && importetotalAC.touched)}">
+              <label for="inputimportetotalAC" class="col-sm-3 form-control-label">Importe Total</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="importetotal" [formControl]="importetotalAC" type="number"  class="form-control" id="inputimportetotalAC" placeholder="Importe Total" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!totalimpuestosAC.valid && totalimpuestosAC.touched), 'has-success': (totalimpuestosAC.valid && totalimpuestosAC.touched)}">
+              <label for="inputtotalimpuestosAC" class="col-sm-3 form-control-label">Total Impuestos</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="totalimpuestos" [formControl]="totalimpuestosAC" type="number"  class="form-control" id="inputtotalimpuestosAC" placeholder="Total Impuestos" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

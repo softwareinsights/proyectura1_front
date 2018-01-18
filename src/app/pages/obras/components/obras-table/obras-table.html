@@ -1,0 +1,97 @@
+<div class='widgets'>
+    <div class='row'>
+        <ba-card title='Listado' baCardClass='with-scroll' class='data-table-container'>
+            <div class='panel panel-default'>
+                <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
+                    <thead>
+                        <tr>
+                        </tr>
+                        <tr>
+                            <th style='width: 20%'></th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='descripcion'>Descripción</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='direccion'>Dirección</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='medidasterreno'>Medidas Terreno</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='medidasconstruccion'>Medidas Construcción</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='fechainicio'>Fecha Inicio</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='fechafin'>Fecha Fin</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='presupuesto'>Presupuesto</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='posiciongps'>Posición GPS</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='observaciones'>Observaciones</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='tipoobra_idtipoobra'>Tipo Obra</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='estatusobra_idestatusobra'>Estatus Obra</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='razonsocial_idrazonsocialconstructor'>Razón Social Constructor</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='razonsocial_idrazonsocialcliente'>Razón Social Cliente</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='razonsocial_idrazonsocialcontratista'>Razón Social Contratista</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='razonsocial_idrazonsocialasociado'>Razón Social Asociado</mfDefaultSorter>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let item of mf.data;  let i = index'>
+                            <td>
+                                <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
+                                <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
+                            </td>
+                            <td>{{ item.descripcion  }}</td>
+                            <td>{{ item.direccion  }}</td>
+                            <td>{{ item.medidasterreno  }}</td>
+                            <td>{{ item.medidasconstruccion  }}</td>
+                            <td>{{ item.fechainicio  }}</td>
+                            <td>{{ item.fechafin  }}</td>
+                            <td>{{ item.presupuesto  }}</td>
+                            <td>{{ item.posiciongps  }}</td>
+                            <td>{{ item.observaciones  }}</td>
+                            <td>{{ item.tipoobra_idtipoobra }}</td>
+                            <td>{{ item.estatusobra_idestatusobra }}</td>
+                            <td>{{ item.razonsocial_idrazonsocialconstructor }}</td>
+                            <td>{{ item.razonsocial_idrazonsocialcliente }}</td>
+                            <td>{{ item.razonsocial_idrazonsocialcontratista }}</td>
+                            <td>{{ item.razonsocial_idrazonsocialasociado }}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan='5'>
+                                <mfBootstrapPaginator [rowsOnPageSet]='[5,10,15]'></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </ba-card>
+    </div>
+    <div class='row'>
+        <div class='col-sm-6'>
+            <button (click)='addModalShow()' class='btn btn-success'><i class='fa fa-plus'></i> Agregar</button>
+        </div>
+    </div>
+</div>

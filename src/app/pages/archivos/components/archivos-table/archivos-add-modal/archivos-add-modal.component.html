@@ -1,0 +1,52 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Archivo</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Archivo">
+            <div class="form-group row" [ngClass]="{'has-error': (!procesoAC.valid && procesoAC.touched), 'has-success': (procesoAC.valid && procesoAC.touched)}">
+              <label for="inputprocesoAC" class="col-sm-3 form-control-label">Proceso</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="proceso" [formControl]="procesoAC" type="text" maxlength='45' class="form-control" id="inputprocesoAC" placeholder="Proceso" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!tipoarchivoAC.valid && tipoarchivoAC.touched), 'has-success': (tipoarchivoAC.valid && tipoarchivoAC.touched)}">
+              <label for="inputtipoarchivoAC" class="col-sm-3 form-control-label">Tipo Archivo</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="tipoarchivo" [formControl]="tipoarchivoAC" type="text" maxlength='45' class="form-control" id="inputtipoarchivoAC" placeholder="Tipo Archivo" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!urlarchivoAC.valid && urlarchivoAC.touched), 'has-success': (urlarchivoAC.valid && urlarchivoAC.touched)}">
+              <label for="inputurlarchivoAC" class="col-sm-3 form-control-label">Url Archivo</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="urlarchivo" [formControl]="urlarchivoAC" type="text" maxlength='80' class="form-control" id="inputurlarchivoAC" placeholder="Url Archivo" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!idreferenciaAC.valid && idreferenciaAC.touched), 'has-success': (idreferenciaAC.valid && idreferenciaAC.touched)}">
+              <label for="inputidreferenciaAC" class="col-sm-3 form-control-label">Referencia</label>
+              <div class="col-sm-7">
+               <select [(ngModel)]="idreferencia" [formControl]="idreferenciaAC" class="form-control" id="inputidreferenciaAC" required>
+                 <option value="{{item.idreferencia}}" *ngFor="let item of _referencia">{{item.idreferencia}}</option>
+               </select>
+              </div>
+              <div class='col-sm-2'>
+                <button (click)='referenciaAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

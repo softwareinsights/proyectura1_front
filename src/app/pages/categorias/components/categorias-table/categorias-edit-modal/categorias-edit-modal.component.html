@@ -1,0 +1,35 @@
+<div class="row mt-3">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="modal-content" style="overflow-y: initial !important">
+      <form [formGroup]="form" class="form-horizontal">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar Categorias</h4>
+          <button class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="height: 65vh; overflow-y: auto;">
+          <ba-card cardTitle="Información Categorias">
+            <div class="form-group row" [ngClass]="{'has-error': (!clavecategoriaAC.valid && clavecategoriaAC.touched), 'has-success': (clavecategoriaAC.valid && clavecategoriaAC.touched)}">
+              <label for="inputclavecategoriaAC" class="col-sm-3 form-control-label">Clave Categoria</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="clavecategoria" [formControl]="clavecategoriaAC" type="text" maxlength='45' class="form-control" id="inputclavecategoriaAC" placeholder="Clave Categoria" >
+              </div>
+            </div>
+            <div class="form-group row" [ngClass]="{'has-error': (!descripcioncategoriaAC.valid && descripcioncategoriaAC.touched), 'has-success': (descripcioncategoriaAC.valid && descripcioncategoriaAC.touched)}">
+              <label for="inputdescripcioncategoriaAC" class="col-sm-3 form-control-label">Descripción Categoria</label>
+              <div class="col-sm-9">
+                <input [(ngModel)]="descripcioncategoria" [formControl]="descripcioncategoriaAC" type="text" maxlength='150' class="form-control" id="inputdescripcioncategoriaAC" placeholder="Descripción Categoria" >
+              </div>
+            </div>
+          </ba-card>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger cancel-btn" (click)="close()">Cancelar</button>
+          <button [disabled]="!form.valid" class="btn btn-primary confirm-btn" (click)="onSubmit(form.value)">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
