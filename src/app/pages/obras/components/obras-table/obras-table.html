@@ -36,22 +36,28 @@
                                 <mfDefaultSorter by='observaciones'>Observaciones</mfDefaultSorter>
                             </th>
                             <th style='width: 5%'>
-                                <mfDefaultSorter by='tipoobra_idtipoobra'>Tipo Obra</mfDefaultSorter>
+                                <mfDefaultSorter by='tipoobra'>Tipo Obra</mfDefaultSorter>
                             </th>
                             <th style='width: 5%'>
-                                <mfDefaultSorter by='estatusobra_idestatusobra'>Estatus Obra</mfDefaultSorter>
+                                <mfDefaultSorter by='estatusobra'>Estatus Obra</mfDefaultSorter>
                             </th>
                             <th style='width: 5%'>
-                                <mfDefaultSorter by='razonsocial_idrazonsocialconstructor'>Razón Social Constructor</mfDefaultSorter>
+                                <mfDefaultSorter by='razonsocialconstructor'>Razón Social Constructor</mfDefaultSorter>
                             </th>
                             <th style='width: 5%'>
-                                <mfDefaultSorter by='razonsocial_idrazonsocialcliente'>Razón Social Cliente</mfDefaultSorter>
+                                <mfDefaultSorter by='razonsocialcliente'>Razón Social Cliente</mfDefaultSorter>
                             </th>
                             <th style='width: 5%'>
-                                <mfDefaultSorter by='razonsocial_idrazonsocialcontratista'>Razón Social Contratista</mfDefaultSorter>
+                                <mfDefaultSorter by='razonsocialcontratista'>Razón Social Contratista</mfDefaultSorter>
                             </th>
                             <th style='width: 5%'>
-                                <mfDefaultSorter by='razonsocial_idrazonsocialasociado'>Razón Social Asociado</mfDefaultSorter>
+                                <mfDefaultSorter by='razonsocialasociado'>Razón Social Asociado</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='desctipoobra'>Descripción de Tipo de Obra</mfDefaultSorter>
+                            </th>
+                            <th style='width: 5%'>
+                                <mfDefaultSorter by='direccioncliente'>Dirección de Cliente</mfDefaultSorter>
                             </th>
                         </tr>
                     </thead>
@@ -70,12 +76,15 @@
                             <td>{{ item.presupuesto  }}</td>
                             <td>{{ item.posiciongps  }}</td>
                             <td>{{ item.observaciones  }}</td>
-                            <td>{{ item.tipoobra_idtipoobra }}</td>
-                            <td>{{ item.estatusobra_idestatusobra }}</td>
-                            <td>{{ item.razonsocial_idrazonsocialconstructor }}</td>
-                            <td>{{ item.razonsocial_idrazonsocialcliente }}</td>
-                            <td>{{ item.razonsocial_idrazonsocialcontratista }}</td>
-                            <td>{{ item.razonsocial_idrazonsocialasociado }}</td>
+                            <td>{{ item.tipoobra }}</td>
+                            <td>{{ item.estatusobra }}</td>
+                            <td>{{ item.razonsocialconstructor }}</td>
+                            <td>{{ item.razonsocialcliente }}</td>
+                            <td>{{ item.razonsocialcontratista }}</td>
+                            <td>{{ item.razonsocialasociado }}</td>
+                            <td>{{ item.desctipoobra }}</td>
+                            <td>{{ item.direccioncliente }}</td>
+
                         </tr>
                     </tbody>
                     <tfoot>

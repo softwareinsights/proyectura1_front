@@ -20,11 +20,30 @@
                             <th style='width: 13%'>
                                 <mfDefaultSorter by='precio'>Precio</mfDefaultSorter>
                             </th>
-                            <th style='width: 13%'>
-                                <mfDefaultSorter by='tipomaterial_idtipomaterial'>Tipo Material</mfDefaultSorter>
+                            <th style='width: 6%'>
+                                <mfDefaultSorter by='claveunidadmedida'>Clave Unidad de Medida</mfDefaultSorter>
                             </th>
-                            <th style='width: 13%'>
-                                <mfDefaultSorter by='unidadmedida_idunidadmedida'>Unidad Medida</mfDefaultSorter>
+                            <th style='width: 6%'>
+                                    <mfDefaultSorter by='descripcionunidadmedida'>Descripción Unidad de Medida</mfDefaultSorter>
+                            </th>
+                            <th style='width: 6%'>
+                                <mfDefaultSorter by='clavetipomaterial'>Clave Tipo Material</mfDefaultSorter>
+                            </th>
+                            <th style='width: 6%'>
+                                    <mfDefaultSorter by='descripciontipomaterial'>Descripción Tipo Material</mfDefaultSorter>
+                            </th>
+
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='fechahoraalta'>Fecha y Hora Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='usuariocambio'>Usuario Cambio</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='fechahoracambio'>Fecha y Hora Cambio</mfDefaultSorter>
                             </th>
                         </tr>
                     </thead>
@@ -38,8 +57,15 @@
                             <td>{{ item.descripcioncorta  }}</td>
                             <td>{{ item.descripcionlarga  }}</td>
                             <td>{{ item.precio  }}</td>
-                            <td>{{ item.tipomaterial_idtipomaterial }}</td>
-                            <td>{{ item.unidadmedida_idunidadmedida }}</td>
+                            <td>{{ Claveunidadmedida  }}</td>
+                            <td>{{ descripcionunidadmedida  }}</td>
+                            <td>{{ clavetipomaterial  }}</td>
+                            <td>{{ descripciontipomaterial  }}</td>
+                            <td>{{ item.usuarioalta  }}</td>
+                            <td>{{ item.fechahoraalta  }}</td>                       
+                            <td>{{ item.usuariocambio  }}</td>
+                            <td>{{ item.fechahoracambio  }}</td>
+  
                         </tr>
                     </tbody>
                     <tfoot>

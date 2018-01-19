@@ -165,6 +165,15 @@ export class AuthService {
         }
     }
 
+    getCredentials() {
+        const auth = {
+            nicknameauth: 'ideasys',
+            usuarioauth: 'super',
+            claveauth: '1234',
+        }
+        return auth;
+    }
+
     private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');

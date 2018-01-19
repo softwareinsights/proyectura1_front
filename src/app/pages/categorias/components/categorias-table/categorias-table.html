@@ -7,13 +7,16 @@
                         <tr>
                         </tr>
                         <tr>
-                            <th style='width: 20%'></th>
-                            <th style='width: 40%'>
+                            <th style='width: 25%'></th>
+                            <th style='width: 25%'>
                                 <mfDefaultSorter by='clavecategoria'>Clave Categoria</mfDefaultSorter>
                             </th>
-                            <th style='width: 40%'>
+                            <th style='width: 25%'>
                                 <mfDefaultSorter by='descripcioncategoria'>Descripción Categoria</mfDefaultSorter>
                             </th>
+                            <th style='width: 25%'>
+                                    <mfDefaultSorter by='baja'>Baja</mfDefaultSorter>
+                                </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,6 +27,7 @@
                             </td>
                             <td>{{ item.clavecategoria  }}</td>
                             <td>{{ item.descripcioncategoria  }}</td>
+                            <td>{{ item.baja  }}</td>
                         </tr>
                     </tbody>
                     <tfoot>

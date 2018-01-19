@@ -68,10 +68,11 @@ export class MaterialsTableComponent implements OnInit {
         .all()
         .subscribe(
             (data: MaterialsResponseInterface) =>  {
-                if (data.success) {
-                  this.data = data.result;
+              console.log("getall data", data);
+                if (!data.info.idRespuesta) {
+                  this.data = data.lista;
                 } else {
-                  this.toastrService.error(data.message);
+                  this.toastrService.error(data.info.mensajeRespuesta);
                 }
             },
             error => console.log(error),

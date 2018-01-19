@@ -7,41 +7,72 @@
                         <tr>
                         </tr>
                         <tr>
-                            <th style='width: 20%'></th>
-                            <th style='width: 7%'>
-                                <mfDefaultSorter by='estatuscotizacion_idestatuscotizacion'>Estatus Cotización</mfDefaultSorter>
+                            <th style='width: 16%'></th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='descripcionobra'>Descripción Obra</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
-                                <mfDefaultSorter by='razonsocial_idrazonsocial'>Razon Social</mfDefaultSorter>
+                            <th style='width: 4%'>
+                                    <mfDefaultSorter by='direccionobra'>Dirección Obra</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
-                                <mfDefaultSorter by='obra_idobra'>Obra</mfDefaultSorter>
+                            <th style='width: 4%'>
+                                  <mfDefaultSorter by='razonsocial'>Razon Social</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='nombrerazonsocial'>Nombre Razon Social</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='rfc'>RFC</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                 <mfDefaultSorter by='clavetiporazonsocial'>Clave Tipo Razon Social</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='descripciontiporazonsocial'>Descripción Tipo Razon Social</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='claveestatuscotizacion'>Clave Estatus Cotización</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                    <mfDefaultSorter by='descripcionestatuscotizacion'>Descripción Estatus Cotización</mfDefaultSorter>
+                            </th>
+                            
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='subtotal'>Sub Total</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='importetotal'>Importe Total</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='importeimpuestos'>Importe Impuestos</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='importeimpuestosesp'>Importe Impuestos Esp</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='totalunidades'>Total Unidades</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='descripcion'>Descripción</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='referencia'>Referencia</mfDefaultSorter>
                             </th>
-                            <th style='width: 7%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='observaciones'>Observaciones</mfDefaultSorter>
                             </th>
-                        </tr>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='fechahoraalta'>Fecha y Hora Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='usuariocambio'>Usuario Cambio</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='fechahoracambio'>Fecha y Hora Cambio</mfDefaultSorter>
+                            </th>
+                    </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor='let item of mf.data;  let i = index'>
@@ -49,9 +80,17 @@
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
-                            <td>{{ item.estatuscotizacion_idestatuscotizacion }}</td>
-                            <td>{{ item.razonsocial_idrazonsocial }}</td>
-                            <td>{{ item.obra_idobra }}</td>
+                     
+      
+                            <td>{{ item.descripcionobra  }}</td>
+                            <td>{{ item.direccionobra  }}</td>
+                            <td>{{ item.razonsocial  }}</td>
+                            <td>{{ item.nombrerazonsocial  }}</td>
+                            <td>{{ item.rfc  }}</td>
+                            <td>{{ item.clavetiporazonsocial  }}</td>
+                            <td>{{ item.descripciontiporazonsocial  }}</td>
+                            <td>{{ item.claveestatuscotizacion  }}</td>
+                            <td>{{ item.descripcionestatuscotizacion  }}</td>
                             <td>{{ item.subtotal  }}</td>
                             <td>{{ item.importetotal  }}</td>
                             <td>{{ item.importeimpuestos  }}</td>
@@ -60,6 +99,11 @@
                             <td>{{ item.descripcion  }}</td>
                             <td>{{ item.referencia  }}</td>
                             <td>{{ item.observaciones  }}</td>
+                            <td>{{ item.usuarioalta  }}</td>
+                            <td>{{ item.fechahoraalta  }}</td>
+                            <td>{{ item.usuariocambio  }}</td>
+                            <td>{{ item.fechahoracambio  }}</td>
+                            
                         </tr>
                     </tbody>
                     <tfoot>

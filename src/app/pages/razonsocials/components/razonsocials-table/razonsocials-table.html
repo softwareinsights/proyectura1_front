@@ -8,44 +8,65 @@
                         </tr>
                         <tr>
                             <th style='width: 20%'></th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='razonsocial'>Razón Social</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='nombre'>Nombre</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='rfc'>RFC</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='calle'>Calle</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='numeroexterior'>Número Exterior</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='numerointerior'>Número Interior</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='colonia'>Colonia</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='municipio'>Municipio</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='ciudad'>Ciudad</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='estado'>Estado</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
+                            <th style='width: 4%'>
                                 <mfDefaultSorter by='pais'>Pais</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
-                                <mfDefaultSorter by='tiporazonsocial_idtiporazonsocial'>Tipo Razon Social</mfDefaultSorter>
+                            <th style='width: 4%'>
+                                    <mfDefaultSorter by='baja'>Baja</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
-                                <mfDefaultSorter by='statusrazonsocial_idstatusrazonsocial'>Status Razón Social</mfDefaultSorter>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='fechahoraalta'>Fecha y Hora Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='usuariocambio'>Usuario Cambio</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='fechahoracambio'>Fecha y Hora Cambio</mfDefaultSorter>
+                            </th>            
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='clavetipo'>Clave Tipo </mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='descripciontipo'>Descripción Tipo</mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='claveestatus'>Clave Estatus </mfDefaultSorter>
+                            </th>
+                            <th style='width: 4%'>
+                                <mfDefaultSorter by='descripcionestatus'>Descripción Estatus</mfDefaultSorter>
                             </th>
                         </tr>
                     </thead>
@@ -66,8 +87,16 @@
                             <td>{{ item.ciudad  }}</td>
                             <td>{{ item.estado  }}</td>
                             <td>{{ item.pais  }}</td>
-                            <td>{{ item.tiporazonsocial_idtiporazonsocial }}</td>
-                            <td>{{ item.statusrazonsocial_idstatusrazonsocial }}</td>
+                            <td>{{ item.baja  }}</td>
+                            <td>{{ item.usuarioalta  }}</td>
+                            <td>{{ item.fechahoraalta  }}</td>                       
+                            <td>{{ item.usuariocambio  }}</td>
+                            <td>{{ item.fechahoracambio  }}</td>
+                            <td>{{ item.clavetipo }}</td>
+                            <td>{{ item.descripciontipo }}</td>
+                            <td>{{ item.claveestatus }}</td>
+                            <td>{{ item.descripcionestatus }}</td>
+ 
                         </tr>
                     </tbody>
                     <tfoot>

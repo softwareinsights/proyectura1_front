@@ -7,12 +7,24 @@
                         <tr>
                         </tr>
                         <tr>
-                            <th style='width: 20%'></th>
-                            <th style='width: 40%'>
+                            <th style='width: 40%'></th>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='clavetipoobra'>Clave Tipo Obra</mfDefaultSorter>
                             </th>
-                            <th style='width: 40%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='descripcion'>Descripción</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='fechahoraalta'>Fecha y Hora Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='usuariocambio'>Usuario Cambio</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='fechahoracambio'>Fecha y Hora Cambio</mfDefaultSorter>
                             </th>
                         </tr>
                     </thead>
@@ -24,6 +36,10 @@
                             </td>
                             <td>{{ item.clavetipoobra  }}</td>
                             <td>{{ item.descripcion  }}</td>
+                            <td>{{ item.usuarioalta  }}</td>
+                            <td>{{ item.fechahoraalta  }}</td>
+                            <td>{{ item.usuariocambio  }}</td>
+                            <td>{{ item.fechahoracambio  }}</td>
                         </tr>
                     </tbody>
                     <tfoot>

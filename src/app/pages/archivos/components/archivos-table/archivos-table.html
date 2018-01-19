@@ -7,19 +7,35 @@
                         <tr>
                         </tr>
                         <tr>
-                            <th style='width: 20%'></th>
-                            <th style='width: 20%'>
+                            <th style='width: 10%'></th>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='proceso'>Proceso</mfDefaultSorter>
                             </th>
-                            <th style='width: 20%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='tipoarchivo'>Tipo Archivo</mfDefaultSorter>
                             </th>
-                            <th style='width: 20%'>
+                            <th style='width: 10%'>
                                 <mfDefaultSorter by='urlarchivo'>Url Archivo</mfDefaultSorter>
                             </th>
-                            <th style='width: 20%'>
-                                <mfDefaultSorter by='referencia_idreferencia'>Referencia</mfDefaultSorter>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='idreferencia'>Referencia</mfDefaultSorter>
                             </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='baja'>Baja</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='fechahoraalta'>Fecha y Hora Alta</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='usuariocambio'>Usuario Cambio</mfDefaultSorter>
+                            </th>
+                            <th style='width: 10%'>
+                                <mfDefaultSorter by='fechahoracambio'>Fecha y Hora Cambio</mfDefaultSorter>
+                            </th>
+                   
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +47,14 @@
                             <td>{{ item.proceso  }}</td>
                             <td>{{ item.tipoarchivo  }}</td>
                             <td>{{ item.urlarchivo  }}</td>
-                            <td>{{ item.referencia_idreferencia }}</td>
+                            <td>{{ item.referencia_idreferencia }}</td>               
+                            <td>{{ item.baja }}</td>		
+                            <td>{{ item.usuarioalta }}</td>	
+                            <td>{{ item.fechahoraalta }}</td>	
+                            <td>{{ item.usuariocambio }}</td>	
+                            <td>{{ item.fechahoracambio }}</td>	
+                
+                
                         </tr>
                     </tbody>
                     <tfoot>

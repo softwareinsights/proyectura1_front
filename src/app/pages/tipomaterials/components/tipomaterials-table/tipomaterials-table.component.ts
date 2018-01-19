@@ -68,10 +68,10 @@ export class TipomaterialsTableComponent implements OnInit {
         .all()
         .subscribe(
             (data: TipomaterialsResponseInterface) =>  {
-                if (data.success) {
-                  this.data = data.result;
+                if (!data.info.idRespuesta) {
+                  this.data = data.lista;
                 } else {
-                  this.toastrService.error(data.message);
+                  this.toastrService.error(data.info.mensajeRespuesta);
                 }
             },
             error => console.log(error),

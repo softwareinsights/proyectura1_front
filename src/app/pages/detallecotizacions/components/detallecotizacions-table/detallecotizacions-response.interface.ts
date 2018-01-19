@@ -1,5 +1,8 @@
 export interface DetallecotizacionsResponseInterface {
-success: any;
-result: any;
-message?: string;
+    info: {
+        idRespuesta: any;
+        mensajeRespuesta?: string;
+        valorRespuesta?: string;
+    }
+    lista: any;
 }
