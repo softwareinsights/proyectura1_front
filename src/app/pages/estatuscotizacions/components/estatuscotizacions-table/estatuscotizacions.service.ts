@@ -27,7 +27,7 @@ export class EstatuscotizacionsService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerEstatusCotizaciones`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerEstatusCotizaciones`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

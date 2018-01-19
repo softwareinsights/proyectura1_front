@@ -28,7 +28,7 @@ export class ObracategoriasService {
        }
        
        all = () : Observable<ObracategoriasResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerObrasCategorias`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerobrascategorias`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

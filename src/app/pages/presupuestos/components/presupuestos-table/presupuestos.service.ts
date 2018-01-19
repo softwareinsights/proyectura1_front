@@ -27,7 +27,7 @@ export class PresupuestosService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<PresupuestosResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerPresupuestos`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerPresupuestos`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
