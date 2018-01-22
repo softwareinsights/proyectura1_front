@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class DetallefacturasService {
@@ -14,7 +15,7 @@ export class DetallefacturasService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class DetallefacturasService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<DetallefacturasResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerDetallesFactura`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerDetallesFactura`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<DetallefacturasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: DetallefacturasInterface ) : Observable<DetallefacturasResponseInterface> => {
+           const detallefactura: any = {
+                iddetallefactura: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerDetalleFactura`, detallefactura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( detallefactura: DetallefacturasInterface ) : Observable<DetallefacturasResponseInterface> => {
-           return this._http.patch(this.endPoint, detallefactura, this.options)
+           
+            detallefactura.claveauth = this.auth.claveauth;
+            detallefactura.nicknameauth = this.auth.nicknameauth;
+            detallefactura.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}ModificarDetalleFactura`, detallefactura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<DetallefacturasResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const detallefactura: any = {
+                iddetallefactura: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaDetalleFactura`, detallefactura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<DetallefacturasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<DetallefacturasResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( detallefactura: DetallefacturasInterface ) : Observable<DetallefacturasResponseInterface> => {
-           return this._http.post(this.endPoint, detallefactura, this.options)
+
+            detallefactura.claveauth = this.auth.claveauth;
+            detallefactura.nicknameauth = this.auth.nicknameauth;
+            detallefactura.usuarioauth = this.auth.usuarioauth; 
+
+           return this._http.post(`${this.endPoint}agregarDetalleFactura`, detallefactura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

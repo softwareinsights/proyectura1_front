@@ -1,6 +1,6 @@
 export interface TipoobrasResponseInterface {
     info: {
-        idRespuesta: any;
+        idRespuesta?: any;
         mensajeRespuesta?: string;
         valorRespuesta?: string;
     }

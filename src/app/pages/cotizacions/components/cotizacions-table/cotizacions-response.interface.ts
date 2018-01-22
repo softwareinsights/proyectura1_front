@@ -1,6 +1,6 @@
 export interface CotizacionsResponseInterface {
     info: {
-        idRespuesta: any;
+        idRespuesta?: any;
         mensajeRespuesta?: string;
         valorRespuesta?: string;
     }

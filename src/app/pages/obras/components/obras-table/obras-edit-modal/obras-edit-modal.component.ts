@@ -152,29 +152,29 @@ export class ObrasEditModalComponent extends DialogComponent<ObrasInterface, any
   }
 
   razonsocialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (!result.idRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getRazonsocial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getTipoobra() {
       this.tipoobrasService.all()
       .subscribe(
-          (data: any) => this._tipoobra = data.result,
+          (data: any) => this._tipoobra = data.lista,
       );
   }
   getEstatusobra() {
       this.estatusobrasService.all()
       .subscribe(
-          (data: any) => this._estatusobra = data.result,
+          (data: any) => this._estatusobra = data.lista,
       );
   }
   getRazonsocial() {
       this.razonsocialsService.all()
       .subscribe(
-          (data: any) => this._razonsocial = data.result,
+          (data: any) => this._razonsocial = data.lista,
       );
   }
   confirm() {

@@ -91,23 +91,23 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
       });
   }
   categoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (!result.info.idRespuesta) {
+          this.toastrService.success(result.info.mensajerespuesta);
           this.getCategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajerespuesta);
       }
   }
   getObra() {
       this.obrasService.all()
       .subscribe(
-          (data: any) => this._obra = data.result,
+          (data: any) => this._obra = data.lista,
       );
   }
   getCategoria() {
       this.categoriasService.all()
       .subscribe(
-          (data: any) => this._categoria = data.result,
+          (data: any) => this._categoria = data.lista,
       );
   }
   confirm() {

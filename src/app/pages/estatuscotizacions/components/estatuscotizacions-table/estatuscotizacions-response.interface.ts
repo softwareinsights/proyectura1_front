@@ -1,6 +1,6 @@
 export interface EstatuscotizacionsResponseInterface {
     info: {
-        idRespuesta: any;
+        idRespuesta?: any;
         mensajeRespuesta?: string;
         valorRespuesta?: string;
     }

@@ -55,19 +55,19 @@ export class ArchivosTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
-    showToast(result) {
-      if (result.success) {
-        this.toastrService.success(result.message);
-        this.getAll();
-      } else {
-        this.toastrService.error(result.message);
-      }
+    showToast(result: any) {
+        if (!result.idRespuesta) {
+          this.toastrService.success(result.mensajeRespuesta);
+          this.getAll();
+        } else {
+          this.toastrService.error(result.mensajeRespuesta);
+        }
     }
     private getAll(): void {
       this.service
         .all()
         .subscribe(
-            (data: ArchivosResponseInterface) =>  {
+            (data: ArchivosResponseInterface) => {
                 if (!data.info.idRespuesta) {
                   this.data = data.lista;
                 } else {

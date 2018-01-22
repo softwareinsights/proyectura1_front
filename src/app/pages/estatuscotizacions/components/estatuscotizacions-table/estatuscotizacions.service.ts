@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class EstatuscotizacionsService {
@@ -14,7 +15,7 @@ export class EstatuscotizacionsService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -31,33 +32,56 @@ export class EstatuscotizacionsService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: EstatuscotizacionsInterface ) : Observable<EstatuscotizacionsResponseInterface> => {
+           const estatuscotizacion: any = {
+                idestatuscotizacion: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}ObtenerEstatuscotizacion`, estatuscotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( estatuscotizacion: EstatuscotizacionsInterface ) : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.patch(this.endPoint, estatuscotizacion, this.options)
+           
+            estatuscotizacion.claveauth = this.auth.claveauth;
+            estatuscotizacion.nicknameauth = this.auth.nicknameauth;
+            estatuscotizacion.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarEstatuscotizacion`, estatuscotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const estatuscotizacion: any = {
+                idestatuscotizacion: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/BajaEstatuscotizacion`, estatuscotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( estatuscotizacion: EstatuscotizacionsInterface ) : Observable<EstatuscotizacionsResponseInterface> => {
-           return this._http.post(this.endPoint, estatuscotizacion, this.options)
+
+            estatuscotizacion.claveauth = this.auth.claveauth;
+            estatuscotizacion.nicknameauth = this.auth.nicknameauth;
+            estatuscotizacion.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarEstatuscotizacion`, estatuscotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

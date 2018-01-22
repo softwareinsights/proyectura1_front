@@ -55,14 +55,14 @@ export class MaterialsTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
-    showToast(result) {
-      if (result.success) {
-        this.toastrService.success(result.message);
+    showToast(result: any) {
+      if (!result.idRespuesta) {
+        this.toastrService.success(result.mensajeRespuesta);
         this.getAll();
       } else {
-        this.toastrService.error(result.message);
+        this.toastrService.error(result.mensajeRespuesta);
       }
-    }
+  }
     private getAll(): void {
       this.service
         .all()

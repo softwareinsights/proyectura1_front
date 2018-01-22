@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class SubcategoriasService {
@@ -14,7 +15,7 @@ export class SubcategoriasService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -31,33 +32,56 @@ export class SubcategoriasService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<SubcategoriasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: SubcategoriasInterface ) : Observable<SubcategoriasResponseInterface> => {
+           const subcategoria: any = {
+                idsubcategoria: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerSubCategoria`, subcategoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( subcategoria: SubcategoriasInterface ) : Observable<SubcategoriasResponseInterface> => {
-           return this._http.patch(this.endPoint, subcategoria, this.options)
+           
+            subcategoria.claveauth = this.auth.claveauth;
+            subcategoria.nicknameauth = this.auth.nicknameauth;
+            subcategoria.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarSubCategoria`, subcategoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<SubcategoriasResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const subcategoria: any = {
+                idsubcategoria: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaSubCategoria`, subcategoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<SubcategoriasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<SubcategoriasResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( subcategoria: SubcategoriasInterface ) : Observable<SubcategoriasResponseInterface> => {
-           return this._http.post(this.endPoint, subcategoria, this.options)
+
+            subcategoria.claveauth = this.auth.claveauth;
+            subcategoria.nicknameauth = this.auth.nicknameauth;
+            subcategoria.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarSubCategoria`, subcategoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

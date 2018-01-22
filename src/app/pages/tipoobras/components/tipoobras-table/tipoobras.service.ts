@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class TipoobrasService {
@@ -14,7 +15,7 @@ export class TipoobrasService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class TipoobrasService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<TipoobrasResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerTipoObras`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerTipoObras`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<TipoobrasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: TipoobrasInterface ) : Observable<TipoobrasResponseInterface> => {
+           const tipoobra: any = {
+                idtipoobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerTipoObra`, tipoobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( tipoobra: TipoobrasInterface ) : Observable<TipoobrasResponseInterface> => {
-           return this._http.patch(this.endPoint, tipoobra, this.options)
+           
+            tipoobra.claveauth = this.auth.claveauth;
+            tipoobra.nicknameauth = this.auth.nicknameauth;
+            tipoobra.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}ModificarTipoObra`, tipoobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<TipoobrasResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const tipoobra: any = {
+                idtipoobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaTipoObra`, tipoobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<TipoobrasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<TipoobrasResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( tipoobra: TipoobrasInterface ) : Observable<TipoobrasResponseInterface> => {
-           return this._http.post(this.endPoint, tipoobra, this.options)
+
+            tipoobra.claveauth = this.auth.claveauth;
+            tipoobra.nicknameauth = this.auth.nicknameauth;
+            tipoobra.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarTipoObra`, tipoobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

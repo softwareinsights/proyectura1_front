@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class PresupuestosService {
@@ -14,7 +15,7 @@ export class PresupuestosService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -31,33 +32,56 @@ export class PresupuestosService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<PresupuestosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: PresupuestosInterface ) : Observable<PresupuestosResponseInterface> => {
+           const presupuesto: any = {
+                idpresupuesto: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerPresupuesto`, presupuesto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( presupuesto: PresupuestosInterface ) : Observable<PresupuestosResponseInterface> => {
-           return this._http.patch(this.endPoint, presupuesto, this.options)
+           
+            presupuesto.claveauth = this.auth.claveauth;
+            presupuesto.nicknameauth = this.auth.nicknameauth;
+            presupuesto.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarPresupuesto`, presupuesto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<PresupuestosResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const presupuesto: any = {
+                idpresupuesto: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaPresupuesto`, presupuesto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<PresupuestosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<PresupuestosResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( presupuesto: PresupuestosInterface ) : Observable<PresupuestosResponseInterface> => {
-           return this._http.post(this.endPoint, presupuesto, this.options)
+
+            presupuesto.claveauth = this.auth.claveauth;
+            presupuesto.nicknameauth = this.auth.nicknameauth;
+            presupuesto.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarPresupuesto`, presupuesto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

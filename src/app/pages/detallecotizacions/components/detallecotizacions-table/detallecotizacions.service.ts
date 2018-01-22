@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class DetallecotizacionsService {
@@ -14,7 +15,7 @@ export class DetallecotizacionsService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class DetallecotizacionsService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerDetalleCotizacion`, this.auth , this.options)
+           return this._http.post(`${this.endPoint}obtenerDetallesCotizacion`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: DetallecotizacionsInterface ) : Observable<DetallecotizacionsResponseInterface> => {
+           const detallecotizacion: any = {
+                iddetallecotizacion: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerDetalleCotizacion`, detallecotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( detallecotizacion: DetallecotizacionsInterface ) : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.patch(this.endPoint, detallecotizacion, this.options)
+           
+            detallecotizacion.claveauth = this.auth.claveauth;
+            detallecotizacion.nicknameauth = this.auth.nicknameauth;
+            detallecotizacion.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarDetallecotizacion`, detallecotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const detallecotizacion: any = {
+                iddetallecotizacion: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaDetalleCotizacion`, detallecotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( detallecotizacion: DetallecotizacionsInterface ) : Observable<DetallecotizacionsResponseInterface> => {
-           return this._http.post(this.endPoint, detallecotizacion, this.options)
+
+            detallecotizacion.claveauth = this.auth.claveauth;
+            detallecotizacion.nicknameauth = this.auth.nicknameauth;
+            detallecotizacion.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarDetalleCotizacion`, detallecotizacion, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

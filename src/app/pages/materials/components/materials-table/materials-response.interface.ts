@@ -1,6 +1,6 @@
 export interface MaterialsResponseInterface {
     info: {
-        idRespuesta: any;
+        idRespuesta?: any;
         mensajeRespuesta?: string;
         valorRespuesta?: string;
     }

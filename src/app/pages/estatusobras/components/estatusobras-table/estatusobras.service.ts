@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class EstatusobrasService {
@@ -14,7 +15,7 @@ export class EstatusobrasService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class EstatusobrasService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<EstatusobrasResponseInterface> => {
-        return this._http.post(`${this.endPoint}ObtenerEstatusObras`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerEstatusObras`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<EstatusobrasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: EstatusobrasInterface ) : Observable<EstatusobrasResponseInterface> => {
+           const estatusobra: any = {
+                idestatusobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}ObtenerEstatusobra`, estatusobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( estatusobra: EstatusobrasInterface ) : Observable<EstatusobrasResponseInterface> => {
-           return this._http.patch(this.endPoint, estatusobra, this.options)
+           
+            estatusobra.claveauth = this.auth.claveauth;
+            estatusobra.nicknameauth = this.auth.nicknameauth;
+            estatusobra.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarEstatusobra`, estatusobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<EstatusobrasResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const estatusobra: any = {
+                idestatusobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/BajaEstatusobra`, estatusobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<EstatusobrasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<EstatusobrasResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( estatusobra: EstatusobrasInterface ) : Observable<EstatusobrasResponseInterface> => {
-           return this._http.post(this.endPoint, estatusobra, this.options)
+
+            estatusobra.claveauth = this.auth.claveauth;
+            estatusobra.nicknameauth = this.auth.nicknameauth;
+            estatusobra.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarEstatusobra`, estatusobra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

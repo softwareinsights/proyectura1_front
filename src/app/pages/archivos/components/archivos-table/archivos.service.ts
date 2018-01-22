@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class ArchivosService {
@@ -14,7 +15,7 @@ export class ArchivosService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -24,40 +25,63 @@ export class ArchivosService {
         //this.headers.append('Authorization', 'JWT ' + this.authService.token);
         this.options = new RequestOptions({ headers: this.headers });
         this.endPoint = `https://www.ideasys.com.mx/ProyecturaObraSW/api/`;
-        this.auth = this.authService.getCredentials();;
+        this.auth = this.authService.getCredentials();
        }
        all = () : Observable<ArchivosResponseInterface> => {
            return this._http.post(`${this.endPoint}ObtenerArchivos`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<ArchivosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: ArchivosInterface ) : Observable<ArchivosResponseInterface> => {
+           const archivo: any = {
+                idarchivo: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}ObtenerArchivo`, archivo, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( archivo: ArchivosInterface ) : Observable<ArchivosResponseInterface> => {
-           return this._http.patch(this.endPoint, archivo, this.options)
+           
+            archivo.claveauth = this.auth.claveauth;
+            archivo.nicknameauth = this.auth.nicknameauth;
+            archivo.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarArchivo`, archivo, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<ArchivosResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const archivo: any = {
+                idarchivo: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/BajaArchivo`, archivo, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<ArchivosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<ArchivosResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( archivo: ArchivosInterface ) : Observable<ArchivosResponseInterface> => {
-           return this._http.post(this.endPoint, archivo, this.options)
+
+            archivo.claveauth = this.auth.claveauth;
+            archivo.nicknameauth = this.auth.nicknameauth;
+            archivo.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarArchivo`, archivo, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

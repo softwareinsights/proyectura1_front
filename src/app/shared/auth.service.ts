@@ -10,6 +10,7 @@ import { Configuration } from './../app.constants';
 import { LoginInterface } from './../pages/login/login.interface';
 import { LoginResponseInterface } from './../pages/login/login-response.interface';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
+import { CredentialInterface } from 'app/shared/credential.interface';
  
 
 @Injectable()
@@ -165,7 +166,7 @@ export class AuthService {
         }
     }
 
-    getCredentials() {
+    getCredentials(): CredentialInterface {
         const auth = {
             nicknameauth: 'ideasys',
             usuarioauth: 'super',

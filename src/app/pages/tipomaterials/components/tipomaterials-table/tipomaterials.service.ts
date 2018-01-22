@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class TipomaterialsService {
@@ -14,7 +15,7 @@ export class TipomaterialsService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class TipomaterialsService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<TipomaterialsResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerTiposMateriales`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerTiposMateriales`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<TipomaterialsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: TipomaterialsInterface ) : Observable<TipomaterialsResponseInterface> => {
+           const tipomaterial: any = {
+                idtipomaterial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerTipoMaterial`, tipomaterial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( tipomaterial: TipomaterialsInterface ) : Observable<TipomaterialsResponseInterface> => {
-           return this._http.patch(this.endPoint, tipomaterial, this.options)
+           
+            tipomaterial.claveauth = this.auth.claveauth;
+            tipomaterial.nicknameauth = this.auth.nicknameauth;
+            tipomaterial.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarTipoMaterial`, tipomaterial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<TipomaterialsResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const tipomaterial: any = {
+                idtipomaterial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaTipoMaterial`, tipomaterial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<TipomaterialsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<TipomaterialsResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( tipomaterial: TipomaterialsInterface ) : Observable<TipomaterialsResponseInterface> => {
-           return this._http.post(this.endPoint, tipomaterial, this.options)
+
+            tipomaterial.claveauth = this.auth.claveauth;
+            tipomaterial.nicknameauth = this.auth.nicknameauth;
+            tipomaterial.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarTipoMaterial`, tipomaterial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

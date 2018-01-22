@@ -1,6 +1,6 @@
 export interface DetallecotizacionsResponseInterface {
     info: {
-        idRespuesta: any;
+        idRespuesta?: any;
         mensajeRespuesta?: string;
         valorRespuesta?: string;
     }

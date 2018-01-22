@@ -77,11 +77,11 @@ export class MaterialsEditModalComponent extends DialogComponent<MaterialsInterf
   }
 
   tipomaterialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (!result.info.idRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getTipomaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   unidadmedidaAddModalShow() {
@@ -94,23 +94,23 @@ export class MaterialsEditModalComponent extends DialogComponent<MaterialsInterf
   }
 
   unidadmedidaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (!result.info.idRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getUnidadmedida();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getTipomaterial() {
       this.tipomaterialsService.all()
       .subscribe(
-          (data: any) => this._tipomaterial = data.result,
+          (data: any) => this._tipomaterial = data.lista,
       );
   }
   getUnidadmedida() {
       this.unidadmedidasService.all()
       .subscribe(
-          (data: any) => this._unidadmedida = data.result,
+          (data: any) => this._unidadmedida = data.lista,
       );
   }
   confirm() {

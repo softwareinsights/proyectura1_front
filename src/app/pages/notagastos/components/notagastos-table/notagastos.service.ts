@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class NotagastosService {
@@ -14,7 +15,7 @@ export class NotagastosService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class NotagastosService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<NotagastosResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerNotadeGasto`, this.options)
+           return this._http.post(`${this.endPoint}obtenerNotaGasto`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<NotagastosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: NotagastosInterface ) : Observable<NotagastosResponseInterface> => {
+           const notagasto: any = {
+                idnotagasto: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerNotaGasto`, notagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( notagasto: NotagastosInterface ) : Observable<NotagastosResponseInterface> => {
-           return this._http.patch(this.endPoint, notagasto, this.options)
+           
+            notagasto.claveauth = this.auth.claveauth;
+            notagasto.nicknameauth = this.auth.nicknameauth;
+            notagasto.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarNotaGasto`, notagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<NotagastosResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const notagasto: any = {
+                idnotagasto: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaNotaGasto`, notagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<NotagastosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<NotagastosResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( notagasto: NotagastosInterface ) : Observable<NotagastosResponseInterface> => {
-           return this._http.post(this.endPoint, notagasto, this.options)
+
+            notagasto.claveauth = this.auth.claveauth;
+            notagasto.nicknameauth = this.auth.nicknameauth;
+            notagasto.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarNotaGasto`, notagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

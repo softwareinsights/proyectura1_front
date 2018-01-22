@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class CategoriasService {
@@ -14,7 +15,7 @@ export class CategoriasService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,57 @@ export class CategoriasService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<CategoriasResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerCategorias`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerCategorias`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        findById = ( id ) : Observable<CategoriasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+            const categoria: any = {
+                idcategoria: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            } 
+           return this._http.post(`${this.endPoint}obtenerCategoria`,categoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
        update = ( categoria: CategoriasInterface ) : Observable<CategoriasResponseInterface> => {
-           return this._http.patch(this.endPoint, categoria, this.options)
+        categoria.claveauth = this.auth.claveauth;
+        categoria.nicknameauth = this.auth.nicknameauth;
+        categoria.usuarioauth = this.auth.usuarioauth;
+           return this._http.post(`${this.endPoint}ModificarCategoria`, categoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
        remove= ( id ) : Observable<CategoriasResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+        const categoria: any = {
+            idarchivo: id,  
+            claveauth: this.auth.claveauth,
+            nicknameauth: this.auth.nicknameauth,
+            usuarioauth: this.auth.usuarioauth
+        }
+           return this._http.post(`${this.endPoint}bajaCategoria`, categoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<CategoriasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<CategoriasResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( categoria: CategoriasInterface ) : Observable<CategoriasResponseInterface> => {
-           return this._http.post(this.endPoint, categoria, this.options)
+        categoria.claveauth = this.auth.claveauth;
+        categoria.nicknameauth = this.auth.nicknameauth;
+        categoria.usuarioauth = this.auth.usuarioauth;
+           return this._http.post(`${this.endPoint}agregarCategoria`, categoria, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

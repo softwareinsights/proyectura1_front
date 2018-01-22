@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class RazonsocialsService {
@@ -14,7 +15,7 @@ export class RazonsocialsService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class RazonsocialsService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<RazonsocialsResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerRazonesSociales`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerRazonesSociales`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<RazonsocialsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: RazonsocialsInterface ) : Observable<RazonsocialsResponseInterface> => {
+           const razonsocial: any = {
+                idrazonsocial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}ObtenerRazonsocial`, razonsocial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( razonsocial: RazonsocialsInterface ) : Observable<RazonsocialsResponseInterface> => {
-           return this._http.patch(this.endPoint, razonsocial, this.options)
+           
+            razonsocial.claveauth = this.auth.claveauth;
+            razonsocial.nicknameauth = this.auth.nicknameauth;
+            razonsocial.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarRazonSocial`, razonsocial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<RazonsocialsResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const razonsocial: any = {
+                idrazonsocial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaRazonSocial`, razonsocial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<RazonsocialsResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<RazonsocialsResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( razonsocial: RazonsocialsInterface ) : Observable<RazonsocialsResponseInterface> => {
-           return this._http.post(this.endPoint, razonsocial, this.options)
+
+            razonsocial.claveauth = this.auth.claveauth;
+            razonsocial.nicknameauth = this.auth.nicknameauth;
+            razonsocial.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarRazonSocial`, razonsocial, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

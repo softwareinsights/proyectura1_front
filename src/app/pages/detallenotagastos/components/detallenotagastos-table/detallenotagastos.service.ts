@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class DetallenotagastosService {
@@ -14,7 +15,7 @@ export class DetallenotagastosService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,40 +28,63 @@ export class DetallenotagastosService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerDetalledeNotadeGasto`, this.options)
+           return this._http.post(`${this.endPoint}obtenerDetallesNotasGasto`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: DetallenotagastosInterface ) : Observable<DetallenotagastosResponseInterface> => {
+           const detallenotagasto: any = {
+                iddetallenotagasto: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerDetalleNotaGasto`, detallenotagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( detallenotagasto: DetallenotagastosInterface ) : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.patch(this.endPoint, detallenotagasto, this.options)
+           
+            detallenotagasto.claveauth = this.auth.claveauth;
+            detallenotagasto.nicknameauth = this.auth.nicknameauth;
+            detallenotagasto.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarDetalleNotaGasto`, detallenotagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const detallenotagasto: any = {
+                iddetallenotagasto: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaDetalleNotaGasto`, detallenotagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( detallenotagasto: DetallenotagastosInterface ) : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.post(this.endPoint, detallenotagasto, this.options)
+
+            detallenotagasto.claveauth = this.auth.claveauth;
+            detallenotagasto.nicknameauth = this.auth.nicknameauth;
+            detallenotagasto.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarDetalleNotaGasto`, detallenotagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
-       }
+       } 
        private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');

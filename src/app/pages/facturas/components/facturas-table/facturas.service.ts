@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Configuration } from '../../../../app.constants';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { CredentialInterface } from 'app/shared/credential.interface';
 
 @Injectable()
 export class FacturasService {
@@ -14,7 +15,7 @@ export class FacturasService {
     private headers: Headers;
     private options: RequestOptions;
     private endPoint: string;
-    private auth: any;
+    private auth: CredentialInterface;
     constructor(
         private _http: Http,
         private _configuration: Configuration,
@@ -27,37 +28,60 @@ export class FacturasService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<FacturasResponseInterface> => {
-           return this._http.post(`${this.endPoint}ObtenerFactura`, this.auth,  this.options)
+           return this._http.post(`${this.endPoint}obtenerFactura`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       findById = ( id ) : Observable<FacturasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+       findById = ( id: FacturasInterface ) : Observable<FacturasResponseInterface> => {
+           const factura: any = {
+                idfactura: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+           } 
+
+           return this._http.post(`${this.endPoint}obtenerFactura`, factura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        update = ( factura: FacturasInterface ) : Observable<FacturasResponseInterface> => {
-           return this._http.patch(this.endPoint, factura, this.options)
+           
+            factura.claveauth = this.auth.claveauth;
+            factura.nicknameauth = this.auth.nicknameauth;
+            factura.usuarioauth = this.auth.usuarioauth;
+            
+           return this._http.post(`${this.endPoint}modificarFactura`, factura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        remove= ( id ) : Observable<FacturasResponseInterface> => {
-           return this._http.delete(`${this.endPoint}/${id}`, this.options)
+            const factura: any = {
+                idfactura: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bajaFactura`, factura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        exist = ( id ) : Observable<FacturasResponseInterface> => {
-           return this._http.get(`${this.endPoint}/${id}`, this.options)
+           return this._http.post(`${this.endPoint}/${id}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        count = () : Observable<FacturasResponseInterface> => {
-           return this._http.get(`${this.endPoint}`, this.options)
+           return this._http.post(`${this.endPoint}`, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
        insert = ( factura: FacturasInterface ) : Observable<FacturasResponseInterface> => {
-           return this._http.post(this.endPoint, factura, this.options)
+
+            factura.claveauth = this.auth.claveauth;
+            factura.nicknameauth = this.auth.nicknameauth;
+            factura.usuarioauth = this.auth.usuarioauth;
+
+           return this._http.post(`${this.endPoint}agregarFactura`, factura, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

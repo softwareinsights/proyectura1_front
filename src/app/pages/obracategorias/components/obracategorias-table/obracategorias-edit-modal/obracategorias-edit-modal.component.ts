@@ -61,12 +61,12 @@ export class ObracategoriasEditModalComponent extends DialogComponent<Obracatego
   }
 
   obraShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
-          this.getObra();
-      } else {
-          this.toastrService.error(result.message);
-      }
+    if (!result.info.idRespuesta) {
+        this.toastrService.success(result.info.mensajerespuesta);
+        this.getCategoria();
+    } else {
+        this.toastrService.error(result.info.mensajerespuesta);
+    }
   }
   categoriaAddModalShow() {
       const disposable = this.dialogService.addDialog(CategoriasAddModalComponent)
@@ -78,23 +78,23 @@ export class ObracategoriasEditModalComponent extends DialogComponent<Obracatego
   }
 
   categoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
-          this.getCategoria();
-      } else {
-          this.toastrService.error(result.message);
-      }
+    if (!result.info.idRespuesta) {
+        this.toastrService.success(result.info.mensajerespuesta);
+        this.getCategoria();
+    } else {
+        this.toastrService.error(result.info.mensajerespuesta);
+    }
   }
   getObra() {
       this.obrasService.all()
       .subscribe(
-          (data: any) => this._obra = data.result,
+          (data: any) => this._obra = data.lista,
       );
   }
   getCategoria() {
       this.categoriasService.all()
       .subscribe(
-          (data: any) => this._categoria = data.result,
+          (data: any) => this._categoria = data.lista,
       );
   }
   confirm() {

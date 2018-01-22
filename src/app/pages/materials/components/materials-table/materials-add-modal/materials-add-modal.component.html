@@ -39,7 +39,7 @@
               <label for="inputidtipomaterialAC" class="col-sm-3 form-control-label">Tipo Material</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idtipomaterial" [formControl]="idtipomaterialAC" class="form-control" id="inputidtipomaterialAC" required>
-                 <option value="{{item.idtipomaterial}}" *ngFor="let item of _tipomaterial">{{item.idtipomaterial}}</option>
+                 <option value="{{item.idtipomaterial}}" *ngFor="let item of _tipomaterial">{{item.descripcion}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
@@ -50,7 +50,7 @@
               <label for="inputidunidadmedidaAC" class="col-sm-3 form-control-label">Unidad Medida</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idunidadmedida" [formControl]="idunidadmedidaAC" class="form-control" id="inputidunidadmedidaAC" required>
-                 <option value="{{item.idunidadmedida}}" *ngFor="let item of _unidadmedida">{{item.idunidadmedida}}</option>
+                 <option value="{{item.idunidadmedida}}" *ngFor="let item of _unidadmedida">{{item.descripcion}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
