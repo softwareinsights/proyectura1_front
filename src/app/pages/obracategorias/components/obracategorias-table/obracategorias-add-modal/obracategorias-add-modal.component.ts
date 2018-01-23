@@ -59,7 +59,7 @@ export class ObracategoriasAddModalComponent extends DialogComponent<Obracategor
       });
   }
   obraShowToast(result) {
-    if (!result.info.idRespuesta) {
+    if (result.info.valorRespuesta) {
         this.toastrService.success(result.info.mensajerespuesta);
         this.getCategoria();
     } else {
@@ -75,7 +75,7 @@ export class ObracategoriasAddModalComponent extends DialogComponent<Obracategor
       });
   }
   categoriaShowToast(result) {
-    if (!result.info.idRespuesta) {
+    if (result.info.valorRespuesta) {
         this.toastrService.success(result.info.mensajerespuesta);
         this.getCategoria();
     } else {

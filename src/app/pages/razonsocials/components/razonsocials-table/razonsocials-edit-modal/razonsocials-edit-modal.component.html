@@ -81,7 +81,7 @@
               <label for="inputidtiporazonsocialAC" class="col-sm-3 form-control-label">Tipo Razon Social</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idtiporazonsocial" [formControl]="idtiporazonsocialAC" class="form-control" id="inputidtiporazonsocialAC" required>
-                 <option value="{{item.idtiporazonsocial}}" *ngFor="let item of _tiporazonsocial">{{item.idtiporazonsocial}}</option>
+                 <option value="{{item.idtiporazonsocial}}" *ngFor="let item of _tiporazonsocial">{{item.descripcion}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
@@ -92,7 +92,7 @@
               <label for="inputidstatusrazonsocialAC" class="col-sm-3 form-control-label">Status Razón Social</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idstatusrazonsocial" [formControl]="idstatusrazonsocialAC" class="form-control" id="inputidstatusrazonsocialAC" required>
-                 <option value="{{item.idstatusrazonsocial}}" *ngFor="let item of _statusrazonsocial">{{item.idstatusrazonsocial}}</option>
+                 <option value="{{item.idstatusrazonsocial}}" *ngFor="let item of _statusrazonsocial">{{item.descripcion}}</option>
                </select>
               </div>
               <div class='col-sm-2'>

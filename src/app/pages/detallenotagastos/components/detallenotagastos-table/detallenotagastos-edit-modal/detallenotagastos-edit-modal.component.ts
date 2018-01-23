@@ -89,11 +89,11 @@ export class DetallenotagastosEditModalComponent extends DialogComponent<Detalle
   }
 
   notagastoShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getNotagasto();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   materialAddModalShow() {
@@ -106,23 +106,23 @@ export class DetallenotagastosEditModalComponent extends DialogComponent<Detalle
   }
 
   materialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getMaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getNotagasto() {
       this.notagastosService.all()
       .subscribe(
-          (data: any) => this._notagasto = data.result,
+          (data: any) => this._notagasto = data.lista,
       );
   }
   getMaterial() {
       this.materialsService.all()
       .subscribe(
-          (data: any) => this._material = data.result,
+          (data: any) => this._material = data.lista,
       );
   }
   confirm() {

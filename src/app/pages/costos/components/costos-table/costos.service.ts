@@ -31,7 +31,59 @@ export class CostosService {
         return this._http.post(`${this.endPoint}obtenerCostos`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
-       }
+       }   
+
+       getAllPorFecha = ( fechainicial, fechafinal ) : Observable<CostosResponseInterface> => {
+        
+            const dataSend: any = {
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth,
+                fechainicial: fechainicial,  
+                fechafinal: fechafinal
+            } 
+
+            return this._http.post(`${this.endPoint}obtenerCostosPorRangoFechasAlta`, dataSend, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+       }   
+       
+       getAllPorObra = ( id ) : Observable<CostosResponseInterface> => {
+            const costo: any = {
+                idobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            } 
+        return this._http.post(`${this.endPoint}ObtenerCostosPorIdObra`, costo, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+       
+        getAllPorCategoria = ( id ) : Observable<CostosResponseInterface> => {
+            const costo: any = {
+                idcategoria: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            } 
+        return this._http.post(`${this.endPoint}ObtenerCostosPorIdCategoria`, costo, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+       
+        getAllPorSubCategoria = ( id ) : Observable<CostosResponseInterface> => {
+             const costo: any = {
+                 idsubcategoria: id,  
+                 claveauth: this.auth.claveauth,
+                 nicknameauth: this.auth.nicknameauth,
+                 usuarioauth: this.auth.usuarioauth
+             } 
+         return this._http.post(`${this.endPoint}ObtenerCotizacionesPorIdObraPorIdCategoriaPorIdSubCategoria`, costo, this.options)
+             .map((response: Response) => response.json())
+             .catch(this.handleError);
+         }
+
        findById = ( id ) : Observable<CostosResponseInterface> => {
             const costo: any = {
                 idcosto: id,  

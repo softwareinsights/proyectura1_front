@@ -75,11 +75,11 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
       });
   }
   obraShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getObra();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   categoriaAddModalShow() {
@@ -91,7 +91,7 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
       });
   }
   categoriaShowToast(result) {
-      if (!result.info.idRespuesta) {
+      if (result.info.valorRespuesta) {
           this.toastrService.success(result.info.mensajerespuesta);
           this.getCategoria();
       } else {

@@ -207,6 +207,18 @@ export const PAGES_MENU = [
         }
     },
     {
+        path: 'statusrazonsocials',
+        data: {
+        menu: {
+            title: 'general.menu.statusrazonsocials',
+            icon: 'ion-social-buffer',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
         path: 'subcategorias',
         data: {
         menu: {
@@ -235,6 +247,18 @@ export const PAGES_MENU = [
         data: {
         menu: {
             title: 'general.menu.tipoobras',
+            icon: 'ion-social-buffer',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
+        path: 'tiporazonsocials',
+        data: {
+        menu: {
+            title: 'general.menu.tiporazonsocials',
             icon: 'ion-social-buffer',
             selected: false,
             expanded: false,

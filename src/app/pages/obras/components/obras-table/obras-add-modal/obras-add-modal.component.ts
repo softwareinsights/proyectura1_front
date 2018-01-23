@@ -116,7 +116,7 @@ export class ObrasAddModalComponent extends DialogComponent<ObrasInterface, any>
       });
   }
   tipoobraShowToast(result) {
-      if (!result.info.idRespuesta) {
+      if (result.info.valorRespuesta) {
           this.toastrService.success(result.info.mensajeRespuesta);
           this.getTipoobra();
       } else {
@@ -132,7 +132,7 @@ export class ObrasAddModalComponent extends DialogComponent<ObrasInterface, any>
       });
   }
   estatusobraShowToast(result) {
-      if (!result.info.idRespuesta) {
+      if (result.info.valorRespuesta) {
           this.toastrService.success(result.info.mensajeRespuesta);
           this.getEstatusobra();
       } else {
@@ -148,7 +148,7 @@ export class ObrasAddModalComponent extends DialogComponent<ObrasInterface, any>
       });
   }
   razonsocialShowToast(result) {
-      if (!result.info.idRespuesta) {
+      if (result.info.valorRespuesta) {
           this.toastrService.success(result.info.mensajeRespuesta);
           this.getRazonsocial();
       } else {

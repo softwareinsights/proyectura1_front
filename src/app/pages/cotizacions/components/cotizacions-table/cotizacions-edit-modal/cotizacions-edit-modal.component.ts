@@ -102,11 +102,11 @@ export class CotizacionsEditModalComponent extends DialogComponent<CotizacionsIn
   }
 
   estatuscotizacionShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getEstatuscotizacion();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   razonsocialAddModalShow() {
@@ -119,11 +119,11 @@ export class CotizacionsEditModalComponent extends DialogComponent<CotizacionsIn
   }
 
   razonsocialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getRazonsocial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   obraAddModalShow() {
@@ -136,29 +136,29 @@ export class CotizacionsEditModalComponent extends DialogComponent<CotizacionsIn
   }
 
   obraShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getObra();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getEstatuscotizacion() {
       this.estatuscotizacionsService.all()
       .subscribe(
-          (data: any) => this._estatuscotizacion = data.result,
+          (data: any) => this._estatuscotizacion = data.lista,
       );
   }
   getRazonsocial() {
       this.razonsocialsService.all()
       .subscribe(
-          (data: any) => this._razonsocial = data.result,
+          (data: any) => this._razonsocial = data.lista,
       );
   }
   getObra() {
       this.obrasService.all()
       .subscribe(
-          (data: any) => this._obra = data.result,
+          (data: any) => this._obra = data.lista,
       );
   }
   confirm() {

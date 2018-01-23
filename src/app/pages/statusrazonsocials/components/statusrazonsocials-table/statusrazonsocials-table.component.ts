@@ -56,7 +56,7 @@ export class StatusrazonsocialsTableComponent implements OnInit {
       }
     }
     showToast(result) {
-      if (result.success) {
+      if (result.info.valorRespuesta) {
         this.toastrService.success(result.message);
         this.getAll();
       } else {
@@ -68,10 +68,10 @@ export class StatusrazonsocialsTableComponent implements OnInit {
         .all()
         .subscribe(
             (data: StatusrazonsocialsResponseInterface) =>  {
-                if (data.success) {
-                  this.data = data.result;
+                if (data.info.valorRespuesta) {
+                  this.data = data.lista;
                 } else {
-                  this.toastrService.error(data.message);
+                  this.toastrService.error(data.info.valorRespuesta);
                 }
             },
             error => console.log(error),

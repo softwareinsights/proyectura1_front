@@ -78,17 +78,17 @@ export class NotagastosAddModalComponent extends DialogComponent<NotagastosInter
       });
   }
   razonsocialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getRazonsocial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getRazonsocial() {
       this.razonsocialsService.all()
       .subscribe(
-          (data: any) => this._razonsocial = data.result,
+          (data: any) => this._razonsocial = data.lista,
       );
   }
   confirm() {

@@ -15,7 +15,7 @@
               <label for="inputidnotagastoAC" class="col-sm-3 form-control-label">Nota gasto</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idnotagasto" [formControl]="idnotagastoAC" class="form-control" id="inputidnotagastoAC" required>
-                 <option value="{{item.idnotagasto}}" *ngFor="let item of _notagasto">{{item.idnotagasto}}</option>
+                 <option value="{{item.idnotagasto}}" *ngFor="let item of _notagasto">{{item.Folio}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
@@ -26,7 +26,7 @@
               <label for="inputidmaterialAC" class="col-sm-3 form-control-label">Material</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idmaterial" [formControl]="idmaterialAC" class="form-control" id="inputidmaterialAC" required>
-                 <option value="{{item.idmaterial}}" *ngFor="let item of _material">{{item.idmaterial}}</option>
+                 <option value="{{item.idmaterial}}" *ngFor="let item of _material">{{item.descripcioncorta}}</option>
                </select>
               </div>
               <div class='col-sm-2'>

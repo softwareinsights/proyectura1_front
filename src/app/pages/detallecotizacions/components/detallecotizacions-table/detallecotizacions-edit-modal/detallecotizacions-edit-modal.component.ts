@@ -107,11 +107,11 @@ export class DetallecotizacionsEditModalComponent extends DialogComponent<Detall
   }
 
   cotizacionShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getCotizacion();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   categoriaAddModalShow() {
@@ -124,11 +124,11 @@ export class DetallecotizacionsEditModalComponent extends DialogComponent<Detall
   }
 
   categoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getCategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   subcategoriaAddModalShow() {
@@ -141,11 +141,11 @@ export class DetallecotizacionsEditModalComponent extends DialogComponent<Detall
   }
 
   subcategoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getSubcategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   materialAddModalShow() {
@@ -158,11 +158,11 @@ export class DetallecotizacionsEditModalComponent extends DialogComponent<Detall
   }
 
   materialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getMaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getCotizacion() {

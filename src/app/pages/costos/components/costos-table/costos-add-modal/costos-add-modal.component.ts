@@ -114,11 +114,11 @@ export class CostosAddModalComponent extends DialogComponent<CostosInterface, an
       });
   }
   materialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getMaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   unidadmedidaAddModalShow() {
@@ -130,11 +130,11 @@ export class CostosAddModalComponent extends DialogComponent<CostosInterface, an
       });
   }
   unidadmedidaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getUnidadmedida();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   categoriaAddModalShow() {
@@ -146,11 +146,11 @@ export class CostosAddModalComponent extends DialogComponent<CostosInterface, an
       });
   }
   categoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getCategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   subcategoriaAddModalShow() {
@@ -162,11 +162,11 @@ export class CostosAddModalComponent extends DialogComponent<CostosInterface, an
       });
   }
   subcategoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getSubcategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   obraAddModalShow() {
@@ -178,41 +178,41 @@ export class CostosAddModalComponent extends DialogComponent<CostosInterface, an
       });
   }
   obraShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getObra();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getMaterial() {
       this.materialsService.all()
       .subscribe(
-          (data: any) => this._material = data.result,
+          (data: any) => this._material = data.lista,
       );
   }
   getUnidadmedida() {
       this.unidadmedidasService.all()
       .subscribe(
-          (data: any) => this._unidadmedida = data.result,
+          (data: any) => this._unidadmedida = data.lista,
       );
   }
   getCategoria() {
       this.categoriasService.all()
       .subscribe(
-          (data: any) => this._categoria = data.result,
+          (data: any) => this._categoria = data.lista,
       );
   }
   getSubcategoria() {
       this.subcategoriasService.all()
       .subscribe(
-          (data: any) => this._subcategoria = data.result,
+          (data: any) => this._subcategoria = data.lista,
       );
   }
   getObra() {
       this.obrasService.all()
       .subscribe(
-          (data: any) => this._obra = data.result,
+          (data: any) => this._obra = data.lista,
       );
   }
   confirm() {

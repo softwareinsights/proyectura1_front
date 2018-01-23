@@ -56,11 +56,11 @@ export class FacturasTableComponent implements OnInit {
       }
     }
     showToast(result: any) {
-      if (!result.idRespuesta) {
-        this.toastrService.success(result.mensajeRespuesta);
+      if (result.info.valorRespuesta) {
+        this.toastrService.success(result.info.mensajeRespuesta);
         this.getAll();
       } else {
-        this.toastrService.error(result.mensajeRespuesta);
+        this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
     private getAll(): void {
@@ -69,7 +69,7 @@ export class FacturasTableComponent implements OnInit {
         .subscribe(
             (data: FacturasResponseInterface) =>  {
               console.log(data);
-                if (!data.info.idRespuesta) {
+                if (data.info.valorRespuesta) {
                   this.data = data.lista;
                 } else {
                   this.toastrService.error(data.info.mensajeRespuesta);

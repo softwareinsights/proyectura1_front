@@ -54,7 +54,7 @@ export class DetallenotagastosAddModalComponent extends DialogComponent<Detallen
   ) {
     super(dialogService);
     this.form = fb.group({
-    'idnotagastoAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
+    'idnotagastoAC' : [''],
     'idmaterialAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'noidentificacionAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'descripcionAC' : ['',Validators.compose([Validators.maxLength(45)])],
@@ -87,11 +87,11 @@ export class DetallenotagastosAddModalComponent extends DialogComponent<Detallen
       });
   }
   notagastoShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getNotagasto();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   materialAddModalShow() {
@@ -103,23 +103,23 @@ export class DetallenotagastosAddModalComponent extends DialogComponent<Detallen
       });
   }
   materialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getMaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getNotagasto() {
       this.notagastosService.all()
       .subscribe(
-          (data: any) => this._notagasto = data.result,
+          (data: any) => this._notagasto = data.lista,
       );
   }
   getMaterial() {
       this.materialsService.all()
       .subscribe(
-          (data: any) => this._material = data.result,
+          (data: any) => this._material = data.lista,
       );
   }
   confirm() {

@@ -56,11 +56,11 @@ export class TiporazonsocialsTableComponent implements OnInit {
       }
     }
     showToast(result) {
-      if (result.success) {
-        this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+        this.toastrService.success(result.info.mensajeRespuesta);
         this.getAll();
       } else {
-        this.toastrService.error(result.message);
+        this.toastrService.error(result.info.mensajeRespuesta);
       }
     }
     private getAll(): void {
@@ -68,10 +68,10 @@ export class TiporazonsocialsTableComponent implements OnInit {
         .all()
         .subscribe(
             (data: TiporazonsocialsResponseInterface) =>  {
-                if (data.success) {
-                  this.data = data.result;
+                if (data.info.valorRespuesta) {
+                  this.data = data.lista;
                 } else {
-                  this.toastrService.error(data.message);
+                  this.toastrService.error(data.info.mensajeRespuesta);
                 }
             },
             error => console.log(error),

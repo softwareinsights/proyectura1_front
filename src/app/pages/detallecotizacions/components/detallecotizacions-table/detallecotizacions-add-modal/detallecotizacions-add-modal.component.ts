@@ -105,11 +105,11 @@ export class DetallecotizacionsAddModalComponent extends DialogComponent<Detalle
       });
   }
   cotizacionShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getCotizacion();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   categoriaAddModalShow() {
@@ -121,11 +121,11 @@ export class DetallecotizacionsAddModalComponent extends DialogComponent<Detalle
       });
   }
   categoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getCategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   subcategoriaAddModalShow() {
@@ -137,11 +137,11 @@ export class DetallecotizacionsAddModalComponent extends DialogComponent<Detalle
       });
   }
   subcategoriaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getSubcategoria();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   materialAddModalShow() {
@@ -153,35 +153,35 @@ export class DetallecotizacionsAddModalComponent extends DialogComponent<Detalle
       });
   }
   materialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getMaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getCotizacion() {
       this.cotizacionsService.all()
       .subscribe(
-          (data: any) => this._cotizacion = data.result,
+          (data: any) => this._cotizacion = data.lista,
       );
   }
   getCategoria() {
       this.categoriasService.all()
       .subscribe(
-          (data: any) => this._categoria = data.result,
+          (data: any) => this._categoria = data.lista,
       );
   }
   getSubcategoria() {
       this.subcategoriasService.all()
       .subscribe(
-          (data: any) => this._subcategoria = data.result,
+          (data: any) => this._subcategoria = data.lista,
       );
   }
   getMaterial() {
       this.materialsService.all()
       .subscribe(
-          (data: any) => this._material = data.result,
+          (data: any) => this._material = data.lista,
       );
   }
   confirm() {

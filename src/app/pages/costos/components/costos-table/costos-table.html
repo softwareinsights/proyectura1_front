@@ -2,10 +2,72 @@
     <div class='row'>
         <ba-card title='Listado' baCardClass='with-scroll' class='data-table-container'>
             <div class='panel panel-default'>
+
+                <form>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="porFecha">Por Fecha</label>
+                            <input (change)="filtrarPor('porFecha')" name="costo" type="radio" class="form-radio-input" id="porFecha">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="porObra">Por Obra</label>
+                            <input (change)="filtrarPor('porObra')" name="costo" type="radio" class="form-radio-input" id="porObra">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="porCategoria">Por Categoria</label>
+                            <input (change)="filtrarPor('porCategoria')" name="costo" type="radio" class="form-radio-input" id="porCategoria">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="porSubCategoria">Por SubCategoria</label>
+                            <input (change)="filtrarPor('porSubCategoria')" name="costo" type="radio" class="form-radio-input" id="porSubCategoria">
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="row">
+                    <div class="col-md-3" *ngIf="porFecha">
+                        <input [(ngModel)]="fechainicial"  name="costo" type="date" class="form-control"> 
+                        <input [(ngModel)]="fechafinal" name="costo" type="date" class="form-control">
+                    </div>
+                    <div class="col-md-3" *ngIf="porObra">
+                        <div class="form-group row">
+                            <label for="inputidobraAC" class=" form-control-label">Obra</label>
+                            <div class="">
+                                <select [(ngModel)]="idobra" class="form-control" id="inputidobraAC" required>
+                                    <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="porCategoria">
+                        <div class="form-group row">
+                            <label for="inputidcategoriaAC" class="form-control-label">Categoria</label>
+                            <div class="">
+                                <select [(ngModel)]="idcategoria" class="form-control" id="inputidcategoriaAC" required>
+                                    <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
+                                </select>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="porSubCategoria">
+                        <div class="form-group row">
+                            <label for="inputidsubcategoriaAC" class="form-control-label">SubCategoria</label>
+                            <div class="">
+                                <select [(ngModel)]="idsubcategoria" class="form-control" id="inputidsubcategoriaAC" required>
+                                    <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.descripcion}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
+                    </div>
+                </div>
                 <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
                     <thead>
-                        <tr>
-                        </tr>
                         <tr>
                             <th style='width: 8%'></th>
                             <th style='width: 4%'>
@@ -60,9 +122,8 @@
                                 <mfDefaultSorter by='descripcionobra'>Descripción Obra</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                    <mfDefaultSorter by='direccionobra'>Dirección Obra</mfDefaultSorter>
+                                <mfDefaultSorter by='direccionobra'>Dirección Obra</mfDefaultSorter>
                             </th>
-                     
                             <th style='width: 4%'>
                                 <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
                             </th>
@@ -86,9 +147,7 @@
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
-               
-
-
+       
                             <td>{{ item.codigomaterial  }}</td>
                             <td>{{ item.descripcioncortamaterial  }}</td>
                             <td>{{ item.descripcionlargamaterial  }}</td>
@@ -112,8 +171,7 @@
                             <td>{{ item.usuariocambio  }}</td>
                             <td>{{ item.fechahoracambio  }}</td>
                             <td>{{ item.baja  }}</td>
-                            
-                
+
                         </tr>
                     </tbody>
                     <tfoot>

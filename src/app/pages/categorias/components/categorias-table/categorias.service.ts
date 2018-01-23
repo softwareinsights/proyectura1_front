@@ -55,7 +55,7 @@ export class CategoriasService {
 
        remove= ( id ) : Observable<CategoriasResponseInterface> => {
         const categoria: any = {
-            idarchivo: id,  
+            idcategoria: id,  
             claveauth: this.auth.claveauth,
             nicknameauth: this.auth.nicknameauth,
             usuarioauth: this.auth.usuarioauth

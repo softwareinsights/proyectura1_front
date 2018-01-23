@@ -56,7 +56,7 @@ export class ObracategoriasService {
        }
        remove= ( id ) : Observable<ObracategoriasResponseInterface> => {
             const obracategoria: any = {
-                idobracategoria: id,  
+                idobra: id,  
                 claveauth: this.auth.claveauth,
                 nicknameauth: this.auth.nicknameauth,
                 usuarioauth: this.auth.usuarioauth

@@ -115,11 +115,11 @@ export class DetallefacturasAddModalComponent extends DialogComponent<Detallefac
       });
   }
   facturaShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getFactura();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   materialAddModalShow() {
@@ -131,23 +131,23 @@ export class DetallefacturasAddModalComponent extends DialogComponent<Detallefac
       });
   }
   materialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getMaterial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getFactura() {
       this.facturasService.all()
       .subscribe(
-          (data: any) => this._factura = data.result,
+          (data: any) => this._factura = data.lista,
       );
   }
   getMaterial() {
       this.materialsService.all()
       .subscribe(
-          (data: any) => this._material = data.result,
+          (data: any) => this._material = data.lista,
       );
   }
   confirm() {

@@ -56,7 +56,7 @@ export class CotizacionsTableComponent implements OnInit {
       }
     }
     showToast(result: any) {
-      if (!result.idRespuesta) {
+      if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);
         this.getAll();
       } else {
@@ -68,7 +68,7 @@ export class CotizacionsTableComponent implements OnInit {
         .all()
         .subscribe(
             (data: CotizacionsResponseInterface) =>  {
-                if (!data.info.idRespuesta) {
+                if (data.info.valorRespuesta) {
                   this.data = data.lista;
                 } else {
                   this.toastrService.error(data.info.mensajeRespuesta);

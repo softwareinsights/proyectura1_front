@@ -56,7 +56,7 @@ export class MaterialsTableComponent implements OnInit {
       }
     }
     showToast(result: any) {
-      if (!result.idRespuesta) {
+      if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);
         this.getAll();
       } else {
@@ -69,7 +69,7 @@ export class MaterialsTableComponent implements OnInit {
         .subscribe(
             (data: MaterialsResponseInterface) =>  {
               console.log("getall data", data);
-                if (!data.info.idRespuesta) {
+                if (data.info.valorRespuesta) {
                   this.data = data.lista;
                 } else {
                   this.toastrService.error(data.info.mensajeRespuesta);

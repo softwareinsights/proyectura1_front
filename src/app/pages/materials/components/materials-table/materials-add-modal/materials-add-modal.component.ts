@@ -75,7 +75,7 @@ export class MaterialsAddModalComponent extends DialogComponent<MaterialsInterfa
       });
   }
   tipomaterialShowToast(result) {
-    if (!result.idRespuesta) {
+    if (result.valorRespuesta) {
         this.toastrService.success(result.info.mensajeRespuesta);
         this.getTipomaterial();
     } else {
@@ -92,7 +92,7 @@ export class MaterialsAddModalComponent extends DialogComponent<MaterialsInterfa
       });
   }
   unidadmedidaShowToast(result) {
-    if (!result.idRespuesta) {
+    if (result.valorRespuesta) {
         this.toastrService.success(result.info.mensajeRespuesta);
         this.getUnidadmedida();
     } else {

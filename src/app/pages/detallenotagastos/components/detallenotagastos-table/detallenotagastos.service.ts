@@ -28,7 +28,7 @@ export class DetallenotagastosService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<DetallenotagastosResponseInterface> => {
-           return this._http.post(`${this.endPoint}obtenerDetallesNotasGasto`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerDetalleNotaGasto`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
@@ -40,7 +40,7 @@ export class DetallenotagastosService {
                 usuarioauth: this.auth.usuarioauth
            } 
 
-           return this._http.post(`${this.endPoint}obtenerDetalleNotaGasto`, detallenotagasto, this.options)
+           return this._http.post(`${this.endPoint}obtenerDetalleNotasGasto`, detallenotagasto, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }

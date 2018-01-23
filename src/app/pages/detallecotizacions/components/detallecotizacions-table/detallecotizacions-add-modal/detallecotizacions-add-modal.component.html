@@ -26,7 +26,7 @@
               <label for="inputidcategoriaAC" class="col-sm-3 form-control-label">Categoria</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idcategoria" [formControl]="idcategoriaAC" class="form-control" id="inputidcategoriaAC" required>
-                 <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.idcategoria}}</option>
+                 <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
@@ -37,7 +37,7 @@
               <label for="inputidsubcategoriaAC" class="col-sm-3 form-control-label">Sub Categoria</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idsubcategoria" [formControl]="idsubcategoriaAC" class="form-control" id="inputidsubcategoriaAC" required>
-                 <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.idsubcategoria}}</option>
+                 <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.descripcion}}</option>
                </select>
               </div>
               <div class='col-sm-2'>
@@ -48,7 +48,7 @@
               <label for="inputidmaterialAC" class="col-sm-3 form-control-label">Material</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idmaterial" [formControl]="idmaterialAC" class="form-control" id="inputidmaterialAC" required>
-                 <option value="{{item.idmaterial}}" *ngFor="let item of _material">{{item.idmaterial}}</option>
+                 <option value="{{item.idmaterial}}" *ngFor="let item of _material">{{item.descripcioncorta}}</option>
                </select>
               </div>
               <div class='col-sm-2'>

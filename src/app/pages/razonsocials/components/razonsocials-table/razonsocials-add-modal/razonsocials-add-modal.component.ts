@@ -103,11 +103,11 @@ export class RazonsocialsAddModalComponent extends DialogComponent<RazonsocialsI
       });
   }
   tiporazonsocialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getTiporazonsocial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   statusrazonsocialAddModalShow() {
@@ -119,23 +119,23 @@ export class RazonsocialsAddModalComponent extends DialogComponent<RazonsocialsI
       });
   }
   statusrazonsocialShowToast(result) {
-      if (result.success) {
-          this.toastrService.success(result.message);
+      if (result.info.valorRespuesta) {
+          this.toastrService.success(result.info.mensajeRespuesta);
           this.getStatusrazonsocial();
       } else {
-          this.toastrService.error(result.message);
+          this.toastrService.error(result.info.mensajeRespuesta);
       }
   }
   getTiporazonsocial() {
       this.tiporazonsocialsService.all()
       .subscribe(
-          (data: any) => this._tiporazonsocial = data.result,
+          (data: any) => this._tiporazonsocial = data.lista,
       );
   }
   getStatusrazonsocial() {
       this.statusrazonsocialsService.all()
       .subscribe(
-          (data: any) => this._statusrazonsocial = data.result,
+          (data: any) => this._statusrazonsocial = data.lista,
       );
   }
   confirm() {
