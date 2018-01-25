@@ -55,12 +55,68 @@ export class ObrasTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
+    autorizar(event, item): void {
+      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+          this.service.autorizarObra(item.idobra)
+          .subscribe(
+              (data) => this.showToast(data),
+              error => console.log(error),
+              () => console.log('Obra Autorizada')
+          );
+      } else {
+          console.log('item cancelado');
+      }
+    }
+
+    bloquear(event, item): void {
+      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+          this.service.bloquearObra(item.idobra)
+          .subscribe(
+              (data) => this.showToast(data),
+              error => console.log(error),
+              () => console.log('Obra Autorizada')
+          );
+      } else {
+          console.log('item cancelado');
+      }
+    }
+
+    cancelar(event, item): void {
+      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+          this.service.cancelarObra(item.idobra)
+          .subscribe(
+              (data) => this.showToast(data),
+              error => console.log(error),
+              () => console.log('Obra Autorizada')
+          );
+      } else {
+          console.log('item cancelado');
+      }
+    }
+
+    finalizar(event, item): void {
+      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+          this.service.finalizarObra(item.idobra)
+          .subscribe(
+              (data) => this.showToast(data),
+              error => console.log(error),
+              () => console.log('Obra Autorizada')
+          );
+      } else {
+          console.log('item cancelado');
+      }
+    }
+
+
+
+
+
     showToast(result: any) {
-      if (result.info.valorRespuesta) {
-        this.toastrService.success(result.info.mensajeRespuesta);
+      if (result.valorRespuesta) {
+        this.toastrService.success(result.mensajeRespuesta);
         this.getAll();
       } else {
-        this.toastrService.error(result.info.mensajeRespuesta);
+        this.toastrService.error(result.mensajeRespuesta);
       }
   }
     private getAll(): void {

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriasService } from './categorias.service';
 import { CategoriasAddModalComponent } from './categorias-add-modal/categorias-add-modal.component';
 import { CategoriasEditModalComponent } from './categorias-edit-modal/categorias-edit-modal.component';
+import { getAllDebugNodes } from '@angular/core/src/debug/debug_node';
 @Component({
 selector: 'categorias-table',
 templateUrl: './categorias-table.html',
@@ -23,7 +24,7 @@ export class CategoriasTableComponent implements OnInit {
       private dialogService: DialogService) {
     }
     ngOnInit() {
-        this.getAll();
+      this.getAll();
     }
     addModalShow() {
       const disposable = this.dialogService.addDialog(CategoriasAddModalComponent)
@@ -55,6 +56,8 @@ export class CategoriasTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
+
+
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);

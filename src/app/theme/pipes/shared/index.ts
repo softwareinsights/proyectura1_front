@@ -3,3 +3,7 @@ export * from './modulo_Modulo_idsi_modulo-filter.pipe';
 export * from './usuario-filter.pipe';
 export * from './email-filter.pipe';
 export * from './rol_Rol_idsi_rol-filter.pipe';
+export * from './razonsocialasociado-filter.pipe';
+export * from './razonsocialcliente-filter.pipe';
+export * from './razonsocialconstructor-filter.pipe';
+export * from './razonsocialcontratista-filter.pipe';

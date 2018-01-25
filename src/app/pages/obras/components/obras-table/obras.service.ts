@@ -40,10 +40,62 @@ export class ObrasService {
                 usuarioauth: this.auth.usuarioauth
            } 
 
-           return this._http.post(`${this.endPoint}ObtenerObrasporIDObra`, obra, this.options)
+           return this._http.post(`${this.endPoint}autorizarObra`, obra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+        
+        autorizarObra= ( id ) : Observable<ObrasResponseInterface> => {
+            const obra: any = {
+                idobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/autorizarObra`, obra, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+
+        bloquearObra= ( id ) : Observable<ObrasResponseInterface> => {
+            const obra: any = {
+                idobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/bloquearObra`, obra, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+
+
+        cancelarObra= ( id ) : Observable<ObrasResponseInterface> => {
+            const obra: any = {
+                idobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/cancelarObra`, obra, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+
+
+        finalizarObra= ( id ) : Observable<ObrasResponseInterface> => {
+            const obra: any = {
+                idobra: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            }
+            return this._http.post(`${this.endPoint}/finalizarObra`, obra, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+
+
        update = ( obra: ObrasInterface ) : Observable<ObrasResponseInterface> => {
            
             obra.claveauth = this.auth.claveauth;
