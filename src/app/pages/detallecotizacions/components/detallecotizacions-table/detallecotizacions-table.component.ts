@@ -6,24 +6,37 @@ import { Component, OnInit } from '@angular/core';
 import { DetallecotizacionsService } from './detallecotizacions.service';
 import { DetallecotizacionsAddModalComponent } from './detallecotizacions-add-modal/detallecotizacions-add-modal.component';
 import { DetallecotizacionsEditModalComponent } from './detallecotizacions-edit-modal/detallecotizacions-edit-modal.component';
+import { CotizacionsService } from 'app/pages/cotizacions/components/cotizacions-table/cotizacions.service';
 @Component({
 selector: 'detallecotizacions-table',
 templateUrl: './detallecotizacions-table.html',
 styleUrls: ['./detallecotizacions-table.scss'],
 })
 export class DetallecotizacionsTableComponent implements OnInit {
+
+  
+  _cotizacion: string[] = [];
+  idcotizacion: number;
+
+  porCotizacion: boolean;
+
+ 
+
     data;
     filterQuery = '';
     rowsOnPage = 10;
     sortBy = 'iddetallecotizacion';
     sortOrder = 'asc';
+
+    
     constructor(
       private service: DetallecotizacionsService, 
+      private cotizacionservice: CotizacionsService, 
       private toastrService: ToastrService, 
       private dialogService: DialogService) {
     }
     ngOnInit() {
-        this.getAll();
+      this.getFactura();
     }
     addModalShow() {
       const disposable = this.dialogService.addDialog(DetallecotizacionsAddModalComponent)
@@ -55,26 +68,57 @@ export class DetallecotizacionsTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
+
+
+      
+      filtrarPor(filtro) {
+        if (filtro === 'porCotizacion') {
+          this.porCotizacion = true;
+        } else {
+          this.porCotizacion = false;
+        }
+
+    }
+
+    getFactura() {
+      this.cotizacionservice.all()
+      .subscribe(
+          (data: any) => this._cotizacion = data.lista,
+      );
+    }
+
+
+    private getAllPorFactura() {
+      this.service.getAllPorFactura(this.idcotizacion)
+      .subscribe(
+        (data: DetallecotizacionsResponseInterface) =>  {
+            if (data.info.valorRespuesta) {
+              this.data = data.lista;
+            } else {
+              this.toastrService.error(data.info.mensajeRespuesta);
+            }
+        },
+        error => console.log(error),
+        () => console.log('Get all Items complete'))
+    }
+
+
+    showResults() {
+
+      if(this.porCotizacion) {
+        this.getAllPorFactura();
+      }
+    
+    }
+
+
+
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);
-        this.getAll();
+        this.showResults();
       } else {
         this.toastrService.error(result.mensajeRespuesta);
       }
   }
-    private getAll(): void {
-      this.service
-        .all()
-        .subscribe(
-            (data: DetallecotizacionsResponseInterface) =>  {
-                if (data.info.valorRespuesta) {
-                  this.data = data.lista;
-                } else {
-                  this.toastrService.error(data.info.mensajeRespuesta);
-                }
-            },
-            error => console.log(error),
-            () => console.log('Get all Items complete'))
-    } 
-  }
+}

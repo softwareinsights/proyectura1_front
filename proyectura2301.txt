@@ -1,0 +1,60 @@
+PRESUPUESTO: marca los siguientes errores
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/agregarPresupuesto
+Request Method:POST
+Status Code:200 OK
+{"idRespuesta":0,"mensajeRespuesta":"Exito!","valorRespuesta":false}
+
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/obtenerPresupuestos
+Request Method:POST
+Status Code:200 OK
+{"info":{"idRespuesta":-12,"mensajeRespuesta":"No hay registros!","valorRespuesta":false},"lista":[]}
+======================================================================================================
+
+Obras: 
+no devuelve el parametro ESTATUSOBRA
+
+============================================================================
+
+Nota Gasto: Errores
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/agregarNotaGasto
+Request Method:POST
+Status Code:500 Internal Server Error
+{"Message":"Error."}
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/obtenerNotasGastoPorRangoFechas
+Request Method:POST
+Status Code:500 Internal Server Error
+{"Message":"Error."}
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/obtenerNotasGastoPorIdRazonSocialEmisor
+Request Method:POST
+Status Code:500 Internal Server Error
+{"Message":"Error."}
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/obtenerNotasGastoPorRangoFechasPorEmisor
+Request Method:POST
+Status Code:500 Internal Server Error
+{"Message":"Error."}
+
+===================================================================================================
+
+Factura: Errores
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/obtenerFactura
+Request Method:POST
+Status Code:200 OK
+{"info":{"idRespuesta":-13,"mensajeRespuesta":"No hay registros!","valorRespuesta":false},"lista":[]}
+
+
+Request URL:https://www.ideasys.com.mx/ProyecturaObraSW/api/agregarFactura
+Request Method:POST
+Status Code:200 OK
+{"idRespuesta":0,"mensajeRespuesta":"Exito!","valorRespuesta":true}
+Pero no la agrega!
+
+
+{"Message":"No se ha encontrado ningún recurso HTTP que coincida con la URI de la solicitud 'https://www.ideasys.com.mx/ProyecturaObraSW/api/obtenerFacturasPorRangoFechasExpedicion'."}
+================================================================================================
+

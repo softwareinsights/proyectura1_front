@@ -28,10 +28,25 @@ export class DetallefacturasService {
         this.auth = this.authService.getCredentials();
        }
        all = () : Observable<DetallefacturasResponseInterface> => {
-           return this._http.post(`${this.endPoint}obtenerDetallesFactura`, this.auth, this.options)
+           return this._http.post(`${this.endPoint}obtenerDetalleFactura`, this.auth, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
+
+       getAllPorFactura = ( id ) : Observable<DetallefacturasResponseInterface> => {
+        const factura: any = {
+            idfactura: id,  
+            claveauth: this.auth.claveauth,
+            nicknameauth: this.auth.nicknameauth,
+            usuarioauth: this.auth.usuarioauth
+        } 
+    return this._http.post(`${this.endPoint}obtenerDetallesFactura`, factura, this.options)
+        .map((response: Response) => response.json())
+        .catch(this.handleError);
+    }
+
+
        findById = ( id: DetallefacturasInterface ) : Observable<DetallefacturasResponseInterface> => {
            const detallefactura: any = {
                 iddetallefactura: id,  

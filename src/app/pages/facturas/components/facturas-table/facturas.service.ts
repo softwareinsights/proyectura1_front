@@ -32,6 +32,57 @@ export class FacturasService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
+
+
+
+       getAllPorFecha = ( fechainicial, fechafinal ) : Observable<FacturasResponseInterface> => {
+        
+        const dataSend: any = {
+            claveauth: this.auth.claveauth,
+            nicknameauth: this.auth.nicknameauth,
+            usuarioauth: this.auth.usuarioauth,
+            fechainicial: fechainicial,  
+            fechafinal: fechafinal
+        } 
+
+        return this._http.post(`${this.endPoint}obtenerFacturasPorRangoFechasExpedicion`, dataSend, this.options)
+           .map((response: Response) => response.json())
+           .catch(this.handleError);
+        }   
+
+        getAllPorFecharazonsocial = (id, fechainicial, fechafinal ) : Observable<FacturasResponseInterface> => {
+        
+            const dataSend: any = {
+                idrazonsocial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth,
+                fechainicial: fechainicial,  
+                fechafinal: fechafinal
+            } 
+    
+            return this._http.post(`${this.endPoint}obtenerFacturasPorRangoFechasExpedicionPorEmisor`, dataSend, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+            }   
+        
+        getAllPorRazonsocial = ( id ) : Observable<FacturasResponseInterface> => {
+            const razonsocial: any = {
+                idrazonsocial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            } 
+        return this._http.post(`${this.endPoint}obtenerFacturasPorIDRazonSocialEmisor`, razonsocial, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
+
+
+
+
+
        findById = ( id: FacturasInterface ) : Observable<FacturasResponseInterface> => {
            const factura: any = {
                 idfactura: id,  

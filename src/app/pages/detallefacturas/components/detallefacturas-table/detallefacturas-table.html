@@ -2,6 +2,50 @@
     <div class='row'>
         <ba-card title='Listado' baCardClass='with-scroll' class='data-table-container'>
             <div class='panel panel-default'>
+
+
+
+                
+
+
+                    <form>
+                            <div class="row">                            
+                                <div class="col-md-3">
+                                    <label for="porFactura">Por Factura</label>
+                                    <input (change)="filtrarPor('porFactura')" name="factura" type="radio" class="form-radio-input" id="porFactura">
+                                </div>
+                             
+                                
+                            </div>
+                        </form>
+                        
+                        <div class="row">
+ 
+                            <div class="col-md-3" *ngIf="porFactura">
+                                <div class="form-group row">
+                                    <label for="inputidfacturaAC" class=" form-control-label">Factura</label>
+                                    <div class="">
+                                        <select [(ngModel)]="idfactura" class="form-control" id="inputidfacturaAC" required>
+                                            <option value="{{item.idfactura}}" *ngFor="let item of _factura">{{item.folio}}</option>
+                                        </select>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                     
+                           
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-md-6 text-right">
+                                <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
+                            </div>
+                        </div>
+
+
+
+
+
                 <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
                     <thead>
                         <tr>

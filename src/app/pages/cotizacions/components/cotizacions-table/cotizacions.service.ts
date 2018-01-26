@@ -32,6 +32,64 @@ export class CotizacionsService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
+       
+       getAllPorFecha = ( fechainicial, fechafinal ) : Observable<CotizacionsResponseInterface> => {
+        
+        const dataSend: any = {
+            claveauth: this.auth.claveauth,
+            nicknameauth: this.auth.nicknameauth,
+            usuarioauth: this.auth.usuarioauth,
+            fechainicial: fechainicial,  
+            fechafinal: fechafinal
+        } 
+
+        return this._http.post(`${this.endPoint}obtenerCotizaciones`, dataSend, this.options)
+           .map((response: Response) => response.json())
+           .catch(this.handleError);
+   }   
+   
+        getAllPorObra = ( id ) : Observable<CotizacionsResponseInterface> => {
+                const cotizacion: any = {
+                    idobra: id,  
+                    claveauth: this.auth.claveauth,
+                    nicknameauth: this.auth.nicknameauth,
+                    usuarioauth: this.auth.usuarioauth
+                } 
+            return this._http.post(`${this.endPoint}ObtenerCotizacionesPorIdObra`, cotizacion, this.options)
+                .map((response: Response) => response.json())
+                .catch(this.handleError);
+            }
+        
+            getAllPorCategoria = ( id , obra) : Observable<CotizacionsResponseInterface> => {
+                const cotizacion: any = {
+                    idcategoria: id, 
+                    idobra: obra,  
+                    claveauth: this.auth.claveauth,
+                    nicknameauth: this.auth.nicknameauth,
+                    usuarioauth: this.auth.usuarioauth
+                } 
+            return this._http.post(`${this.endPoint}ObtenerCotizacionesPorIdObraPorIdCategoria`, cotizacion, this.options)
+                .map((response: Response) => response.json())
+                .catch(this.handleError);
+            }
+        
+            getAllPorSubCategoria = ( id, obra, categoria ) : Observable<CotizacionsResponseInterface> => {
+                const cotizacion: any = {
+                    idsubcategoria: id,  
+                    idobra: obra, 
+                    idcategoria: categoria,
+                    claveauth: this.auth.claveauth,
+                    nicknameauth: this.auth.nicknameauth,
+                    usuarioauth: this.auth.usuarioauth
+                } 
+            return this._http.post(`${this.endPoint}ObtenerCotizacionesPorIdObraPorIdCategoriaPorIdSubCategoria`, cotizacion, this.options)
+                .map((response: Response) => response.json())
+                .catch(this.handleError);
+            }
+
+
+
        findById = ( id: CotizacionsInterface ) : Observable<CotizacionsResponseInterface> => {
            const cotizacion: any = {
                 idcotizacion: id,  

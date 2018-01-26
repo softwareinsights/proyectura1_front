@@ -2,6 +2,67 @@
     <div class='row'>
         <ba-card title='Listado' baCardClass='with-scroll' class='data-table-container'>
             <div class='panel panel-default'>
+
+                
+
+                    <form>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="porFecha">Por Fecha</label>
+                                    <input (change)="filtrarPor('porFecha')" name="factura" type="radio" class="form-radio-input" id="porFecha">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="porRazonsocial">Por Razón Social</label>
+                                    <input (change)="filtrarPor('porRazonsocial')" name="factura" type="radio" class="form-radio-input" id="porRazonsocial">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="porFecharazonsocial">Por Fecha Razón Social</label>
+                                    <input (change)="filtrarPor('porFecharazonsocial')" name="factura" type="radio" class="form-radio-input" id="porFecharazonsocial">
+                                </div>
+                                
+                            </div>
+                        </form>
+                        
+                        <div class="row">
+                            <div class="col-md-3" *ngIf="porFecha">
+                                <input [(ngModel)]="fechainicial"  name="factura" type="date" class="form-control"> 
+                                <input [(ngModel)]="fechafinal" name="factura" type="date" class="form-control">
+                            </div>
+                            <div class="col-md-3" *ngIf="porRazonsocial">
+                                <div class="form-group row">
+                                    <label for="inputidrazonsocialAC" class=" form-control-label">Razón Social</label>
+                                    <div class="">
+                                        <select [(ngModel)]="idrazonsocial" class="form-control" id="inputidrazonsocialAC" required>
+                                            <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.nombre}}</option>
+                                        </select>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" *ngIf="porFecharazonsocial">
+                                <div class="form-group row">
+                                    <label for="inputidrazonsocialAC" class="form-control-label">Fecha y Razón Social</label>
+                                    <div class="">
+                                        <select [(ngModel)]="idrazonsocial" class="form-control" id="inputidrazonsocialAC" required>
+                                            <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.nombre}}</option>
+                                        </select>
+                                        <input [(ngModel)]="fechainicial"  name="factura" type="date" class="form-control"> 
+                                        <input [(ngModel)]="fechafinal" name="factura" type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-md-6 text-right">
+                                <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
+                            </div>
+                        </div>
+
+
+
+                        
                 <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
                     <thead>
                         <tr>
