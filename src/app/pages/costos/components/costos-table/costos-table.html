@@ -167,9 +167,9 @@
                             <td>{{ item.descripcionobra  }}</td>
                             <td>{{ item.direccionobra  }}</td>  
                             <td>{{ item.usuarioalta  }}</td>
-                            <td>{{ item.fechahoraalta  }}</td>                       
+                            <td>{{ item.fechahoraalta | date:'dd/MM/y' }}</td>                       
                             <td>{{ item.usuariocambio  }}</td>
-                            <td>{{ item.fechahoracambio  }}</td>
+                            <td>{{ item.fechahoracambio | date:'dd/MM/y'  }}</td>
                             <td>{{ item.baja  }}</td>
 
                         </tr>

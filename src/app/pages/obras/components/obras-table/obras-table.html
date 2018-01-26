@@ -95,8 +95,8 @@
                             <td>{{ item.direccion  }}</td>
                             <td>{{ item.medidasterreno  }}</td>
                             <td>{{ item.medidasconstruccion  }}</td>
-                            <td>{{ item.fechainicio  }}</td>
-                            <td>{{ item.fechafin  }}</td>
+                            <td>{{ item.fechainicio | date:'dd/MM/y' }}</td>
+                            <td>{{ item.fechafin | date:'dd/MM/y' }}</td>
                             <td>{{ item.presupuesto  }}</td>
                             <td>{{ item.posiciongps  }}</td>
                             <td>{{ item.observaciones  }}</td>

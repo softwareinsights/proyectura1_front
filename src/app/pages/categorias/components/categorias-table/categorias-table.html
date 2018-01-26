@@ -13,7 +13,7 @@
                                 <mfDefaultSorter by='clavecategoria'>Clave Categoria</mfDefaultSorter>
                             </th>
                             <th style='width: 25%'>
-                                <mfDefaultSorter by='descripcioncategoria'>Descripción Categoria</mfDefaultSorter>
+                                <mfDefaultSorter by='descripcion'>Descripción Categoria</mfDefaultSorter>
                             </th>
                             <th style='width: 25%'>
                                     <mfDefaultSorter by='baja'>Baja</mfDefaultSorter>
@@ -27,7 +27,7 @@
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
                             <td>{{ item.clavecategoria  }}</td>
-                            <td>{{ item.descripcioncategoria  }}</td>
+                            <td>{{ item.descripcion  }}</td>
                             <td>{{ item.baja  }}</td>
                         </tr>
                     </tbody>

@@ -11,7 +11,7 @@ import { LoginInterface } from './../pages/login/login.interface';
 import { LoginResponseInterface } from './../pages/login/login-response.interface';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { CredentialInterface } from 'app/shared/credential.interface';
- 
+
 
 @Injectable()
 export class AuthService {
@@ -21,9 +21,12 @@ export class AuthService {
     user_modules: any[];
     isLoggedIn: boolean = false;
     recordarSesion: boolean = false;
+    auth: CredentialInterface;
+    userId: number;
 
     loggedIn() {
-        return tokenNotExpired();
+        // return tokenNotExpired();
+        return this.isAuthenticated();
     }
 
     toBoolean(object: any): boolean {
@@ -50,57 +53,115 @@ export class AuthService {
         console.log("this.recordarSesion from authservice constructor", this.recordarSesion);
         if (this.recordarSesion) {
             this.isLoggedIn = (localStorage.getItem('isLoggedIn') === 'true') ? true : false;
-            this.token = (localStorage.getItem('token')) ? localStorage.getItem('token') : '';
+            // this.token = (localStorage.getItem('token')) ? localStorage.getItem('token') : '';
             this.user_modules = (localStorage.getItem('user_modules')) ? JSON.parse(localStorage.getItem('user_modules').toString()) : [];
         }
     }
 
+    toInt(tochange: any): number {
+        return +tochange;
+    }
+
     login(values: LoginInterface): Observable<any> {
-        this.actionUrl = `${this._configuration.ServerWithApiUrl}si_user/login`;
-        const toAdd = JSON.stringify(values);
+        
+        const endPoint = `https://www.ideasys.com.mx/ProyecturaObraSW/api/`;
+        this.actionUrl = `${endPoint}ValidarLoginUsuario`;
+        //const toAdd = JSON.stringify(values);
+
+        const toAdd: CredentialInterface = {
+            nicknameauth: 'ideasys',
+            usuarioauth: values.email,
+            claveauth: values.password,
+        }
+
         return this._http.post(this.actionUrl, toAdd, { headers: this.headers })
             .map((response: Response) => <any>response.json())
             .catch(this.handleError)
             .do(response => {
                 this.isLoggedIn = true;
-                this.token = response.token;
+
+                
+                console.log("response login", response);
+
+                // this.token = response.token;
                 this.recordarSesion = values.recordarSesion;
                 localStorage.setItem('recordarSesion', values.recordarSesion.toString());
-                if (response.success) {
+                if (response.idRespuesta > -1) {
+
+
+
+                    // Guardar el id usuario en localstorage y en servicio
+                    const _userId = response.valorRespuesta.split('|')[1];
+                    this.userId = this.toInt(response.valorRespuesta.split('|')[1]);
+                    localStorage.setItem('userId', _userId);
+
+
+
                     //Módulos permitidos a usuario
                     let modules = [];
-                    response.modules.forEach(element => {
-                        let path = '/pages/' + element.nombre.toLowerCase() + 's';
+                    const _modules = new Array(
+                        'archivo',
+                        'categoria',
+                        'costo',
+                        'cotizacion',
+                        'detallecotizacion',
+                        'detallefactura',
+                        'detallenotagasto',
+                        'empresa',
+                        'estatuscotizacion',
+                        'estatusobra',
+                        'factura',
+                        'material',
+                        'notagasto',
+                        'obra',
+                        'obracategoria',
+                        'permiso',
+                        'permisobase',
+                        'presupuesto', 
+                        'razonsocial',
+                        'referencia',
+                        'rol',
+                        'statusrazonsocial',
+                        'statususuario',
+                        'subcategoria',
+                        'tipomaterial'
+                     );
+
+
+                    // response.modules.forEach(element => {
+                    _modules.forEach(element => {
+                        let path = '/pages/' + element.toLowerCase() + 's';
                         modules.push({
-                            "nombre": element.nombre, 
-                            "path": path, 
-                            "readable": element.readable, 
-                            "writeable": element.writeable, 
-                            "deleteable": element.deleteable, 
-                            "updateable": element.updateable, 
-                            "read_own": element.read_own, 
-                            "write_own": element.write_own, 
-                            "delete_own": element.delete_own, 
-                            "update_own": element.update_own
+                            'nombre': element, 
+                            'path': path, 
+                            'readable': true, 
+                            'writeable': true, 
+                            'deleteable': true, 
+                            'updateable': true, 
+                            'read_own': false, 
+                            'write_own': false, 
+                            'delete_own': false, 
+                            'update_own': false
                         });
                     });
+
+                    this.setCredentials(values);
+
+
                     this.user_modules = modules;
                     console.log("modules from login", modules);
                     
-                    localStorage.setItem('token', response.token);
+                    // localStorage.setItem('token', response.token);
                     if (values.recordarSesion) {
                         localStorage.setItem('isLoggedIn', 'true');
                         localStorage.setItem('user_modules', JSON.stringify(modules));
                     }
-                    this.toastrService.success(response.message);
-                    // Regresa a página anterior si viene de otra página o a dashboard
-                    if (this.redirectUrl !== undefined) {
-                        this.router.navigateByUrl(this.redirectUrl);
-                    } else {
-                        this.router.navigate(['pages/dashboard']);
-                    }
+
+                    this.toastrService.success(response.mensajeRespuesta);
+                    this.router.navigate(['pages/dashboard']);
+
                 } else {
-                    this.toastrService.error(response.message);
+                    this.toastrService.error(response.mensajeRespuesta);
                 }
             });
     }
@@ -108,6 +169,9 @@ export class AuthService {
     logout(): void {
         this.isLoggedIn = false;
         this.user_modules = [];
+
+        this.userId = 0;
+
         if (this.recordarSesion) {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('token');
@@ -120,12 +184,14 @@ export class AuthService {
     }
 
     useJwtHelper() {
+        /*
         const token = this.token;
         if (token !== undefined) {
             return this.jwtHelper.decodeToken(token);
         } else {
             return false;
         }
+        */
     }
         
     getUserModules() {
@@ -167,12 +233,26 @@ export class AuthService {
     }
 
     getCredentials(): CredentialInterface {
+        /*
         const auth = {
             nicknameauth: 'ideasys',
             usuarioauth: 'super',
             claveauth: '1234',
         }
-        return auth;
+        */
+        console.log("this.auth", this.auth);
+        return this.auth;
+    }
+
+    setCredentials(login: LoginInterface) {
+        console.log("login", login);
+        const auth = {
+            nicknameauth: 'ideasys',
+            usuarioauth: login.email,
+            claveauth: login.password,
+        }
+
+        this.auth = auth;
     }
 
     private handleError(error: Response) {
