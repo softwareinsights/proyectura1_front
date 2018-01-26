@@ -33,7 +33,6 @@ export class NotagastosService {
                .catch(this.handleError);
        }
 
-
        getAllPorFecha = ( fechainicial, fechafinal ) : Observable<NotagastosResponseInterface> => {
         
         const dataSend: any = {
@@ -47,7 +46,35 @@ export class NotagastosService {
         return this._http.post(`${this.endPoint}obtenerNotasGastoPorRangoFechas`, dataSend, this.options)
            .map((response: Response) => response.json())
            .catch(this.handleError);
-   }   
+        }   
+
+        getAllPorFecharazonsocial = (id, fechainicial, fechafinal ) : Observable<NotagastosResponseInterface> => {
+        
+            const dataSend: any = {
+                idrazonsocial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth,
+                fechainicial: fechainicial,  
+                fechafinal: fechafinal
+            } 
+    
+            return this._http.post(`${this.endPoint}obtenerNotasGastoPorRangoFechasPorEmisor`, dataSend, this.options)
+               .map((response: Response) => response.json())
+               .catch(this.handleError);
+            }   
+        
+        getAllPorRazonsocial = ( id ) : Observable<NotagastosResponseInterface> => {
+            const razonsocial: any = {
+                idrazonsocial: id,  
+                claveauth: this.auth.claveauth,
+                nicknameauth: this.auth.nicknameauth,
+                usuarioauth: this.auth.usuarioauth
+            } 
+        return this._http.post(`${this.endPoint}obtenerNotasGastoPorIdRazonSocialEmisor`, razonsocial, this.options)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        }
 
 
 

@@ -32,6 +32,20 @@ export class DetallecotizacionsService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
+       getAllPorFactura = ( id ) : Observable<DetallecotizacionsResponseInterface> => {
+        const factura: any = {
+            idfactura: id,  
+            claveauth: this.auth.claveauth,
+            nicknameauth: this.auth.nicknameauth,
+            usuarioauth: this.auth.usuarioauth
+        } 
+    return this._http.post(`${this.endPoint}obtenerDetallesCotizacion`, factura, this.options)
+        .map((response: Response) => response.json())
+        .catch(this.handleError);
+    }
+
+
        findById = ( id: DetallecotizacionsInterface ) : Observable<DetallecotizacionsResponseInterface> => {
            const detallecotizacion: any = {
                 iddetallecotizacion: id,  

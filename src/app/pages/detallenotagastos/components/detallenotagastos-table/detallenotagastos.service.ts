@@ -32,6 +32,20 @@ export class DetallenotagastosService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
+
+       getAllPorNotagasto = ( id ) : Observable<DetallenotagastosResponseInterface> => {
+        const notagasto: any = {
+            idnotagasto: id,  
+            claveauth: this.auth.claveauth,
+            nicknameauth: this.auth.nicknameauth,
+            usuarioauth: this.auth.usuarioauth
+        } 
+    return this._http.post(`${this.endPoint}obtenerDetallesNotasGasto`, notagasto, this.options)
+        .map((response: Response) => response.json())
+        .catch(this.handleError);
+    }
+
+
        findById = ( id: DetallenotagastosInterface ) : Observable<DetallenotagastosResponseInterface> => {
            const detallenotagasto: any = {
                 iddetallenotagasto: id,  
