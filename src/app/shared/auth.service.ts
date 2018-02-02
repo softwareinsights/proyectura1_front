@@ -55,6 +55,7 @@ export class AuthService {
             this.isLoggedIn = (localStorage.getItem('isLoggedIn') === 'true') ? true : false;
             // this.token = (localStorage.getItem('token')) ? localStorage.getItem('token') : '';
             this.user_modules = (localStorage.getItem('user_modules')) ? JSON.parse(localStorage.getItem('user_modules').toString()) : [];
+            this.auth = (localStorage.getItem('auth')) ? JSON.parse(localStorage.getItem('auth').toString()) : undefined;
         }
     }
 
@@ -253,6 +254,7 @@ export class AuthService {
         }
 
         this.auth = auth;
+        localStorage.setItem('auth', JSON.stringify(auth));
     }
 
     private handleError(error: Response) {

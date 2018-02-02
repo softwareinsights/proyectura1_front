@@ -24,7 +24,6 @@ export class UsuariosAddModalComponent extends DialogComponent<UsuariosInterface
   nombre: string;
   email: string;
   telefono: string;
-  emailsms: string;
   idrol: number;
   idstatususuario: number;
 
@@ -37,7 +36,6 @@ export class UsuariosAddModalComponent extends DialogComponent<UsuariosInterface
   nombreAC: AbstractControl;
   emailAC: AbstractControl;
   telefonoAC: AbstractControl;
-  emailsmsAC: AbstractControl;
   idrolAC: AbstractControl;
   idstatususuarioAC: AbstractControl;
 
@@ -57,7 +55,6 @@ export class UsuariosAddModalComponent extends DialogComponent<UsuariosInterface
     'nombreAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'emailAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'telefonoAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'emailsmsAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'idrolAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'idstatususuarioAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     });
@@ -66,7 +63,6 @@ export class UsuariosAddModalComponent extends DialogComponent<UsuariosInterface
     this.nombreAC = this.form.controls['nombreAC'];
     this.emailAC = this.form.controls['emailAC'];
     this.telefonoAC = this.form.controls['telefonoAC'];
-    this.emailsmsAC = this.form.controls['emailsmsAC'];
     this.idrolAC = this.form.controls['idrolAC'];
     this.idstatususuarioAC = this.form.controls['idstatususuarioAC'];
   }
@@ -132,7 +128,6 @@ export class UsuariosAddModalComponent extends DialogComponent<UsuariosInterface
                   nombre: this.nombre,
                   email: this.email,
                   telefono: this.telefono,
-                  emailsms: this.emailsms,
                   idrol: this.idrol,
                   idstatususuario: this.idstatususuario,
         })

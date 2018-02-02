@@ -55,23 +55,25 @@ export class UsuariosTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
+    
     showToast(result) {
-      if (result.success) {
-        this.toastrService.success(result.message);
+      if (result.valorRespuesta) {
+        this.toastrService.success(result.mensajeRespuesta);
         this.getAll();
       } else {
-        this.toastrService.error(result.message);
+        this.toastrService.error(result.mensajeRespuesta);
       }
     }
+
     private getAll(): void {
       this.service
         .all()
         .subscribe(
             (data: UsuariosResponseInterface) =>  {
-                if (data.success) {
-                  this.data = data.result;
+                if (data.info.valorRespuesta) {
+                  this.data = data.info.mensajeRespuesta;
                 } else {
-                  this.toastrService.error(data.message);
+                  this.toastrService.error(data.info.mensajeRespuesta);
                 }
             },
             error => console.log(error),

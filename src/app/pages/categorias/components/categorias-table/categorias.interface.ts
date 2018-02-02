@@ -4,7 +4,7 @@ export interface CategoriasInterface {
     claveauth?: string;
     idcategoria?: number;
     clavecategoria?: string;
-    descripcioncategoria?: string;
+    descripcion?: string;
     baja?: boolean;
     created_by?: number;
     created_at?: string;

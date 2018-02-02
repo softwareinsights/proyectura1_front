@@ -22,7 +22,7 @@ export class ObrasService {
         private authService: AuthService) {
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-        //this.headers.append('Authorization', 'JWT ' + this.authService.token);
+        // this.headers.append('Authorization', 'JWT ' + this.authService.token);
         this.options = new RequestOptions({ headers: this.headers });
         this.endPoint = `https://www.ideasys.com.mx/ProyecturaObraSW/api/`;
         this.auth = this.authService.getCredentials();
@@ -39,12 +39,10 @@ export class ObrasService {
                 nicknameauth: this.auth.nicknameauth,
                 usuarioauth: this.auth.usuarioauth
            } 
-
            return this._http.post(`${this.endPoint}autorizarObra`, obra, this.options)
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-        
         autorizarObra= ( id ) : Observable<ObrasResponseInterface> => {
             const obra: any = {
                 idobra: id,  
@@ -56,7 +54,6 @@ export class ObrasService {
             .map((response: Response) => response.json())
             .catch(this.handleError);
         }
-
         bloquearObra= ( id ) : Observable<ObrasResponseInterface> => {
             const obra: any = {
                 idobra: id,  
@@ -68,8 +65,6 @@ export class ObrasService {
             .map((response: Response) => response.json())
             .catch(this.handleError);
         }
-
-
         cancelarObra= ( id ) : Observable<ObrasResponseInterface> => {
             const obra: any = {
                 idobra: id,  
@@ -81,8 +76,6 @@ export class ObrasService {
             .map((response: Response) => response.json())
             .catch(this.handleError);
         }
-
-
         finalizarObra= ( id ) : Observable<ObrasResponseInterface> => {
             const obra: any = {
                 idobra: id,  
@@ -94,10 +87,7 @@ export class ObrasService {
             .map((response: Response) => response.json())
             .catch(this.handleError);
         }
-
-
        update = ( obra: ObrasInterface ) : Observable<ObrasResponseInterface> => {
-           
             obra.claveauth = this.auth.claveauth;
             obra.nicknameauth = this.auth.nicknameauth;
             obra.usuarioauth = this.auth.usuarioauth;
@@ -128,7 +118,6 @@ export class ObrasService {
                .catch(this.handleError);
        }
        insert = ( obra: ObrasInterface ) : Observable<ObrasResponseInterface> => {
-
             obra.claveauth = this.auth.claveauth;
             obra.nicknameauth = this.auth.nicknameauth;
             obra.usuarioauth = this.auth.usuarioauth;

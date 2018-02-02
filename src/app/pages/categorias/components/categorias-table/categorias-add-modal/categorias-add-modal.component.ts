@@ -14,14 +14,14 @@ import { ToastrService } from 'ngx-toastr';
 export class CategoriasAddModalComponent extends DialogComponent<CategoriasInterface, any> implements OnInit {
 
   clavecategoria: string;
-  descripcioncategoria: string;
+  descripcion: string;
 
   modalHeader: string;
   data: any;
   form: FormGroup;
   submitted: boolean = false;
   clavecategoriaAC: AbstractControl;
-  descripcioncategoriaAC: AbstractControl;
+  descripcionAC: AbstractControl;
 
   constructor(
     private service: CategoriasService,
@@ -33,10 +33,10 @@ export class CategoriasAddModalComponent extends DialogComponent<CategoriasInter
     super(dialogService);
     this.form = fb.group({
     'clavecategoriaAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'descripcioncategoriaAC' : ['',Validators.compose([Validators.maxLength(150)])],
+    'descripcionAC' : ['',Validators.compose([Validators.maxLength(150)])],
     });
     this.clavecategoriaAC = this.form.controls['clavecategoriaAC'];
-    this.descripcioncategoriaAC = this.form.controls['descripcioncategoriaAC'];
+    this.descripcionAC = this.form.controls['descripcionAC'];
   }
   ngOnInit() {
   }
@@ -50,7 +50,7 @@ export class CategoriasAddModalComponent extends DialogComponent<CategoriasInter
       this.service
         .insert({
                   clavecategoria: this.clavecategoria,
-                  descripcioncategoria: this.descripcioncategoria,
+                  descripcion: this.descripcion,
         })
         .subscribe(
             (data: any) => {

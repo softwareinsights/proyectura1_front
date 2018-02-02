@@ -24,7 +24,6 @@ export class UsuariosEditModalComponent extends DialogComponent<UsuariosInterfac
   nombre: string;
   email: string;
   telefono: string;
-  emailsms: string;
   idrol: number;
   idstatususuario: number;
 
@@ -36,7 +35,6 @@ export class UsuariosEditModalComponent extends DialogComponent<UsuariosInterfac
   usuarioAC: AbstractControl;
   contrasenaAC: AbstractControl;
   nombreAC: AbstractControl;
-  emailAC: AbstractControl;
   telefonoAC: AbstractControl;
   emailsmsAC: AbstractControl;
   idrolAC: AbstractControl;
@@ -52,19 +50,17 @@ export class UsuariosEditModalComponent extends DialogComponent<UsuariosInterfac
   ) {
   super(dialogService);
   this.form = fb.group({
-    'usuarioAC' : ['',Validators.compose([Validators.maxLength(60)])],
-    'contrasenaAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'nombreAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'emailAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'telefonoAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'emailsmsAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'idrolAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
-    'idstatususuarioAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
+    'usuarioAC' : ['', Validators.compose([Validators.maxLength(60)])],
+    'contrasenaAC' : ['', Validators.compose([Validators.maxLength(45)])],
+    'nombreAC' : ['', Validators.compose([Validators.maxLength(45)])],
+    'telefonoAC' : ['', Validators.compose([Validators.maxLength(45)])],
+    'emailsmsAC' : ['', Validators.compose([Validators.maxLength(45)])],
+    'idrolAC' : ['', Validators.compose([Validators.required, Validators.maxLength(11)])],
+    'idstatususuarioAC' : ['', Validators.compose([Validators.required,Validators.maxLength(11)])],
   });
   this.usuarioAC = this.form.controls['usuarioAC'];
   this.contrasenaAC = this.form.controls['contrasenaAC'];
   this.nombreAC = this.form.controls['nombreAC'];
-  this.emailAC = this.form.controls['emailAC'];
   this.telefonoAC = this.form.controls['telefonoAC'];
   this.emailsmsAC = this.form.controls['emailsmsAC'];
   this.idrolAC = this.form.controls['idrolAC'];
@@ -74,16 +70,14 @@ export class UsuariosEditModalComponent extends DialogComponent<UsuariosInterfac
       this.getRol();
       this.getStatususuario();
   }
-
   rolAddModalShow() {
       const disposable = this.dialogService.addDialog(RolsAddModalComponent)
       .subscribe( data => {
           if (data) {
           this.rolShowToast(data);
           }
-      })
+      });
   }
-
   rolShowToast(result) {
       if (result.success) {
           this.toastrService.success(result.message);
@@ -98,9 +92,8 @@ export class UsuariosEditModalComponent extends DialogComponent<UsuariosInterfac
           if (data) {
           this.statususuarioShowToast(data);
           }
-      })
+      });
   }
-
   statususuarioShowToast(result) {
       if (result.success) {
           this.toastrService.success(result.message);
@@ -136,7 +129,6 @@ export class UsuariosEditModalComponent extends DialogComponent<UsuariosInterfac
                   nombre: this.nombre,
                   email: this.email,
                   telefono: this.telefono,
-                  emailsms: this.emailsms,
                   idrol: this.idrol,
                   idstatususuario: this.idstatususuario,
               })
