@@ -3,6 +3,18 @@ export const PAGES_MENU = [
     path: 'pages',
     children: [
     {
+        path: 'dashboard',
+        data: {
+        menu: {
+            title: 'general.menu.dashboard',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+        }
+        }
+    },
+    {
         path: 'archivos',
         data: {
         menu: {
@@ -315,10 +327,10 @@ export const PAGES_MENU = [
         }
     },
     {
-        path: 'si_users',
+        path: 'usuarios',
         data: {
         menu: {
-            title: 'general.menu.si_users',
+            title: 'general.menu.usuarios',
             icon: 'ion-social-buffer',
             selected: false,
             expanded: false,
@@ -332,18 +344,6 @@ export const PAGES_MENU = [
         menu: {
             title: 'general.menu.si_reportes',
             icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'dashboard',
-        data: {
-        menu: {
-            title: 'general.menu.dashboard',
-            icon: 'ion-android-home',
             selected: false,
             expanded: false,
             order: 0

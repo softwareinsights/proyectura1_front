@@ -54,9 +54,10 @@ export class ObracategoriasService {
                .map((response: Response) => response.json())
                .catch(this.handleError);
        }
-       remove= ( id ) : Observable<ObracategoriasResponseInterface> => {
+       remove= ( idobra, idcategoria ) : Observable<ObracategoriasResponseInterface> => {
             const obracategoria: any = {
-                idobra: id,  
+                idobra: idobra,  
+                idcategoria: idcategoria,
                 claveauth: this.auth.claveauth,
                 nicknameauth: this.auth.nicknameauth,
                 usuarioauth: this.auth.usuarioauth

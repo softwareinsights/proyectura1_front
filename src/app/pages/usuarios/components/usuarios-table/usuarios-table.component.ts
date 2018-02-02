@@ -71,7 +71,7 @@ export class UsuariosTableComponent implements OnInit {
         .subscribe(
             (data: UsuariosResponseInterface) =>  {
                 if (data.info.valorRespuesta) {
-                  this.data = data.info.mensajeRespuesta;
+                  this.data = data.lista;
                 } else {
                   this.toastrService.error(data.info.mensajeRespuesta);
                 }

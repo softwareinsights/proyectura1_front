@@ -125,7 +125,9 @@ export class AuthService {
                         'statusrazonsocial',
                         'statususuario',
                         'subcategoria',
-                        'tipomaterial'
+                        'tipomaterial',
+                        'usuario',
+                        'dashboard'
                      );
 
 

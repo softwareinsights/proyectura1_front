@@ -45,7 +45,7 @@ export class ObracategoriasTableComponent implements OnInit {
     }
     onDeleteConfirm(event, item): void {
       if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
-          this.service.remove(item.idobracategoria)
+          this.service.remove(item.idobra, item.idcategoria)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
