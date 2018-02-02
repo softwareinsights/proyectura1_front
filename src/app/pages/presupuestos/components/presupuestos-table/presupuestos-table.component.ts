@@ -56,11 +56,11 @@ export class PresupuestosTableComponent implements OnInit {
       }
     }
     showToast(result: any) {
-      if (result.info.valorRespuesta) {
-        this.toastrService.success(result.info.mensajeRespuesta);
+      if (result.valorRespuesta) {
+        this.toastrService.success(result.mensajeRespuesta);
         this.getAll();
       } else {
-        this.toastrService.error(result.info.mensajeRespuesta);
+        this.toastrService.error(result.mensajeRespuesta);
       }
   }
     private getAll(): void {

@@ -12,6 +12,9 @@ templateUrl: './obracategorias-table.html',
 styleUrls: ['./obracategorias-table.scss'],
 })
 export class ObracategoriasTableComponent implements OnInit {
+
+    idobra: number;
+    idcategoria: number;
     data;
     filterQuery = '';
     rowsOnPage = 10;
@@ -45,7 +48,7 @@ export class ObracategoriasTableComponent implements OnInit {
     }
     onDeleteConfirm(event, item): void {
       if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
-          this.service.remove(item.idobracategoria)
+          this.service.remove(this.idobra, this.idcategoria)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
