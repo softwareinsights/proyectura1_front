@@ -30,8 +30,8 @@ export class LoginComponent {
     let recordar = (localStorage.getItem('recordarSesion') === 'true') ? true : false;
 
     this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+      'email': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'password': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'recordarSesion': [recordar]
     });
 

@@ -17,10 +17,10 @@
                 <input [(ngModel)]="clavecategoria" [formControl]="clavecategoriaAC" type="text" maxlength='45' class="form-control" id="inputclavecategoriaAC" placeholder="Clave Categoria" >
               </div>
             </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!descripcioncategoriaAC.valid && descripcioncategoriaAC.touched), 'has-success': (descripcioncategoriaAC.valid && descripcioncategoriaAC.touched)}">
-              <label for="inputdescripcioncategoriaAC" class="col-sm-3 form-control-label">Descripción Categoria</label>
+            <div class="form-group row" [ngClass]="{'has-error': (!descripcionAC.valid && descripcionAC.touched), 'has-success': (descripcionAC.valid && descripcionAC.touched)}">
+              <label for="inputdescripcionAC" class="col-sm-3 form-control-label">Descripción Categoria</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="descripcioncategoria" [formControl]="descripcioncategoriaAC" type="text" maxlength='150' class="form-control" id="inputdescripcioncategoriaAC" placeholder="Descripción Categoria" >
+                <input [(ngModel)]="descripcion" [formControl]="descripcionAC" type="text" maxlength='150' class="form-control" id="inputdescripcionAC" placeholder="Descripción Categoria" >
               </div>
             </div>
           </ba-card>

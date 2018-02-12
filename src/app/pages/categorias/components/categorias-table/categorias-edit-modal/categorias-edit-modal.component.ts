@@ -14,7 +14,7 @@ export class CategoriasEditModalComponent extends DialogComponent<CategoriasInte
 
   idcategoria: number;
   clavecategoria: string;
-  descripcioncategoria: string;
+  descripcion: string;
 
   modalHeader: string;
   data: any;
@@ -22,7 +22,7 @@ export class CategoriasEditModalComponent extends DialogComponent<CategoriasInte
   submitted: boolean = false;
 
   clavecategoriaAC: AbstractControl;
-  descripcioncategoriaAC: AbstractControl;
+  descripcionAC: AbstractControl;
   constructor(
       private service: CategoriasService,
       fb: FormBuilder,
@@ -33,10 +33,10 @@ export class CategoriasEditModalComponent extends DialogComponent<CategoriasInte
   super(dialogService);
   this.form = fb.group({
     'clavecategoriaAC' : ['',Validators.compose([Validators.maxLength(45)])],
-    'descripcioncategoriaAC' : ['',Validators.compose([Validators.maxLength(150)])],
+    'descripcionAC' : ['',Validators.compose([Validators.maxLength(150)])],
   });
   this.clavecategoriaAC = this.form.controls['clavecategoriaAC'];
-  this.descripcioncategoriaAC = this.form.controls['descripcioncategoriaAC'];
+  this.descripcionAC = this.form.controls['descripcionAC'];
   }
   ngOnInit() {
   }
@@ -52,7 +52,7 @@ export class CategoriasEditModalComponent extends DialogComponent<CategoriasInte
               .update({
                   idcategoria: this.idcategoria,
                   clavecategoria: this.clavecategoria,
-                  descripcioncategoria: this.descripcioncategoria,
+                  descripcion: this.descripcion,
               })
               .subscribe(
                   (data: any) => {

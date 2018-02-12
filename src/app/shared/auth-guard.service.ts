@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
 
     let isAuthorized: boolean;
 
-    if(this.authService.loggedIn()) {
+    if (this.authService.loggedIn()) {
       //Módulos permitidos
       if (!this.authService.modulePermission(url)) {
         isAuthorized = false;

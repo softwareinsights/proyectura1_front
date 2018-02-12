@@ -8,29 +8,29 @@
                         </tr>
                         <tr>
                             <th style='width: 20%'></th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='usuario'>Usuario</mfDefaultSorter>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="usuario">Usuario</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='contrasena'>Contraseña</mfDefaultSorter>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='nombre'>Nombre</mfDefaultSorter>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="email">Email</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='email'>Email</mfDefaultSorter>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="telefono">Teléfono</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='telefono'>Télefono</mfDefaultSorter>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="statususuario">statususuario</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='emailsms'>Email SMS</mfDefaultSorter>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="emailsms">Email sms</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='rol_idrol'>Rol</mfDefaultSorter>
+                            <th style="width: 5%">
+                                <mfDefaultSorter by="rol">Rol</mfDefaultSorter>
                             </th>
-                            <th style='width: 10%'>
-                                <mfDefaultSorter by='statususuario_idstatususuario'>Estatus Usuario</mfDefaultSorter>
+                            <th style="width: 5%">
+                                <mfDefaultSorter by="rol">Descripción</mfDefaultSorter>
                             </th>
                         </tr>
                     </thead>
@@ -40,14 +40,14 @@
                                 <button title='Editar Registro' (click)='editModalShow(item)' class='btn btn-sm btn-info'><i class='fa fa-edit'></i></button>
                                 <button title='Eliminar Registro' (click)='onDeleteConfirm($event, item)' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></button>
                             </td>
-                            <td>{{ item.usuario  }}</td>
-                            <td>{{ item.contrasena  }}</td>
-                            <td>{{ item.nombre  }}</td>
-                            <td>{{ item.email  }}</td>
-                            <td>{{ item.telefono  }}</td>
-                            <td>{{ item.emailsms  }}</td>
-                            <td>{{ item.rol_idrol }}</td>
-                            <td>{{ item.statususuario_idstatususuario }}</td>
+                            <td>{{item.usuario}}</td>
+                            <td>{{item.nombre}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.telefono}}</td>
+                            <td>{{item.statususuario}}</td>
+                            <td>{{item.emailsms}}</td>
+                            <td>{{item.rol}}</td>
+                            <td>{{item.descripcion}}</td>
                         </tr>
                     </tbody>
                     <tfoot>

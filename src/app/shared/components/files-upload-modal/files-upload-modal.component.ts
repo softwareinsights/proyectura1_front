@@ -37,7 +37,7 @@ export class FilesUploadModalComponent implements OnInit {
         (data) => {
           let cont = 0;
           const array = [];
-          data.forEach(element => {
+          data.lista.forEach(element => {
             if (element.tipoarchivo === 'application/pdf') {
               element.tipoarchivo = 'assets/img/pdf.png';
             } else if (element.tipoarchivo === 'application/xml') {
@@ -51,7 +51,7 @@ export class FilesUploadModalComponent implements OnInit {
             } else if (element.tipoarchivo === 'application/vnd.openxmlformats-officedocument.pres') {
               element.tipoarchivo = 'assets/images/powerpoint.png';
             } else {
-              element.tipoarchivo = 'assets/images/file.png';
+              element.tipoarchivo = 'assets/images/file_.png';
             }
             array[cont] = element;
             cont ++;
@@ -59,6 +59,15 @@ export class FilesUploadModalComponent implements OnInit {
           this.files = array;
         },
       );
+  }
+
+  deleteInImageServer(url) {
+    this.service.deleteInImageServer(url)
+        .subscribe(
+          (data) => this.showToast(data),
+          error => console.log(error),
+          () => console.log('Delete completed')
+        );
   }
 
   onDeleteConfirm(event, id): void {
@@ -77,11 +86,11 @@ export class FilesUploadModalComponent implements OnInit {
   }
 
   showToast(data) {
-    if (data.status === 'success') {
-      this.toastrService.success(data.message);
+    if (data.valorRespuesta) {
+      this.toastrService.success(data.mensajeRespuesta);
       this.getFiles();
     } else {
-      this.toastrService.error(data.message);
+      this.toastrService.error(data.mensajeRespuesta);
     }
   }
 

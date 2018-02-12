@@ -1,4 +1,7 @@
+import { UploadModalComponent } from './../../../../shared/components/upload-modal/upload-modal.component';
+import { FilesUploadModalComponent } from './../../../../shared/components/files-upload-modal/files-upload-modal.component';
 import { DialogService } from 'ng2-bootstrap-modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ObrasInterface } from './obras.interface';
 import { ObrasResponseInterface } from './obras-response.interface';
@@ -20,10 +23,24 @@ export class ObrasTableComponent implements OnInit {
     constructor(
       private service: ObrasService, 
       private toastrService: ToastrService, 
-      private dialogService: DialogService) {
+      private dialogService: DialogService,
+      private modalService: NgbModal ) {
     }
     ngOnInit() {
         this.getAll();
+    }
+    addFile(id: number, descripcion: string) {
+      const activeModal = this.modalService.open(UploadModalComponent, { size: 'lg' });
+      activeModal.componentInstance.modalHeader = 'Agregar Archivo a Obra';
+      activeModal.componentInstance.id = id;
+      activeModal.componentInstance.descripcion = descripcion;
+      activeModal.componentInstance.referencia = 'Obra';
+    }
+    getFiles(id: number) {
+      const activeModal = this.modalService.open(FilesUploadModalComponent, { size: 'lg' });
+      activeModal.componentInstance.modalHeader = 'Ver Archivos de Obra';
+      activeModal.componentInstance.id = id;
+      activeModal.componentInstance.referencia = 'Obra';
     }
     addModalShow() {
       const disposable = this.dialogService.addDialog(ObrasAddModalComponent)
@@ -56,7 +73,7 @@ export class ObrasTableComponent implements OnInit {
       }
     }
     autorizar(event, item): void {
-      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+      if (window.confirm('¿Estas seguro de querer autorizar esta Obra?')) {
           this.service.autorizarObra(item.idobra)
           .subscribe(
               (data) => this.showToast(data),
@@ -67,9 +84,8 @@ export class ObrasTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
-
     bloquear(event, item): void {
-      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+      if (window.confirm('¿Estas seguro de querer bloquear esta Obra?')) {
           this.service.bloquearObra(item.idobra)
           .subscribe(
               (data) => this.showToast(data),
@@ -80,9 +96,8 @@ export class ObrasTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
-
     cancelar(event, item): void {
-      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+      if (window.confirm('¿Estas seguro de querer cancelar esta Obra?')) {
           this.service.cancelarObra(item.idobra)
           .subscribe(
               (data) => this.showToast(data),
@@ -93,9 +108,8 @@ export class ObrasTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
-
     finalizar(event, item): void {
-      if (window.confirm('¿Estas seguro de querer Autorizar esta Obra?')) {
+      if (window.confirm('¿Estas seguro de querer finalizar esta Obra?')) {
           this.service.finalizarObra(item.idobra)
           .subscribe(
               (data) => this.showToast(data),
@@ -106,11 +120,6 @@ export class ObrasTableComponent implements OnInit {
           console.log('item cancelado');
       }
     }
-
-
-
-
-
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);

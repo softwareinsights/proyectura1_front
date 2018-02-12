@@ -1,12 +1,18 @@
+import { CredentialInterface } from 'app/shared/credential.interface';
+import { AuthService } from './../../auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UploadModalService } from './upload-modal.service';
+
+
 import { Response } from '@angular/http';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
-import { Configuration } from './../../../app.constants';
 
 export interface ArchivoInterface {
+  nicknameauth: string;
+  usuarioauth: string;
+  claveauth: string;
   idreferencia: number;
   proceso: string;
   tipoarchivo: string;
@@ -20,6 +26,8 @@ export interface ArchivoInterface {
 })
 export class UploadModalComponent implements OnInit {
 
+  private credentials: CredentialInterface = this.authService.getCredentials();
+
   id: number;
   descripcion: string;
   referencia: string;
@@ -28,11 +36,11 @@ export class UploadModalComponent implements OnInit {
   defaultPicture = 'assets/img/theme/no-photo.png';
 
   profile: any = {
-    picture: 'assets/img/theme/no-photo.png',
+    picture: 'assets/images/file.png',
   };
 
   fileUploaderOptions: NgUploaderOptions = {
-    url: `${this._configuration.imageServerWithApiUrl}images/`,
+    url: `http://aidihosting.com/proyectos/proyectura_api/v1/cargaArchivo/Obra-`,
   };
 
   uploadCompled(event: any) {
@@ -40,6 +48,9 @@ export class UploadModalComponent implements OnInit {
       const response = JSON.parse(event.response);
       if (response.status === 'success') {
         const archivo: ArchivoInterface = {
+            nicknameauth: this.credentials.nicknameauth,
+            usuarioauth: this.credentials.usuarioauth,
+            claveauth: this.credentials.claveauth,
             idreferencia: this.id,
             proceso: this.referencia,
             tipoarchivo: response.type,
@@ -55,17 +66,17 @@ export class UploadModalComponent implements OnInit {
   }
 
   showToast(data) {
-    if (data.status === 'success') {
-      this.toastrService.success(data.message);
+    if (data.idRespuesta === 0) {
+      this.toastrService.success(data.mensajeRespuesta);
     } else {
-      this.toastrService.error(data.message);
+      this.toastrService.error(data.mensajeRespuesta);
     }
   }
 
   constructor(private service: UploadModalService, 
               private activeModal: NgbActiveModal,
-              private toastrService: ToastrService, 
-              private _configuration: Configuration ) {
+              private toastrService: ToastrService,
+              private authService: AuthService) {
   }
 
   closeModal() {
