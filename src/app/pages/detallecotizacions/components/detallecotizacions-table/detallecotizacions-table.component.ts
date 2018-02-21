@@ -7,6 +7,7 @@ import { DetallecotizacionsService } from './detallecotizacions.service';
 import { DetallecotizacionsAddModalComponent } from './detallecotizacions-add-modal/detallecotizacions-add-modal.component';
 import { DetallecotizacionsEditModalComponent } from './detallecotizacions-edit-modal/detallecotizacions-edit-modal.component';
 import { CotizacionsService } from 'app/pages/cotizacions/components/cotizacions-table/cotizacions.service';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'detallecotizacions-table',
 templateUrl: './detallecotizacions-table.html',
@@ -57,16 +58,23 @@ export class DetallecotizacionsTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Detalle Cotización',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.iddetallecotizacion)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
 
 

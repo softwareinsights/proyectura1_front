@@ -15,24 +15,14 @@
                                 <mfDefaultSorter by='descripcioncorta'>Descripción Corta</mfDefaultSorter>
                             </th>
                             <th style='width: 13%'>
-                                <mfDefaultSorter by='descripcionlarga'>Descripción Larga</mfDefaultSorter>
-                            </th>
-                            <th style='width: 13%'>
                                 <mfDefaultSorter by='precio'>Precio</mfDefaultSorter>
                             </th>
                             <th style='width: 6%'>
-                                <mfDefaultSorter by='claveunidadmedida'>Clave Unidad de Medida</mfDefaultSorter>
+                                <mfDefaultSorter by='claveunidadmedida'>Unidad de Medida</mfDefaultSorter>
                             </th>
                             <th style='width: 6%'>
-                                    <mfDefaultSorter by='descripcionunidadmedida'>Descripción Unidad de Medida</mfDefaultSorter>
+                                <mfDefaultSorter by='clavetipomaterial'>Tipo Material</mfDefaultSorter>
                             </th>
-                            <th style='width: 6%'>
-                                <mfDefaultSorter by='clavetipomaterial'>Clave Tipo Material</mfDefaultSorter>
-                            </th>
-                            <th style='width: 6%'>
-                                    <mfDefaultSorter by='descripciontipomaterial'>Descripción Tipo Material</mfDefaultSorter>
-                            </th>
-
                             <th style='width: 10%'>
                                 <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
                             </th>
@@ -55,12 +45,9 @@
                             </td>
                             <td>{{ item.codigo  }}</td>
                             <td>{{ item.descripcioncorta  }}</td>
-                            <td>{{ item.descripcionlarga  }}</td>
                             <td>{{ item.precio  }}</td>
                             <td>{{ Claveunidadmedida  }}</td>
-                            <td>{{ descripcionunidadmedida  }}</td>
                             <td>{{ clavetipomaterial  }}</td>
-                            <td>{{ descripciontipomaterial  }}</td>
                             <td>{{ item.usuarioalta  }}</td>
                             <td>{{ item.fechahoraalta | date:'dd/MM/y'  }}</td>                       
                             <td>{{ item.usuariocambio  }}</td>

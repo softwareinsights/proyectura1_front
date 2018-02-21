@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaterialsService } from './materials.service';
 import { MaterialsAddModalComponent } from './materials-add-modal/materials-add-modal.component';
 import { MaterialsEditModalComponent } from './materials-edit-modal/materials-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'materials-table',
 templateUrl: './materials-table.html',
@@ -44,17 +45,25 @@ export class MaterialsTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Material',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idmaterial)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
+
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);

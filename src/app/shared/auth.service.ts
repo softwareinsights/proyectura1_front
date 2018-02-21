@@ -81,9 +81,6 @@ export class AuthService {
             .do(response => {
                 this.isLoggedIn = true;
 
-                
-                console.log("response login", response);
-
                 // this.token = response.token;
                 this.recordarSesion = values.recordarSesion;
                 localStorage.setItem('recordarSesion', values.recordarSesion.toString());
@@ -150,7 +147,7 @@ export class AuthService {
 
 
                     this.user_modules = modules;
-                    console.log("modules from login", modules);
+                    // console.log("modules from login", modules);
                     
                     // localStorage.setItem('token', response.token);
                     if (values.recordarSesion) {
@@ -241,12 +238,12 @@ export class AuthService {
             claveauth: '1234',
         }
         */
-        console.log("this.auth", this.auth);
+        // console.log("this.auth", this.auth);
         return this.auth;
     }
 
     setCredentials(login: LoginInterface) {
-        console.log("login", login);
+       // console.log("login", login);
         const auth = {
             nicknameauth: 'ideasys',
             usuarioauth: login.email,

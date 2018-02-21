@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { SubcategoriasService } from './subcategorias.service';
 import { SubcategoriasAddModalComponent } from './subcategorias-add-modal/subcategorias-add-modal.component';
 import { SubcategoriasEditModalComponent } from './subcategorias-edit-modal/subcategorias-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'subcategorias-table',
 templateUrl: './subcategorias-table.html',
@@ -44,17 +45,25 @@ export class SubcategoriasTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Subcategoría',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idsubcategoria)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
+
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);

@@ -7,6 +7,7 @@ import { DetallefacturasService } from './detallefacturas.service';
 import { DetallefacturasAddModalComponent } from './detallefacturas-add-modal/detallefacturas-add-modal.component';
 import { DetallefacturasEditModalComponent } from './detallefacturas-edit-modal/detallefacturas-edit-modal.component';
 import { FacturasService } from 'app/pages/facturas/components/facturas-table/facturas.service';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'detallefacturas-table',
 templateUrl: './detallefacturas-table.html',
@@ -52,16 +53,23 @@ export class DetallefacturasTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Detalle Factura',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.iddetallefactura)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
 
         filtrarPor(filtro) {

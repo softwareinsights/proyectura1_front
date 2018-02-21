@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { RolsService } from './rols.service';
 import { RolsAddModalComponent } from './rols-add-modal/rols-add-modal.component';
 import { RolsEditModalComponent } from './rols-edit-modal/rols-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'rols-table',
 templateUrl: './rols-table.html',
@@ -44,17 +45,25 @@ export class RolsTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Rol',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idrol)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
+
     showToast(result) {
       if (result.info.valorRespuesta) {
         this.toastrService.success(result.info.mensajeRespuesta);

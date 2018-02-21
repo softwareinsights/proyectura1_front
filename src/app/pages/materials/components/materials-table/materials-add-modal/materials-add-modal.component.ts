@@ -76,10 +76,10 @@ export class MaterialsAddModalComponent extends DialogComponent<MaterialsInterfa
   }
   tipomaterialShowToast(result) {
     if (result.valorRespuesta) {
-        this.toastrService.success(result.info.mensajeRespuesta);
+        this.toastrService.success(result.mensajeRespuesta);
         this.getTipomaterial();
     } else {
-        this.toastrService.error(result.info.mensajeRespuesta);
+        this.toastrService.error(result.mensajeRespuesta);
     }
 
   }
@@ -93,10 +93,10 @@ export class MaterialsAddModalComponent extends DialogComponent<MaterialsInterfa
   }
   unidadmedidaShowToast(result) {
     if (result.valorRespuesta) {
-        this.toastrService.success(result.info.mensajeRespuesta);
+        this.toastrService.success(result.mensajeRespuesta);
         this.getUnidadmedida();
     } else {
-        this.toastrService.error(result.info.mensajeRespuesta);
+        this.toastrService.error(result.mensajeRespuesta);
     }
   }
   getTipomaterial() {

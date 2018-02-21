@@ -7,6 +7,7 @@ import { CategoriasService } from './categorias.service';
 import { CategoriasAddModalComponent } from './categorias-add-modal/categorias-add-modal.component';
 import { CategoriasEditModalComponent } from './categorias-edit-modal/categorias-edit-modal.component';
 import { getAllDebugNodes } from '@angular/core/src/debug/debug_node';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'categorias-table',
 templateUrl: './categorias-table.html',
@@ -45,16 +46,23 @@ export class CategoriasTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Categoría',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idcategoria)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
 
 

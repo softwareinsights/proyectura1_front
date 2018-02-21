@@ -11,12 +11,6 @@
         </div>
         <div class="modal-body" style="height: 65vh; overflow-y: auto;">
           <ba-card cardTitle="Información Facturas">
-            <div class="form-group row" [ngClass]="{'has-error': (!folioAC.valid && folioAC.touched), 'has-success': (folioAC.valid && folioAC.touched)}">
-              <label for="inputfolioAC" class="col-sm-3 form-control-label">Folio</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="folio" [formControl]="folioAC" type="text" maxlength='45' class="form-control" id="inputfolioAC" placeholder="Folio" >
-              </div>
-            </div>
             <div class="form-group row" [ngClass]="{'has-error': (!serieAC.valid && serieAC.touched), 'has-success': (serieAC.valid && serieAC.touched)}">
               <label for="inputserieAC" class="col-sm-3 form-control-label">Serie</label>
               <div class="col-sm-9">
@@ -35,12 +29,6 @@
                 <input [(ngModel)]="fechaexpedicion" [formControl]="fechaexpedicionAC" type="date"  class="form-control" id="inputfechaexpedicionAC" placeholder="Fecha Expedición" >
               </div>
             </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!uuidAC.valid && uuidAC.touched), 'has-success': (uuidAC.valid && uuidAC.touched)}">
-              <label for="inputuuidAC" class="col-sm-3 form-control-label">uuid</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="uuid" [formControl]="uuidAC" type="text" maxlength='45' class="form-control" id="inputuuidAC" placeholder="uuid" >
-              </div>
-            </div>
             <div class="form-group row" [ngClass]="{'has-error': (!fechatimbradoAC.valid && fechatimbradoAC.touched), 'has-success': (fechatimbradoAC.valid && fechatimbradoAC.touched)}">
               <label for="inputfechatimbradoAC" class="col-sm-3 form-control-label">Fecha Timbrado</label>
               <div class="col-sm-9">
@@ -48,7 +36,7 @@
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialemisorAC.valid && idrazonsocialemisorAC.touched), 'has-success': (idrazonsocialemisorAC.valid && idrazonsocialemisorAC.touched)}">
-              <label for="inputidrazonsocialemisorAC" class="col-sm-3 form-control-label">ID Razón Social Emisor</label>
+              <label for="inputidrazonsocialemisorAC" class="col-sm-3 form-control-label">Razón Social Emisor</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idrazonsocialemisor" [formControl]="idrazonsocialemisorAC" class="form-control" id="inputidrazonsocialemisorAC" required>
                  <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.nombre}}</option>
@@ -56,12 +44,6 @@
               </div>
               <div class='col-sm-2'>
                 <button (click)='razonsocialAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
-              </div>
-            </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!razonsocialemisorAC.valid && razonsocialemisorAC.touched), 'has-success': (razonsocialemisorAC.valid && razonsocialemisorAC.touched)}">
-              <label for="inputrazonsocialemisorAC" class="col-sm-3 form-control-label">Razón Social Emisor</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="razonsocialemisor" [formControl]="razonsocialemisorAC" type="text" maxlength='45' class="form-control" id="inputrazonsocialemisorAC" placeholder="Razón Social Emisor" >
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!rfcemisorAC.valid && rfcemisorAC.touched), 'has-success': (rfcemisorAC.valid && rfcemisorAC.touched)}">

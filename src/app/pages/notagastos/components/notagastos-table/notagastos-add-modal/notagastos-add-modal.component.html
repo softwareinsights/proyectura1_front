@@ -11,12 +11,7 @@
         </div>
         <div class="modal-body" style="height: 65vh; overflow-y: auto;">
           <ba-card cardTitle="Información Notas Gasto">
-            <div class="form-group row" [ngClass]="{'has-error': (!folioAC.valid && folioAC.touched), 'has-success': (folioAC.valid && folioAC.touched)}">
-              <label for="inputfolioAC" class="col-sm-3 form-control-label">Folio</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="folio" [formControl]="folioAC" type="text" maxlength='45' class="form-control" id="inputfolioAC" placeholder="Folio" >
-              </div>
-            </div>
+           
             <div class="form-group row" [ngClass]="{'has-error': (!serieAC.valid && serieAC.touched), 'has-success': (serieAC.valid && serieAC.touched)}">
               <label for="inputserieAC" class="col-sm-3 form-control-label">Serie</label>
               <div class="col-sm-9">

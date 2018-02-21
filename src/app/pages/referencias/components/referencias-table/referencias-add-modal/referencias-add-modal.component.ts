@@ -13,14 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReferenciasAddModalComponent extends DialogComponent<ReferenciasInterface, any> implements OnInit {
 
-  idreferencia: number;
   referencia: string;
 
   modalHeader: string;
   data: any;
   form: FormGroup;
   submitted: boolean = false;
-  idreferenciaAC: AbstractControl;
   referenciaAC: AbstractControl;
 
   constructor(
@@ -32,10 +30,8 @@ export class ReferenciasAddModalComponent extends DialogComponent<ReferenciasInt
   ) {
     super(dialogService);
     this.form = fb.group({
-    'idreferenciaAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'referenciaAC' : ['',Validators.compose([Validators.maxLength(45)])],
     });
-    this.idreferenciaAC = this.form.controls['idreferenciaAC'];
     this.referenciaAC = this.form.controls['referenciaAC'];
   }
   ngOnInit() {
@@ -49,7 +45,6 @@ export class ReferenciasAddModalComponent extends DialogComponent<ReferenciasInt
     if (this.form.valid) {
       this.service
         .insert({
-                  idreferencia: this.idreferencia,
                   referencia: this.referencia,
         })
         .subscribe(

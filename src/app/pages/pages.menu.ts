@@ -87,30 +87,6 @@ export const PAGES_MENU = [
         }
     },
     {
-        path: 'estatuscotizacions',
-        data: {
-        menu: {
-            title: 'general.menu.estatuscotizacions',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
-        path: 'estatusobras',
-        data: {
-        menu: {
-            title: 'general.menu.estatusobras',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
         path: 'facturas',
         data: {
         menu: {

@@ -16,7 +16,6 @@ import { RazonsocialsAddModalComponent } from './../../../../razonsocials/compon
 export class NotagastosAddModalComponent extends DialogComponent<NotagastosInterface, any> implements OnInit {
   _razonsocial: string[] = [];
 
-  folio: string;
   serie: string;
   fecha: string;
   idrazonsocialemisor: number;
@@ -29,7 +28,6 @@ export class NotagastosAddModalComponent extends DialogComponent<NotagastosInter
   data: any;
   form: FormGroup;
   submitted: boolean = false;
-  folioAC: AbstractControl;
   serieAC: AbstractControl;
   fechaAC: AbstractControl;
   idrazonsocialemisorAC: AbstractControl;
@@ -48,7 +46,6 @@ export class NotagastosAddModalComponent extends DialogComponent<NotagastosInter
   ) {
     super(dialogService);
     this.form = fb.group({
-    'folioAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'serieAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'fechaAC' : [''],
     'idrazonsocialemisorAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
@@ -57,7 +54,6 @@ export class NotagastosAddModalComponent extends DialogComponent<NotagastosInter
     'importetotalAC' : [''],
     'totalimpuestosAC' : [''],
     });
-    this.folioAC = this.form.controls['folioAC'];
     this.serieAC = this.form.controls['serieAC'];
     this.fechaAC = this.form.controls['fechaAC'];
     this.idrazonsocialemisorAC = this.form.controls['idrazonsocialemisorAC'];
@@ -100,7 +96,6 @@ export class NotagastosAddModalComponent extends DialogComponent<NotagastosInter
     if (this.form.valid) {
       this.service
         .insert({
-                  folio: this.folio,
                   serie: this.serie,
                   fecha: this.fecha,
                   idrazonsocialemisor: this.idrazonsocialemisor,

@@ -16,7 +16,6 @@ export class NotagastosEditModalComponent extends DialogComponent<NotagastosInte
   _razonsocial: string[] = [];
 
   idnotagasto: number;
-  folio: string;
   serie: string;
   fecha: string;
   idrazonsocialemisor: number;
@@ -30,7 +29,6 @@ export class NotagastosEditModalComponent extends DialogComponent<NotagastosInte
   form: FormGroup;
   submitted: boolean = false;
 
-  folioAC: AbstractControl;
   serieAC: AbstractControl;
   fechaAC: AbstractControl;
   idrazonsocialemisorAC: AbstractControl;
@@ -48,7 +46,6 @@ export class NotagastosEditModalComponent extends DialogComponent<NotagastosInte
   ) {
   super(dialogService);
   this.form = fb.group({
-    'folioAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'serieAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'fechaAC' : [''],
     'idrazonsocialemisorAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
@@ -57,7 +54,6 @@ export class NotagastosEditModalComponent extends DialogComponent<NotagastosInte
     'importetotalAC' : [''],
     'totalimpuestosAC' : [''],
   });
-  this.folioAC = this.form.controls['folioAC'];
   this.serieAC = this.form.controls['serieAC'];
   this.fechaAC = this.form.controls['fechaAC'];
   this.idrazonsocialemisorAC = this.form.controls['idrazonsocialemisorAC'];
@@ -103,7 +99,6 @@ export class NotagastosEditModalComponent extends DialogComponent<NotagastosInte
           this.service
               .update({
                   idnotagasto: this.idnotagasto,
-                  folio: this.folio,
                   serie: this.serie,
                   fecha: this.fecha,
                   idrazonsocialemisor: this.idrazonsocialemisor,

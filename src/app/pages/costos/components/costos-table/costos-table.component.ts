@@ -9,6 +9,7 @@ import { CostosEditModalComponent } from './costos-edit-modal/costos-edit-modal.
 import { CategoriasService } from 'app/pages/categorias/components/categorias-table/categorias.service';
 import { ObrasService } from 'app/pages/obras/components/obras-table/obras.service';
 import { SubcategoriasService } from 'app/pages/subcategorias/components/subcategorias-table/subcategorias.service';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'costos-table',
 templateUrl: './costos-table.html',
@@ -76,17 +77,25 @@ export class CostosTableComponent implements OnInit {
       error => console.log(error),
       () => console.log('Modified complete'));
     }
+
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Costo',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idcosto)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
 
 

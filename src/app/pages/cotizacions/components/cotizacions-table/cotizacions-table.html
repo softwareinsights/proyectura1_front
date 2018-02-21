@@ -2,102 +2,80 @@
     <div class='row'>
         <ba-card title='Listado' baCardClass='with-scroll' class='data-table-container'>
             <div class='panel panel-default'>
-
-
-                    <form>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="porFecha">Por Fecha</label>
-                                    <input (change)="filtrarPor('porFecha')" name="cotizacion" type="radio" class="form-radio-input" id="porFecha">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="porObra">Por Obra</label>
-                                    <input (change)="filtrarPor('porObra')" name="cotizacion" type="radio" class="form-radio-input" id="porObra">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="porCategoria">Por Categoria</label>
-                                    <input (change)="filtrarPor('porCategoria')" name="cotizacion" type="radio" class="form-radio-input" id="porCategoria">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="porSubCategoria">Por SubCategoria</label>
-                                    <input (change)="filtrarPor('porSubCategoria')" name="cotizacion" type="radio" class="form-radio-input" id="porSubCategoria">
-                                </div>
-                            </div>
-                        </form>
-                        
+                <form>
                         <div class="row">
-                            <div class="col-md-3" *ngIf="porFecha">
-                                <input [(ngModel)]="fechainicial"  name="cotizacion" type="date" class="form-control"> 
-                                <input [(ngModel)]="fechafinal" name="cotizacion" type="date" class="form-control">
+                            <div class="col-md-2">
+                                <label for="porFecha">Por Fecha</label>
+                                <input (change)="filtrarPor('porFecha')" name="costo" type="radio" class="form-radio-input" id="porFecha">
                             </div>
+                            <div class="col-md-2">
+                                <label for="porObra">Por Obra</label>
+                                <input (change)="filtrarPor('porObra')" name="costo" type="radio" class="form-radio-input" id="porObra">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="porCategoria">Por Categoría</label>
+                                <input (change)="filtrarPor('porCategoria')" name="costo" type="radio" class="form-radio-input" id="porCategoria">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="porSubCategoria">Por SubCategoría</label>
+                                <input (change)="filtrarPor('porSubCategoria')" name="costo" type="radio" class="form-radio-input" id="porSubCategoria">
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div class="row">
+                        <div class="col-md-3" *ngIf="porFecha">
+                            <input [(ngModel)]="fechainicial"  name="costo" type="date" class="form-control"> 
+                            <input [(ngModel)]="fechafinal" name="costo" type="date" class="form-control">
+                        </div>
 
-                            
-                            <div class="col-md-3" *ngIf="porObra">
-                                <div class="form-group row">
+
+                        <div class="col-md-12" *ngIf="porObra">
+                            <div class="row">
+                                <div class="col-md-2 text-right">
                                     <label for="inputidobraAC" class=" form-control-label">Obra</label>
-                                    <div class="">
-                                        <select [(ngModel)]="idobra" class="form-control" id="inputidobraAC" required>
-                                            <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.descripcion}}</option>
-                                        </select>
-                                    </div>
+                                </div>
+                                <div class="">
+                                    <select [(ngModel)]="idobra" class="form-control" id="inputidobraAC" required>
+                                        <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.descripcion}}</option>
+                                    </select>
                                 </div>
                             </div>
+                        </div>
 
 
-                            <div class="col-md-3" *ngIf="porCategoria">
-                                <div class="form-group row">
-                                    <label for="inputidcategoriaAC" class="form-control-label">Categoria</label>
-                                    <div class="">
-                                        <select [(ngModel)]="idcategoria" class="form-control" id="inputidcategoriaAC" required>
-                                            <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
-                                        </select>
-                                    </div>
-                                    <label for="inputidobraAC" class=" form-control-label">Obra</label>
-                                    <div class="">
-                                        <select [(ngModel)]="idobra" class="form-control" id="inputidobraAC" required>
-                                            <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.descripcion}}</option>
-                                        </select>
-                                    </div>
+                        <div class="col-md-12" *ngIf="porCategoria">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <label for="inputidcategoriaAC" class="form-control-label">Categoría </label>
+                                </div>
+
+                                <div class="">
+                                    <select [(ngModel)]="idcategoria" class="form-control" id="inputidcategoriaAC" required>
+                                        <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
+                                    </select>
+                                </div>
                             </div>
-                            </div>
+                        </div>
 
+                        
+                        <div class="col-md-12" *ngIf="porSubCategoria">
+                            <div class="row">
+                                <div class="col-md-6 text-right">
+                                    <label for="inputidcategoriaAC" class="form-control-label" >Sub Categoría</label>
+                                </div>
 
-                            <div class="col-md-3" *ngIf="porSubCategoria">
-                                <div class="form-group row">
-                                    <label for="inputidsubcategoriaAC" class="form-control-label">SubCategoria</label>
                                     <div class="">
                                         <select [(ngModel)]="idsubcategoria" class="form-control" id="inputidsubcategoriaAC" required>
                                             <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.descripcion}}</option>
                                         </select>
-                                    </div>
-                                    <label for="inputidcategoriaAC" class="form-control-label">Categoria</label>
-                                    <div class="">
-                                        <select [(ngModel)]="idcategoria" class="form-control" id="inputidcategoriaAC" required>
-                                            <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
-                                        </select>
-                                    </div>
-                                    <label for="inputidobraAC" class=" form-control-label">Obra</label>
-                                    <div class="">
-                                        <select [(ngModel)]="idobra" class="form-control" id="inputidobraAC" required>
-                                            <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.descripcion}}</option>
-                                        </select>
-                                    </div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
-        
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
+                    </div>
                 <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
                     <thead>
                         <tr>
@@ -111,27 +89,17 @@
                                     <mfDefaultSorter by='direccionobra'>Dirección Obra</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                  <mfDefaultSorter by='razonsocial'>Razon Social</mfDefaultSorter>
-                            </th>
-                            <th style='width: 4%'>
-                                <mfDefaultSorter by='nombrerazonsocial'>Nombre Razon Social</mfDefaultSorter>
+                                  <mfDefaultSorter by='razonsocial'>Razón Social</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
                                 <mfDefaultSorter by='rfc'>RFC</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                 <mfDefaultSorter by='clavetiporazonsocial'>Clave Tipo Razon Social</mfDefaultSorter>
+                                 <mfDefaultSorter by='clavetiporazonsocial'>Tipo Razón Social</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                <mfDefaultSorter by='descripciontiporazonsocial'>Descripción Tipo Razon Social</mfDefaultSorter>
+                                <mfDefaultSorter by='claveestatuscotizacion'>Estatus Cotización</mfDefaultSorter>
                             </th>
-                            <th style='width: 4%'>
-                                <mfDefaultSorter by='claveestatuscotizacion'>Clave Estatus Cotización</mfDefaultSorter>
-                            </th>
-                            <th style='width: 4%'>
-                                    <mfDefaultSorter by='descripcionestatuscotizacion'>Descripción Estatus Cotización</mfDefaultSorter>
-                            </th>
-                            
                             <th style='width: 4%'>
                                 <mfDefaultSorter by='subtotal'>Sub Total</mfDefaultSorter>
                             </th>
@@ -181,12 +149,9 @@
                             <td>{{ item.descripcionobra  }}</td>
                             <td>{{ item.direccionobra  }}</td>
                             <td>{{ item.razonsocial  }}</td>
-                            <td>{{ item.nombrerazonsocial  }}</td>
                             <td>{{ item.rfc  }}</td>
                             <td>{{ item.clavetiporazonsocial  }}</td>
-                            <td>{{ item.descripciontiporazonsocial  }}</td>
                             <td>{{ item.claveestatuscotizacion  }}</td>
-                            <td>{{ item.descripcionestatuscotizacion  }}</td>
                             <td>{{ item.subtotal  }}</td>
                             <td>{{ item.importetotal  }}</td>
                             <td>{{ item.importeimpuestos  }}</td>

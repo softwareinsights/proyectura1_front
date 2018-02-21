@@ -7,6 +7,7 @@ import { NotagastosService } from './notagastos.service';
 import { NotagastosAddModalComponent } from './notagastos-add-modal/notagastos-add-modal.component';
 import { NotagastosEditModalComponent } from './notagastos-edit-modal/notagastos-edit-modal.component';
 import { RazonsocialsService } from 'app/pages/razonsocials/components/razonsocials-table/razonsocials.service';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'notagastos-table',
 templateUrl: './notagastos-table.html',
@@ -57,16 +58,23 @@ export class NotagastosTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Nota Gasto',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idnotagasto)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
 
 

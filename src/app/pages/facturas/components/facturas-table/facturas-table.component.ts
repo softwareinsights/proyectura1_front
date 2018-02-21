@@ -7,6 +7,7 @@ import { FacturasService } from './facturas.service';
 import { FacturasAddModalComponent } from './facturas-add-modal/facturas-add-modal.component';
 import { FacturasEditModalComponent } from './facturas-edit-modal/facturas-edit-modal.component';
 import { RazonsocialsService } from 'app/pages/razonsocials/components/razonsocials-table/razonsocials.service';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'facturas-table',
 templateUrl: './facturas-table.html',
@@ -56,17 +57,25 @@ export class FacturasTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Factura',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idfactura)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
+
 
 
 

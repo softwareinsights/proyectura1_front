@@ -7,6 +7,7 @@ import { DetallenotagastosService } from './detallenotagastos.service';
 import { DetallenotagastosAddModalComponent } from './detallenotagastos-add-modal/detallenotagastos-add-modal.component';
 import { DetallenotagastosEditModalComponent } from './detallenotagastos-edit-modal/detallenotagastos-edit-modal.component';
 import { NotagastosService } from 'app/pages/notagastos/components/notagastos-table/notagastos.service';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'detallenotagastos-table',
 templateUrl: './detallenotagastos-table.html',
@@ -54,16 +55,23 @@ export class DetallenotagastosTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Detalle Nota Gasto',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.iddetallenotagasto)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
 
         filtrarPor(filtro) {

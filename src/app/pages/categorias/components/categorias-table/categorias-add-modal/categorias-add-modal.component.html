@@ -12,15 +12,15 @@
         <div class="modal-body" style="height: 65vh; overflow-y: auto;">
           <ba-card cardTitle="Información Categorias">
             <div class="form-group row" [ngClass]="{'has-error': (!clavecategoriaAC.valid && clavecategoriaAC.touched), 'has-success': (clavecategoriaAC.valid && clavecategoriaAC.touched)}">
-              <label for="inputclavecategoriaAC" class="col-sm-3 form-control-label">Clave Categoria</label>
+              <label for="inputclavecategoriaAC" class="col-sm-3 form-control-label">Clave Categoría</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="clavecategoria" [formControl]="clavecategoriaAC" type="text" maxlength='45' class="form-control" id="inputclavecategoriaAC" placeholder="Clave Categoria" >
+                <input [(ngModel)]="clavecategoria" [formControl]="clavecategoriaAC" type="text" maxlength='45' class="form-control" id="inputclavecategoriaAC" placeholder="Clave Categoria" required>
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!descripcionAC.valid && descripcionAC.touched), 'has-success': (descripcionAC.valid && descripcionAC.touched)}">
-              <label for="inputdescripcionAC" class="col-sm-3 form-control-label">Descripción Categoria</label>
+              <label for="inputdescripcionAC" class="col-sm-3 form-control-label">Descripción Categoría</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="descripcion" [formControl]="descripcionAC" type="text" maxlength='150' class="form-control" id="inputdescripcionAC" placeholder="Descripción Categoria" >
+                <input [(ngModel)]="descripcion" [formControl]="descripcionAC" type="text" maxlength='150' class="form-control" id="inputdescripcionAC" placeholder="Descripción Categoria" required>
               </div>
             </div>
           </ba-card>

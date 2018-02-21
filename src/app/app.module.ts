@@ -115,6 +115,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 
 /*
 * Platform and Environment providers/directives/pipes
@@ -233,7 +234,8 @@ declarations: [
     Si_usersEditModalComponent,
     Si_reportesEditModalComponent,
     UploadModalComponent,
-    FilesUploadModalComponent
+    FilesUploadModalComponent,
+    ConfirmModalComponent
 ],
 imports: [ // import Angular's modules
     BrowserModule,
@@ -323,7 +325,8 @@ entryComponents: [
     Si_usersEditModalComponent,
     Si_reportesEditModalComponent,
     UploadModalComponent,
-    FilesUploadModalComponent
+    FilesUploadModalComponent,
+    ConfirmModalComponent
 ],
 providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,

@@ -5,21 +5,24 @@
 
                 <form>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="porFecha">Por Fecha</label>
                             <input (change)="filtrarPor('porFecha')" name="costo" type="radio" class="form-radio-input" id="porFecha">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="porObra">Por Obra</label>
                             <input (change)="filtrarPor('porObra')" name="costo" type="radio" class="form-radio-input" id="porObra">
                         </div>
-                        <div class="col-md-3">
-                            <label for="porCategoria">Por Categoria</label>
+                        <div class="col-md-2">
+                            <label for="porCategoria">Por Categoría</label>
                             <input (change)="filtrarPor('porCategoria')" name="costo" type="radio" class="form-radio-input" id="porCategoria">
                         </div>
-                        <div class="col-md-3">
-                            <label for="porSubCategoria">Por SubCategoria</label>
+                        <div class="col-md-2">
+                            <label for="porSubCategoria">Por SubCategoría</label>
                             <input (change)="filtrarPor('porSubCategoria')" name="costo" type="radio" class="form-radio-input" id="porSubCategoria">
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
                         </div>
                     </div>
                 </form>
@@ -29,9 +32,13 @@
                         <input [(ngModel)]="fechainicial"  name="costo" type="date" class="form-control"> 
                         <input [(ngModel)]="fechafinal" name="costo" type="date" class="form-control">
                     </div>
-                    <div class="col-md-3" *ngIf="porObra">
-                        <div class="form-group row">
-                            <label for="inputidobraAC" class=" form-control-label">Obra</label>
+
+
+                    <div class="col-md-12" *ngIf="porObra">
+                        <div class="row">
+                            <div class="col-md-2 text-right">
+                                <label for="inputidobraAC" class=" form-control-label">Obra</label>
+                            </div>
                             <div class="">
                                 <select [(ngModel)]="idobra" class="form-control" id="inputidobraAC" required>
                                     <option value="{{item.idobra}}" *ngFor="let item of _obra">{{item.descripcion}}</option>
@@ -39,33 +46,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3" *ngIf="porCategoria">
-                        <div class="form-group row">
-                            <label for="inputidcategoriaAC" class="form-control-label">Categoria</label>
+
+
+                    <div class="col-md-12" *ngIf="porCategoria">
+                        <div class="row">
+                            <div class="col-md-4 text-right">
+                                <label for="inputidcategoriaAC" class="form-control-label">Categoría </label>
+                            </div>
+
                             <div class="">
                                 <select [(ngModel)]="idcategoria" class="form-control" id="inputidcategoriaAC" required>
                                     <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
                                 </select>
                             </div>
-                    </div>
-                    </div>
-                    <div class="col-md-3" *ngIf="porSubCategoria">
-                        <div class="form-group row">
-                            <label for="inputidsubcategoriaAC" class="form-control-label">SubCategoria</label>
-                            <div class="">
-                                <select [(ngModel)]="idsubcategoria" class="form-control" id="inputidsubcategoriaAC" required>
-                                    <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.descripcion}}</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
+                    
+                    <div class="col-md-12" *ngIf="porSubCategoria">
+                        <div class="row">
+                            <div class="col-md-6 text-right">
+                                <label for="inputidcategoriaAC" class="form-control-label" >Sub Categoría</label>
+                            </div>
+
+                                <div class="">
+                                    <select [(ngModel)]="idsubcategoria" class="form-control" id="inputidsubcategoriaAC" required>
+                                        <option value="{{item.idsubcategoria}}" *ngFor="let item of _subcategoria">{{item.descripcion}}</option>
+                                    </select>
+                            </div>
+                        </div> 
                     </div>
                 </div>
+            </div>
+
                 <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
                     <thead>
                         <tr>
@@ -77,13 +90,7 @@
                                     <mfDefaultSorter by='descripcioncortamaterial'>Descripción Corta Material</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                    <mfDefaultSorter by='descripcionlargamaterial'>Descripción Larga Material</mfDefaultSorter>
-                            </th>
-                            <th style='width: 4%'>
-                                <mfDefaultSorter by='claveunidadmedida'>Clave Unidad de Medida</mfDefaultSorter>
-                            </th>
-                            <th style='width: 4%'>
-                                    <mfDefaultSorter by='descripcionunidadmedida'>Descripción Unidad de Medida</mfDefaultSorter>
+                                <mfDefaultSorter by='claveunidadmedida'>Unidad de Medida</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
                                 <mfDefaultSorter by='cantidad'>Cantidad</mfDefaultSorter>
@@ -107,17 +114,11 @@
                                 <mfDefaultSorter by='observaciones'>Observaciones</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                <mfDefaultSorter by='clavecategoria'>Clave Categoria</mfDefaultSorter>
+                                <mfDefaultSorter by='clavecategoria'>Categoría</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                    <mfDefaultSorter by='descripcioncategoria'>Descripción Categoria</mfDefaultSorter>
-                             </th>
-                            <th style='width: 4%'>
-                                <mfDefaultSorter by='clavesubcategoria'>Clave Sub Categoria</mfDefaultSorter>
+                                <mfDefaultSorter by='clavesubcategoria'>Sub Categoría</mfDefaultSorter>
                             </th>
-                            <th style='width: 4%'>
-                                    <mfDefaultSorter by='descripcionsubcategoria'>Descripción Sub Categoria</mfDefaultSorter>
-                             </th>
                             <th style='width: 4%'>
                                 <mfDefaultSorter by='descripcionobra'>Descripción Obra</mfDefaultSorter>
                             </th>
@@ -136,9 +137,6 @@
                             <th style='width: 4%'>
                                 <mfDefaultSorter by='fechahoracambio'>Fecha y Hora Cambio</mfDefaultSorter>
                             </th>
-                            <th style='width: 4%'>
-                                    <mfDefaultSorter by='baja'>Baja</mfDefaultSorter>
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -150,9 +148,7 @@
        
                             <td>{{ item.codigomaterial  }}</td>
                             <td>{{ item.descripcioncortamaterial  }}</td>
-                            <td>{{ item.descripcionlargamaterial  }}</td>
                             <td>{{ item.claveunidadmedida  }}</td>
-                            <td>{{ item.descripcionunidadmedida  }}</td>
                             <td>{{ item.cantidad  }}</td>
                             <td>{{ item.preciounitario  }}</td>
                             <td>{{ item.impuestos  }}</td>
@@ -160,17 +156,14 @@
                             <td>{{ item.subtotal  }}</td>
                             <td>{{ item.importetotal  }}</td>
                             <td>{{ item.observaciones  }}</td>                    
-                            <td>{{ item.clavecategoria  }}</td>
-                            <td>{{ item.descripcioncategoria  }}</td>                   
-                            <td>{{ item.clavesubcategoria  }}</td>
-                            <td>{{ item.descripcionsubcategoria  }}</td>                        
+                            <td>{{ item.clavecategoria  }}</td>                 
+                            <td>{{ item.clavesubcategoria  }}</td>                  
                             <td>{{ item.descripcionobra  }}</td>
                             <td>{{ item.direccionobra  }}</td>  
                             <td>{{ item.usuarioalta  }}</td>
                             <td>{{ item.fechahoraalta | date:'dd/MM/y' }}</td>                       
                             <td>{{ item.usuariocambio  }}</td>
                             <td>{{ item.fechahoracambio | date:'dd/MM/y'  }}</td>
-                            <td>{{ item.baja  }}</td>
 
                         </tr>
                     </tbody>
@@ -182,7 +175,6 @@
                         </tr>
                     </tfoot>
                 </table>
-            </div>
         </ba-card>
     </div>
     <div class='row'>

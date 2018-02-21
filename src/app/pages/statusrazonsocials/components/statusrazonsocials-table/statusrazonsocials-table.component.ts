@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { StatusrazonsocialsService } from './statusrazonsocials.service';
 import { StatusrazonsocialsAddModalComponent } from './statusrazonsocials-add-modal/statusrazonsocials-add-modal.component';
 import { StatusrazonsocialsEditModalComponent } from './statusrazonsocials-edit-modal/statusrazonsocials-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'statusrazonsocials-table',
 templateUrl: './statusrazonsocials-table.html',
@@ -44,17 +45,25 @@ export class StatusrazonsocialsTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Estatus Razón Social',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idstatusrazonsocial)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
+
     showToast(result) {
       if (result.info.valorRespuesta) {
         this.toastrService.success(result.message);

@@ -2,12 +2,6 @@
     <div class='row'>
         <ba-card title='Listado' baCardClass='with-scroll' class='data-table-container'>
             <div class='panel panel-default'>
-
-
-
-
-
-
                     <form>
                             <div class="row">
                                 <div class="col-md-3">
@@ -18,23 +12,25 @@
                                     <label for="porRazonsocial">Por Razón Social Emisor</label>
                                     <input (change)="filtrarPor('porRazonsocial')" name="notagasto" type="radio" class="form-radio-input" id="porRazonsocial">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="porFecharazonsocial">Por Fecha y Razón Social Emisor</label>
-                                    <input (change)="filtrarPor('porFecharazonsocial')" name="notagasto" type="radio" class="form-radio-input" id="porFecharazonsocial">
+ 
+                                <div class="col-md-6 text-right">
+                                        <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
                                 </div>
-                                
                             </div>
                         </form>
                         
-                        <div class="row">
+                    <div class="row">
                             <div class="col-md-3" *ngIf="porFecha">
                                 <input [(ngModel)]="fechainicial"  name="notagasto" type="date" class="form-control"> 
                                 <input [(ngModel)]="fechafinal" name="notagasto" type="date" class="form-control">
                             </div>
-                            <div class="col-md-3" *ngIf="porRazonsocial">
-                                <div class="form-group row">
-                                    <label for="inputidrazonsocialAC" class=" form-control-label">Razón Social Emisor</label>
-                                    <div class="">
+
+                            <div class="col-md-12" *ngIf="porRazonsocial">
+                                    <div class="row">
+                                            <div class="col-md-4 text-right">
+                                                <label for="inputidrazonsocialAC" class=" form-control-label">Razón Social Emisor</label>
+                                            </div>
+                                     <div class="">
                                         <select [(ngModel)]="idrazonsocial" class="form-control" id="inputidrazonsocialAC" required>
                                             <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.nombre}}</option>
                                         </select>
@@ -42,30 +38,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" *ngIf="porFecharazonsocial">
-                                <div class="form-group row">
-                                    <label for="inputidrazonsocialAC" class="form-control-label">Fecha y Razón Social</label>
-                                    <div class="">
-                                        <select [(ngModel)]="idrazonsocial" class="form-control" id="inputidrazonsocialAC" required>
-                                            <option value="{{item.idrazonsocial}}" *ngFor="let item of _razonsocial">{{item.nombre}}</option>
-                                        </select>
-                                        <input [(ngModel)]="fechainicial"  name="notagasto" type="date" class="form-control"> 
-                                        <input [(ngModel)]="fechafinal" name="notagasto" type="date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                           
+
+
+
+
                         </div>
-        
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <button class="btn btn-success pull-right" (click)="showResults()">Mostrar Resultados</button>
-                            </div>
-                        </div>
-
-
-
-
+    
                 <table class='table table-striped' [mfData]='data' #mf='mfDataTable' [mfRowsOnPage]='rowsOnPage' [(mfSortBy)]='sortBy' [(mfSortOrder)]='sortOrder'>
                     <thead>
                         <tr>

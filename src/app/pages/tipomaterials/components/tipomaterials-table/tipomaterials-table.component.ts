@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { TipomaterialsService } from './tipomaterials.service';
 import { TipomaterialsAddModalComponent } from './tipomaterials-add-modal/tipomaterials-add-modal.component';
 import { TipomaterialsEditModalComponent } from './tipomaterials-edit-modal/tipomaterials-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'tipomaterials-table',
 templateUrl: './tipomaterials-table.html',
@@ -44,17 +45,25 @@ export class TipomaterialsTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Tipo Material',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idtipomaterial)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
+
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);

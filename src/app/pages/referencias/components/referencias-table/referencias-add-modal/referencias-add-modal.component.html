@@ -11,14 +11,8 @@
         </div>
         <div class="modal-body" style="height: 65vh; overflow-y: auto;">
           <ba-card cardTitle="Información ">
-            <div class="form-group row" [ngClass]="{'has-error': (!idreferenciaAC.valid && idreferenciaAC.touched), 'has-success': (idreferenciaAC.valid && idreferenciaAC.touched)}">
-              <label for="inputidreferenciaAC" class="col-sm-3 form-control-label">Idreferencia</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="idreferencia" [formControl]="idreferenciaAC" type="number" maxlength='11' class="form-control" id="inputidreferenciaAC" placeholder="Idreferencia" required>
-              </div>
-            </div>
             <div class="form-group row" [ngClass]="{'has-error': (!referenciaAC.valid && referenciaAC.touched), 'has-success': (referenciaAC.valid && referenciaAC.touched)}">
-              <label for="inputreferenciaAC" class="col-sm-3 form-control-label">Referencia</label>
+              <label for="inputreferenciaAC" class="col-sm-3 form-control-label">Agregar Referencia</label>
               <div class="col-sm-9">
                 <input [(ngModel)]="referencia" [formControl]="referenciaAC" type="text" maxlength='45' class="form-control" id="inputreferenciaAC" placeholder="Referencia" >
               </div>

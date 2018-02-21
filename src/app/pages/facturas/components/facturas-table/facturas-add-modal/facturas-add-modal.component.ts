@@ -16,11 +16,9 @@ import { RazonsocialsAddModalComponent } from './../../../../razonsocials/compon
 export class FacturasAddModalComponent extends DialogComponent<FacturasInterface, any> implements OnInit {
   _razonsocial: string[] = [];
 
-  folio: string;
   serie: string;
   version: string;
   fechaexpedicion: string;
-  uuid: string;
   fechatimbrado: string;
   idrazonsocialemisor: number;
   razonsocialemisor: string;
@@ -44,11 +42,9 @@ export class FacturasAddModalComponent extends DialogComponent<FacturasInterface
   data: any;
   form: FormGroup;
   submitted: boolean = false;
-  folioAC: AbstractControl;
   serieAC: AbstractControl;
   versionAC: AbstractControl;
   fechaexpedicionAC: AbstractControl;
-  uuidAC: AbstractControl;
   fechatimbradoAC: AbstractControl;
   idrazonsocialemisorAC: AbstractControl;
   razonsocialemisorAC: AbstractControl;
@@ -78,11 +74,9 @@ export class FacturasAddModalComponent extends DialogComponent<FacturasInterface
   ) {
     super(dialogService);
     this.form = fb.group({
-    'folioAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'serieAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'versionAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'fechaexpedicionAC' : [''],
-    'uuidAC' : ['',Validators.compose([Validators.maxLength(45)])],
     'fechatimbradoAC' : [''],
     'idrazonsocialemisorAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'razonsocialemisorAC' : ['',Validators.compose([Validators.maxLength(45)])],
@@ -102,11 +96,9 @@ export class FacturasAddModalComponent extends DialogComponent<FacturasInterface
     'clavemonedaAC' : [''],
     'valortipocambioAC' : [''],
     });
-    this.folioAC = this.form.controls['folioAC'];
     this.serieAC = this.form.controls['serieAC'];
     this.versionAC = this.form.controls['versionAC'];
     this.fechaexpedicionAC = this.form.controls['fechaexpedicionAC'];
-    this.uuidAC = this.form.controls['uuidAC'];
     this.fechatimbradoAC = this.form.controls['fechatimbradoAC'];
     this.idrazonsocialemisorAC = this.form.controls['idrazonsocialemisorAC'];
     this.razonsocialemisorAC = this.form.controls['razonsocialemisorAC'];
@@ -160,11 +152,9 @@ export class FacturasAddModalComponent extends DialogComponent<FacturasInterface
     if (this.form.valid) {
       this.service
         .insert({
-                  folio: this.folio,
                   serie: this.serie,
                   version: this.version,
                   fechaexpedicion: this.fechaexpedicion,
-                  uuid: this.uuid,
                   fechatimbrado: this.fechatimbrado,
                   idrazonsocialemisor: this.idrazonsocialemisor,
                   razonsocialemisor: this.razonsocialemisor,
