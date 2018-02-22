@@ -183,18 +183,6 @@ export const PAGES_MENU = [
         }
     },
     {
-        path: 'statusrazonsocials',
-        data: {
-        menu: {
-            title: 'general.menu.statusrazonsocials',
-            icon: 'ion-social-buffer',
-            selected: false,
-            expanded: false,
-            order: 0
-        }
-        }
-    },
-    {
         path: 'subcategorias',
         data: {
         menu: {

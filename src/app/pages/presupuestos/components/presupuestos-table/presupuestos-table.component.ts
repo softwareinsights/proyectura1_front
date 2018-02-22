@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { PresupuestosService } from './presupuestos.service';
 import { PresupuestosAddModalComponent } from './presupuestos-add-modal/presupuestos-add-modal.component';
 import { PresupuestosEditModalComponent } from './presupuestos-edit-modal/presupuestos-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'presupuestos-table',
 templateUrl: './presupuestos-table.html',
@@ -44,16 +45,23 @@ export class PresupuestosTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
+      this.dialogService.addDialog( ConfirmModalComponent, {
+        titulo: 'Eliminar Presupuesto',
+        descripcion: '¿Estas seguro de querer eliminar este registro?'
+      }).subscribe( remove => {
+        if ( remove ) {
+          
           this.service.remove(item.idpresupuesto)
           .subscribe(
               (data) => this.showToast(data),
               error => console.log(error),
               () => console.log('Delete completed')
           );
-      } else {
-          console.log('item cancelado');
-      }
+
+        } else {
+          console.log('Canceled');
+        }
+      });
     }
     showToast(result: any) {
       if (result.valorRespuesta) {

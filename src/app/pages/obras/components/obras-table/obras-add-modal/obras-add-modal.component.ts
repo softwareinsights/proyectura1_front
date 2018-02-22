@@ -177,6 +177,14 @@ export class ObrasAddModalComponent extends DialogComponent<ObrasInterface, any>
     this.result = this.data;
     this.close();
   }
+  isNumberKey(evt)
+  {
+   var charCode = (evt.which) ? evt.which : evt.keyCode;
+   if (charCode > 31 && (charCode < 46 || charCode > 57))
+      return false;
+
+   return true;
+  }
   onSubmit(values: ObrasInterface): void {
     this.submitted = true;
     if (this.form.valid) {

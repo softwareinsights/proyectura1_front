@@ -50,7 +50,7 @@
             <div class="form-group row" [ngClass]="{'has-error': (!presupuestoAC.valid && presupuestoAC.touched), 'has-success': (presupuestoAC.valid && presupuestoAC.touched)}">
               <label for="inputpresupuestoAC" class="col-sm-3 form-control-label">Presupuesto</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="presupuesto" [formControl]="presupuestoAC" type="number"  class="form-control" id="inputpresupuestoAC" placeholder="Presupuesto" >
+                <input [(ngModel)]="presupuesto" [formControl]="presupuestoAC" type="number"  class="form-control" id="inputpresupuestoAC" placeholder="Presupuesto" min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!posiciongpsAC.valid && posiciongpsAC.touched), 'has-success': (posiciongpsAC.valid && posiciongpsAC.touched)}">
@@ -72,9 +72,11 @@
                  <option value="{{item.idtipoobra}}" *ngFor="let item of _tipoobra">{{item.descripcion}}</option>
                </select>
               </div>
+              <!--
               <div class='col-sm-2'>
                 <button (click)='tipoobraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
               </div>
+            -->
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!idestatusobraAC.valid && idestatusobraAC.touched), 'has-success': (idestatusobraAC.valid && idestatusobraAC.touched)}">
               <label for="inputidestatusobraAC" class="col-sm-3 form-control-label">Estatus Obra</label>
@@ -83,9 +85,11 @@
                  <option value="{{item.idestatusobra}}" *ngFor="let item of _estatusobra">{{item.descripcion}}</option>
                </select>
               </div>
+              <!--
               <div class='col-sm-2'>
                 <button (click)='estatusobraAddModalShow()' class='btn btn-primary'><i class='fa fa-plus'></i></button>
               </div>
+            -->
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!idrazonsocialconstructorAC.valid && idrazonsocialconstructorAC.touched), 'has-success': (idrazonsocialconstructorAC.valid && idrazonsocialconstructorAC.touched)}">
               <label for="inputidrazonsocialconstructorAC" class="col-sm-3 form-control-label">Razón Social Constructor</label>

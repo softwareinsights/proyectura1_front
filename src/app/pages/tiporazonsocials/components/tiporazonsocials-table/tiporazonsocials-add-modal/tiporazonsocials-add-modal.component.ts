@@ -13,14 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TiporazonsocialsAddModalComponent extends DialogComponent<TiporazonsocialsInterface, any> implements OnInit {
 
-  idtiporazonsocial: number;
+ 
   tiporazonsocial: string;
 
   modalHeader: string;
   data: any;
   form: FormGroup;
   submitted: boolean = false;
-  idtiporazonsocialAC: AbstractControl;
+ 
   tiporazonsocialAC: AbstractControl;
 
   constructor(
@@ -32,10 +32,10 @@ export class TiporazonsocialsAddModalComponent extends DialogComponent<Tiporazon
   ) {
     super(dialogService);
     this.form = fb.group({
-    'idtiporazonsocialAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
+    
     'tiporazonsocialAC' : ['',Validators.compose([Validators.maxLength(60)])],
     });
-    this.idtiporazonsocialAC = this.form.controls['idtiporazonsocialAC'];
+   
     this.tiporazonsocialAC = this.form.controls['tiporazonsocialAC'];
   }
   ngOnInit() {
@@ -49,7 +49,7 @@ export class TiporazonsocialsAddModalComponent extends DialogComponent<Tiporazon
     if (this.form.valid) {
       this.service
         .insert({
-                  idtiporazonsocial: this.idtiporazonsocial,
+                
                   tiporazonsocial: this.tiporazonsocial,
         })
         .subscribe(

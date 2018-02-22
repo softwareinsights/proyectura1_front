@@ -115,31 +115,31 @@
             <div class="form-group row" [ngClass]="{'has-error': (!subtotalAC.valid && subtotalAC.touched), 'has-success': (subtotalAC.valid && subtotalAC.touched)}">
               <label for="inputsubtotalAC" class="col-sm-3 form-control-label">Sub Total</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="subtotal" [formControl]="subtotalAC" type="number"  class="form-control" id="inputsubtotalAC" placeholder="Sub Total" >
+                <input [(ngModel)]="subtotal" [formControl]="subtotalAC" type="number"  class="form-control" id="inputsubtotalAC" placeholder="Sub Total" min="0" (keypress)="isNumberKey($event)" >
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!importetotalAC.valid && importetotalAC.touched), 'has-success': (importetotalAC.valid && importetotalAC.touched)}">
               <label for="inputimportetotalAC" class="col-sm-3 form-control-label">Importe Total</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="importetotal" [formControl]="importetotalAC" type="number"  class="form-control" id="inputimportetotalAC" placeholder="Importe Total" >
+                <input [(ngModel)]="importetotal" [formControl]="importetotalAC" type="number"  class="form-control" id="inputimportetotalAC" placeholder="Importe Total" min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!totalimpuestostrasladadosAC.valid && totalimpuestostrasladadosAC.touched), 'has-success': (totalimpuestostrasladadosAC.valid && totalimpuestostrasladadosAC.touched)}">
               <label for="inputtotalimpuestostrasladadosAC" class="col-sm-3 form-control-label">Total Impuestos Trasladados</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="totalimpuestostrasladados" [formControl]="totalimpuestostrasladadosAC" type="number"  class="form-control" id="inputtotalimpuestostrasladadosAC" placeholder="Total Impuestos Trasladados" >
+                <input [(ngModel)]="totalimpuestostrasladados" [formControl]="totalimpuestostrasladadosAC" type="number"  class="form-control" id="inputtotalimpuestostrasladadosAC" placeholder="Total Impuestos Trasladados" min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!totalimpuestosretenidosAC.valid && totalimpuestosretenidosAC.touched), 'has-success': (totalimpuestosretenidosAC.valid && totalimpuestosretenidosAC.touched)}">
               <label for="inputtotalimpuestosretenidosAC" class="col-sm-3 form-control-label">Total Impuestos Retenidos</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="totalimpuestosretenidos" [formControl]="totalimpuestosretenidosAC" type="number"  class="form-control" id="inputtotalimpuestosretenidosAC" placeholder="Total Impuestos Retenidos" >
+                <input [(ngModel)]="totalimpuestosretenidos" [formControl]="totalimpuestosretenidosAC" type="number"  class="form-control" id="inputtotalimpuestosretenidosAC" placeholder="Total Impuestos Retenidos" min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!totaldescuentosAC.valid && totaldescuentosAC.touched), 'has-success': (totaldescuentosAC.valid && totaldescuentosAC.touched)}">
               <label for="inputtotaldescuentosAC" class="col-sm-3 form-control-label">Total Descuentos</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="totaldescuentos" [formControl]="totaldescuentosAC" type="number"  class="form-control" id="inputtotaldescuentosAC" placeholder="Total Descuentos" >
+                <input [(ngModel)]="totaldescuentos" [formControl]="totaldescuentosAC" type="number"  class="form-control" id="inputtotaldescuentosAC" placeholder="Total Descuentos" min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!clavemonedaAC.valid && clavemonedaAC.touched), 'has-success': (clavemonedaAC.valid && clavemonedaAC.touched)}">

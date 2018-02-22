@@ -23,7 +23,7 @@
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!idcategoriaAC.valid && idcategoriaAC.touched), 'has-success': (idcategoriaAC.valid && idcategoriaAC.touched)}">
-              <label for="inputidcategoriaAC" class="col-sm-3 form-control-label">Categoria</label>
+              <label for="inputidcategoriaAC" class="col-sm-3 form-control-label">Categoría</label>
               <div class="col-sm-7">
                <select [(ngModel)]="idcategoria" [formControl]="idcategoriaAC" class="form-control" id="inputidcategoriaAC" required>
                  <option value="{{item.idcategoria}}" *ngFor="let item of _categoria">{{item.clavecategoria}}</option>
@@ -36,13 +36,13 @@
             <div class="form-group row" [ngClass]="{'has-error': (!montopresupuestadoAC.valid && montopresupuestadoAC.touched), 'has-success': (montopresupuestadoAC.valid && montopresupuestadoAC.touched)}">
               <label for="inputmontopresupuestadoAC" class="col-sm-3 form-control-label">Monto Presupuestado</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="montopresupuestado" [formControl]="montopresupuestadoAC" type="number"  class="form-control" id="inputmontopresupuestadoAC" placeholder="Monto Presupuestado" >
+                <input [(ngModel)]="montopresupuestado" [formControl]="montopresupuestadoAC" type="number"  class="form-control" id="inputmontopresupuestadoAC" placeholder="Monto Presupuestado"  min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
-            <div class="form-group row" [ngClass]="{'has-error': (!montoejercicioAC.valid && montoejercicioAC.touched), 'has-success': (montoejercicioAC.valid && montoejercicioAC.touched)}">
-              <label for="inputmontoejercicioAC" class="col-sm-3 form-control-label">Monto Ejercicio</label>
+            <div class="form-group row" [ngClass]="{'has-error': (!montoejercidoAC.valid && montoejercidoAC.touched), 'has-success': (montoejercidoAC.valid && montoejercidoAC.touched)}">
+              <label for="inputmontoejercidoAC" class="col-sm-3 form-control-label">Monto Ejercicio</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="montoejercicio" [formControl]="montoejercicioAC" type="number"  class="form-control" id="inputmontoejercicioAC" placeholder="Monto Ejercicio" >
+                <input [(ngModel)]="montoejercido" [formControl]="montoejercidoAC" type="number"  class="form-control" id="inputmontoejercidoAC" placeholder="Monto Ejercicio"  min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!fechainicialAC.valid && fechainicialAC.touched), 'has-success': (fechainicialAC.valid && fechainicialAC.touched)}">

@@ -22,7 +22,7 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
   idobra: number;
   idcategoria: number;
   montopresupuestado: string;
-  montoejercicio: string;
+  montoejercido: string;
   fechainicial: string;
   fechafinal: string;
 
@@ -33,7 +33,7 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
   idobraAC: AbstractControl;
   idcategoriaAC: AbstractControl;
   montopresupuestadoAC: AbstractControl;
-  montoejercicioAC: AbstractControl;
+  montoejercidoAC: AbstractControl;
   fechainicialAC: AbstractControl;
   fechafinalAC: AbstractControl;
 
@@ -51,14 +51,14 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
     'idobraAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'idcategoriaAC' : ['',Validators.compose([Validators.required,Validators.maxLength(11)])],
     'montopresupuestadoAC' : [''],
-    'montoejercicioAC' : [''],
+    'montoejercidoAC' : [''],
     'fechainicialAC' : [''],
     'fechafinalAC' : [''],
     });
     this.idobraAC = this.form.controls['idobraAC'];
     this.idcategoriaAC = this.form.controls['idcategoriaAC'];
     this.montopresupuestadoAC = this.form.controls['montopresupuestadoAC'];
-    this.montoejercicioAC = this.form.controls['montoejercicioAC'];
+    this.montoejercidoAC = this.form.controls['montoejercidoAC'];
     this.fechainicialAC = this.form.controls['fechainicialAC'];
     this.fechafinalAC = this.form.controls['fechafinalAC'];
   }
@@ -76,10 +76,10 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
   }
   obraShowToast(result) {
       if (result.info.valorRespuesta) {
-          this.toastrService.success(result.info.mensajeRespuesta);
+          this.toastrService.success(result.mensajeRespuesta);
           this.getObra();
       } else {
-          this.toastrService.error(result.info.mensajeRespuesta);
+          this.toastrService.error(result.mensajeRespuesta);
       }
   }
   categoriaAddModalShow() {
@@ -92,10 +92,10 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
   }
   categoriaShowToast(result) {
       if (result.info.valorRespuesta) {
-          this.toastrService.success(result.info.mensajerespuesta);
+          this.toastrService.success(result.mensajerespuesta);
           this.getCategoria();
       } else {
-          this.toastrService.error(result.info.mensajerespuesta);
+          this.toastrService.error(result.mensajerespuesta);
       }
   }
   getObra() {
@@ -114,6 +114,15 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
     this.result = this.data;
     this.close();
   }
+  isNumberKey(evt)
+  {
+   var charCode = (evt.which) ? evt.which : evt.keyCode;
+   if (charCode > 31 && (charCode < 46 || charCode > 57))
+      return false;
+
+   return true;
+  }
+
   onSubmit(values: PresupuestosInterface): void {
     this.submitted = true;
     if (this.form.valid) {
@@ -122,7 +131,7 @@ export class PresupuestosAddModalComponent extends DialogComponent<PresupuestosI
                   idobra: this.idobra,
                   idcategoria: this.idcategoria,
                   montopresupuestado: this.montopresupuestado,
-                  montoejercicio: this.montoejercicio,
+                  montoejercido: this.montoejercido,
                   fechainicial: this.fechainicial,
                   fechafinal: this.fechafinal,
         })

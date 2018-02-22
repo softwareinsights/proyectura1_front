@@ -5,6 +5,26 @@
       <form [formGroup]="form" class="form-horizontal">
         <div class="modal-header">
           <h4 class="modal-title">Agregar Costos</h4>
+          <script type="text/javascript">
+            function validar(e) {
+                
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla==8) return true; //Tecla de retroceso (para poder borrar)
+                if (tecla==44) return true; //Coma ( En este caso para diferenciar los decimales )
+                if (tecla==48) return true;
+                if (tecla==49) return true;
+                if (tecla==50) return true;
+                if (tecla==51) return true;
+                if (tecla==52) return true;
+                if (tecla==53) return true;
+                if (tecla==54) return true;
+                if (tecla==55) return true;
+                if (tecla==56) return true;
+                patron = /1/; //ver nota
+                te = String.fromCharCode(tecla);
+                return patron.test(te); 
+            } 
+            </script>
           <button class="close" aria-label="Close" (click)="close()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -69,7 +89,7 @@
             <div class="form-group row" [ngClass]="{'has-error': (!cantidadAC.valid && cantidadAC.touched), 'has-success': (cantidadAC.valid && cantidadAC.touched)}">
               <label for="inputcantidadAC" class="col-sm-3 form-control-label">Cantidad</label>
               <div class="col-sm-9">
-                <input [(ngModel)]="cantidad" [formControl]="cantidadAC" type="number"  class="form-control" id="inputcantidadAC" placeholder="Cantidad" >
+                <input [(ngModel)]="cantidad" [formControl]="cantidadAC" type="number"  class="form-control" id="inputcantidadAC" placeholder="Cantidad" min="0" (keypress)="isNumberKey($event)">
               </div>
             </div>
             <div class="form-group row" [ngClass]="{'has-error': (!preciounitarioAC.valid && preciounitarioAC.touched), 'has-success': (preciounitarioAC.valid && preciounitarioAC.touched)}">

@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { ObrasService } from './obras.service';
 import { ObrasAddModalComponent } from './obras-add-modal/obras-add-modal.component';
 import { ObrasEditModalComponent } from './obras-edit-modal/obras-edit-modal.component';
+import { ConfirmModalComponent } from '../../../../shared/confirm-modal/confirm-modal.component';
 @Component({
 selector: 'obras-table',
 templateUrl: './obras-table.html',
@@ -61,65 +62,100 @@ export class ObrasTableComponent implements OnInit {
       () => console.log('Modified complete'));
     }
     onDeleteConfirm(event, item): void {
-      if (window.confirm('¿Estas seguro de querer eliminar este registro?')) {
-          this.service.remove(item.idobra)
-          .subscribe(
-              (data) => this.showToast(data),
-              error => console.log(error),
-              () => console.log('Delete completed')
-          );
-      } else {
-          console.log('item cancelado');
+        this.dialogService.addDialog( ConfirmModalComponent, {
+          titulo: 'Eliminar Obra',
+          descripcion: '¿Estas seguro de querer eliminar este registro?'
+        }).subscribe( remove => {
+          if ( remove ) {
+            
+            this.service.remove(item.idobra)
+            .subscribe(
+                (data) => this.showToast(data),
+                error => console.log(error),
+                () => console.log('Delete completed')
+            );
+  
+          } else {
+            console.log('Canceled');
+          }
+        });
       }
-    }
     autorizar(event, item): void {
-      if (window.confirm('¿Estas seguro de querer autorizar esta Obra?')) {
-          this.service.autorizarObra(item.idobra)
-          .subscribe(
-              (data) => this.showToast(data),
-              error => console.log(error),
-              () => console.log('Obra Autorizada')
-          );
-      } else {
-          console.log('item cancelado');
-      }
-    }
+        this.dialogService.addDialog( ConfirmModalComponent, {
+            titulo: 'Autorizar Obra',
+            descripcion: '¿Estas seguro de querer autorizar este registro?'
+          }).subscribe( remove => {
+            if ( remove ) {
+              
+              this.service.remove(item.idobra)
+              .subscribe(
+                  (data) => this.showToast(data),
+                  error => console.log(error),
+                  () => console.log('Delete completed')
+              );
+    
+            } else {
+              console.log('Canceled');
+            }
+          });
+        }
     bloquear(event, item): void {
-      if (window.confirm('¿Estas seguro de querer bloquear esta Obra?')) {
-          this.service.bloquearObra(item.idobra)
-          .subscribe(
-              (data) => this.showToast(data),
-              error => console.log(error),
-              () => console.log('Obra Autorizada')
-          );
-      } else {
-          console.log('item cancelado');
-      }
-    }
+        this.dialogService.addDialog( ConfirmModalComponent, {
+            titulo: 'Bloquear Obra',
+            descripcion: '¿Estas seguro de querer bloquear este registro?'
+          }).subscribe( remove => {
+            if ( remove ) {
+              
+              this.service.remove(item.idobra)
+              .subscribe(
+                  (data) => this.showToast(data),
+                  error => console.log(error),
+                  () => console.log('Delete completed')
+              );
+    
+            } else {
+              console.log('Canceled');
+            }
+          });
+        }
     cancelar(event, item): void {
-      if (window.confirm('¿Estas seguro de querer cancelar esta Obra?')) {
-          this.service.cancelarObra(item.idobra)
-          .subscribe(
-              (data) => this.showToast(data),
-              error => console.log(error),
-              () => console.log('Obra Autorizada')
-          );
-      } else {
-          console.log('item cancelado');
-      }
-    }
+        this.dialogService.addDialog( ConfirmModalComponent, {
+            titulo: 'Cancelar Obra',
+            descripcion: '¿Estas seguro de querer cancelar este registro?'
+          }).subscribe( remove => {
+            if ( remove ) {
+              
+              this.service.remove(item.idobra)
+              .subscribe(
+                  (data) => this.showToast(data),
+                  error => console.log(error),
+                  () => console.log('Delete completed')
+              );
+    
+            } else {
+              console.log('Canceled');
+            }
+          });
+        }
     finalizar(event, item): void {
-      if (window.confirm('¿Estas seguro de querer finalizar esta Obra?')) {
-          this.service.finalizarObra(item.idobra)
-          .subscribe(
-              (data) => this.showToast(data),
-              error => console.log(error),
-              () => console.log('Obra Autorizada')
-          );
-      } else {
-          console.log('item cancelado');
-      }
-    }
+        this.dialogService.addDialog( ConfirmModalComponent, {
+            titulo: 'Finalizar Obra',
+            descripcion: '¿Estas seguro de querer finalizar este registro?'
+          }).subscribe( remove => {
+            if ( remove ) {
+              
+              this.service.remove(item.idobra)
+              .subscribe(
+                  (data) => this.showToast(data),
+                  error => console.log(error),
+                  () => console.log('Delete completed')
+              );
+    
+            } else {
+              console.log('Canceled');
+            }
+          });
+        }
     showToast(result: any) {
       if (result.valorRespuesta) {
         this.toastrService.success(result.mensajeRespuesta);

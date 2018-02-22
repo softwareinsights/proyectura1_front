@@ -11,12 +11,6 @@
         </div>
         <div class="modal-body" style="height: 65vh; overflow-y: auto;">
           <ba-card cardTitle="Información ">
-            <div class="form-group row" [ngClass]="{'has-error': (!idtiporazonsocialAC.valid && idtiporazonsocialAC.touched), 'has-success': (idtiporazonsocialAC.valid && idtiporazonsocialAC.touched)}">
-              <label for="inputidtiporazonsocialAC" class="col-sm-3 form-control-label">Idtiporazonsocial</label>
-              <div class="col-sm-9">
-                <input [(ngModel)]="idtiporazonsocial" [formControl]="idtiporazonsocialAC" type="number" maxlength='11' class="form-control" id="inputidtiporazonsocialAC" placeholder="Idtiporazonsocial" required>
-              </div>
-            </div>
             <div class="form-group row" [ngClass]="{'has-error': (!tiporazonsocialAC.valid && tiporazonsocialAC.touched), 'has-success': (tiporazonsocialAC.valid && tiporazonsocialAC.touched)}">
               <label for="inputtiporazonsocialAC" class="col-sm-3 form-control-label">Tiporazonsocial</label>
               <div class="col-sm-9">

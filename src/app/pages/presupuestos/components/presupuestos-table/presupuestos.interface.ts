@@ -6,7 +6,7 @@ export interface PresupuestosInterface {
     idobra?: number;
     idcategoria?: number;
     montopresupuestado?: string;
-    montoejercicio?: string;
+    montoejercido?: string;
     fechainicial?: string;
     fechafinal?: string;
     baja?: boolean;

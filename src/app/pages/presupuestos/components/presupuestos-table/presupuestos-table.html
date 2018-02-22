@@ -13,7 +13,7 @@
                                 <mfDefaultSorter by='montopresupuestado'>Monto Presupuestado</mfDefaultSorter>
                             </th>
                             <th style='width: 7%'>
-                                <mfDefaultSorter by='montoejercicio'>Monto Ejercicio</mfDefaultSorter>
+                                <mfDefaultSorter by='montoejercido'>Monto Ejercido</mfDefaultSorter>
                             </th>
                             <th style='width: 7%'>
                                 <mfDefaultSorter by='fechainicial'>Fecha Inicial</mfDefaultSorter>
@@ -28,10 +28,10 @@
                                     <mfDefaultSorter by='direccionobra'>Dirección Obra</mfDefaultSorter>
                                 </th>
                            <th style='width: 7%'>
-                                <mfDefaultSorter by='clavecategoria'>Clave Categoria</mfDefaultSorter>
+                                <mfDefaultSorter by='clavecategoria'>Clave Categoría</mfDefaultSorter>
                             </th>
                            <th style='width: 7%'>
-                                    <mfDefaultSorter by='descripcioncategoria'>Descripción Categoria</mfDefaultSorter>
+                                    <mfDefaultSorter by='descripcioncategoria'>Descripción Categoría</mfDefaultSorter>
                                 </th>
                             <th style='width: 7%'>
                                 <mfDefaultSorter by='usuarioalta'>Usuario Alta</mfDefaultSorter>
@@ -55,17 +55,17 @@
                             </td>
                            
                             <td>{{ item.montopresupuestado  }}</td>
-                            <td>{{ item.montoejercicio  }}</td>
-                            <td>{{ item.fechainicial  }}</td>
-                            <td>{{ item.fechafinal  }}</td>
+                            <td>{{ item.montoejercido  }}</td>
+                            <td>{{ item.fechainicial | date:'dd/MM/y' }}</td>
+                            <td>{{ item.fechafinal | date:'dd/MM/y'  }}</td>
                             <td>{{ item.descripcionobra  }}</td>
                             <td>{{ item.direccionobra  }}</td>   
                             <td>{{ item.clavecategoria  }}</td>
                             <td>{{ item.descripcioncategoria  }}</td>   
                             <td>{{ item.usuarioalta  }}</td>
-                            <td>{{ item.fechahoraalta | date:'dd/MM/y'  }}</td>                       
+                            <td>{{ item.fechahoraalta | date:'dd/MM/y HH:mm:ss' }}</td>                       
                             <td>{{ item.usuariocambio  }}</td>
-                            <td>{{ item.fechahoracambio | date:'dd/MM/y'  }}</td>
+                            <td>{{ item.fechahoracambio | date:'dd/MM/y HH:mm:ss' }}</td>
   
                         </tr>
                     </tbody>

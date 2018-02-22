@@ -39,7 +39,7 @@
                                 <mfDefaultSorter by='estado'>Estado</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
-                                <mfDefaultSorter by='pais'>Pais</mfDefaultSorter>
+                                <mfDefaultSorter by='pais'>País</mfDefaultSorter>
                             </th>
                             <th style='width: 4%'>
                                     <mfDefaultSorter by='baja'>Baja</mfDefaultSorter>
@@ -89,9 +89,9 @@
                             <td>{{ item.pais  }}</td>
                             <td>{{ item.baja  }}</td>
                             <td>{{ item.usuarioalta  }}</td>
-                            <td>{{ item.fechahoraalta | date:'dd/MM/y'  }}</td>                       
+                            <td>{{ item.fechahoraalta | date:'dd/MM/y HH:mm:ss' }}</td>                       
                             <td>{{ item.usuariocambio  }}</td>
-                            <td>{{ item.fechahoracambio | date:'dd/MM/y'  }}</td>
+                            <td>{{ item.fechahoracambio | date:'dd/MM/y HH:mm:ss' }}</td>
                             <td>{{ item.clavetipo }}</td>
                             <td>{{ item.descripciontipo }}</td>
                             <td>{{ item.claveestatus }}</td>
